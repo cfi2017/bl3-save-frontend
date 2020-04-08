@@ -71,6 +71,7 @@
       true,
       "single"
     ],
+    "curly": false,
     "no-trailing-whitespace": false,
     "trailing-comma": false,
     "no-conflicting-lifecycle": true,

@@ -15,12 +15,12 @@ export class ProxyService {
 
   keepAlive(): Observable<{ pwd: string }> {
     return timer(1000, 5000).pipe(
-      switchMapTo(this.http.get<{ pwd: string }>(`${environment.proxy}/`))
+      switchMapTo(this.http.get<{ pwd: string }>(`${environment.proxy}/stats`))
     );
   }
 
   getStatus(): Observable<{pwd: string}> {
-    return this.http.get<{pwd: string}>(`${environment.proxy}/`);
+    return this.http.get<{pwd: string}>(`${environment.proxy}/stats`);
   }
 
   cd(path: string): Observable<{pwd: string}> {

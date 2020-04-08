@@ -9,9 +9,6 @@ import { ProxyService } from './proxy.service';
     <mat-toolbar color="primary">
       bl3-save editor
       <ng-template *ngIf="online">
-        <mat-form-field>
-          <input matInput [(ngModel)]="dir" />
-        </mat-form-field>
         <mat-select>
           <mat-option *ngFor="let c of chars">{{c.name}}</mat-option>
         </mat-select>
@@ -51,9 +48,11 @@ export class AppComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    this.listChars();
     this.proxy.keepAlive().subscribe(
       () => {
         this.snackbar.dismiss();
+        if (this.online === false && !this.chars) this.listChars();
         this.online = true;
       },
       () => {
