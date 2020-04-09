@@ -8,14 +8,12 @@ import { ProxyService } from './proxy.service';
     <!--The content below is only a placeholder and can be replaced.-->
     <mat-toolbar color="primary">
       bl3-save editor
-      <ng-template *ngIf="online">
-        <mat-select>
-          <mat-option *ngFor="let c of chars">{{c.name}}</mat-option>
-        </mat-select>
-      </ng-template>
     </mat-toolbar>
     <div style="width: 100%;">
       <ng-template *ngIf="online; else offline">
+        <mat-select>
+          <mat-option *ngFor="let c of chars" [value]="c.id">{{c.name}} | {{c.experience}}</mat-option>
+        </mat-select>
 
       </ng-template>
       <ng-template #offline>
