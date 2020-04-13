@@ -13,18 +13,18 @@ export class ProxyService {
     private http: HttpClient
   ) { }
 
-  keepAlive(): Observable<{ pwd: string }> {
+  keepAlive(): Observable<{ pwd: string, hasProfile: boolean }> {
     return timer(1000, 5000).pipe(
-      switchMapTo(this.http.get<{ pwd: string }>(`${environment.proxy}/stats`))
+      switchMapTo(this.http.get<{ pwd: string, hasProfile: boolean }>(`${environment.proxy}/stats`))
     );
   }
 
-  getStatus(): Observable<{pwd: string}> {
-    return this.http.get<{pwd: string}>(`${environment.proxy}/stats`);
+  getStatus(): Observable<{pwd: string, hasProfile: boolean }> {
+    return this.http.get<{pwd: string, hasProfile: boolean }>(`${environment.proxy}/stats`);
   }
 
   cd(path: string): Observable<{pwd: string}> {
-    return this.http.post<{pwd: string}>(`${environment.proxy}/cd`, {path});
+    return this.http.post<{pwd: string}>(`${environment.proxy}/cd`, {pwd: path});
   }
 
   getCharacters(): Observable<{name: string, experience: number, id: number}[]> {
