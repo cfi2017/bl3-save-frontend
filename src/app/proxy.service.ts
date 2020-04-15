@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, timer } from 'rxjs';
 import { environment } from '../environments/environment';
 import { switchMapTo } from 'rxjs/operators';
+import { Item } from './model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,23 @@ export class ProxyService {
     return this.http.get<any>(`${environment.proxy}/characters/${id}`);
   }
 
+  updateCharacter(id, character): Observable<any> {
+    return this.http.post<any>(`${environment.proxy}/characters/${id}`, character);
+  }
+
   getProfile(): Observable<any> {
     return this.http.get<any>(`${environment.proxy}/profile`);
   }
 
+  updateProfile(profile): Observable<any> {
+    return this.http.post<any>(`${environment.proxy}/profile`, profile);
+  }
+
+  getItems(id): Observable<Item[]> {
+    return this.http.get<Item[]>(`${environment.proxy}/characters/${id}/items`);
+  }
+
+  updateItems(id, items): Observable<Item[]> {
+    return this.http.post<Item[]>(`${environment.proxy}/characters/${id}/items`, items);
+  }
 }

@@ -1,0 +1,28 @@
+
+table {
+  width: 100%;
+}
+
+.item-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+tr.detail-row {
+  height: 0;
+}
+tr.element-row {
+
+  &:not(.expanded-row)
+  {
+    &:hover {
+      background: whitesmoke;
+    }
+    &:active {
+      background: #efefef;
+    }
+  }
+
+  border-bottom-width: 0;
+}
+

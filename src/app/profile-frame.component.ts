@@ -1,19 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { ProxyService } from './proxy.service';
 
 @Component({
   selector: 'bls-profile-frame',
   template: `
-    <p style="min-height: 300px;">
-      profile-frame works!
-    </p>
+    <pre style="min-height: 300px;">
+      {{data | json}}
+    </pre>
   `,
   styles: []
 })
 export class ProfileFrameComponent implements OnInit {
 
-  constructor() { }
+  data: any;
+
+  constructor(
+    private proxy: ProxyService
+  ) { }
 
   ngOnInit(): void {
+    this.proxy.getProfile().subscribe(profile => this.data = profile);
   }
 
 }

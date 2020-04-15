@@ -21,10 +21,18 @@ import { CharacterFrameComponent } from './character-frame.component';
 import { ProfileFrameComponent } from './profile-frame.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule, Routes } from '@angular/router';
-import { ItemsFrameComponent } from './items-frame/items-frame.component';
+import { ItemsFrameComponent } from './items-frame.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DefaultComponent } from './default.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ItemFormComponent } from './form/item-form.component';
+import { MatTableModule } from '@angular/material/table';
+import { PartPickerComponent } from './form/part-picker.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FilterPipe } from './form/filter.pipe';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AssetPipe } from './form/asset.pipe';
+import { MatIconModule } from '@angular/material/icon';
 
 export const ROUTES: Routes = [
   {
@@ -52,7 +60,11 @@ export const ROUTES: Routes = [
     CharacterFrameComponent,
     ProfileFrameComponent,
     ItemsFrameComponent,
-    DefaultComponent
+    DefaultComponent,
+    ItemFormComponent,
+    PartPickerComponent,
+    FilterPipe,
+    AssetPipe
   ],
   imports: [
     BrowserModule,
@@ -68,12 +80,16 @@ export const ROUTES: Routes = [
     MatFormFieldModule,
     FormsModule,
     MatSelectModule,
+    MatDialogModule,
     MatButtonModule,
     MatInputModule,
     MatTabsModule,
     RouterModule.forRoot(ROUTES),
     MatSidenavModule,
     MatExpansionModule,
+    MatTableModule,
+    DragDropModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
