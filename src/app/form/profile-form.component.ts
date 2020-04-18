@@ -5,7 +5,9 @@ import { Component, Input, OnInit } from '@angular/core';
   template: `
     <form>
       <mat-form-field>
-        <input matInput name="" />
+        <input matInput name="science_tokens" type="number"
+               [(ngModel)]="data.profile.CitizenScienceCSBucksAmount" />
+        <mat-label>Citizen Science Bucks</mat-label>
       </mat-form-field>
     </form>
   `,

@@ -3,6 +3,7 @@ import { ProxyService } from './proxy.service';
 import { map, switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { getExpForLevel, getLevelForExp } from './const';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'bls-character-frame',
@@ -28,7 +29,8 @@ export class CharacterFrameComponent implements OnInit {
   constructor(
     private proxy: ProxyService,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -50,7 +52,9 @@ export class CharacterFrameComponent implements OnInit {
         map(params => params.get('id')),
         switchMap(id => this.proxy.updateCharacter(id, this.data)),
       )
-      .subscribe();
+      .subscribe(
+        () => this.snackbar.open('Saved successfully.', 'Dismiss', {duration: 3000}),
+        () => this.snackbar.open('Failed to save.', 'Dismiss', {duration: 3000}));
   }
 
 }

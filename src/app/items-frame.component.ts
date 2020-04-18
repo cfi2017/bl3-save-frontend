@@ -6,6 +6,7 @@ import { Item } from './model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTable } from '@angular/material/table';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'bls-items-frame',
@@ -81,6 +82,7 @@ export class ItemsFrameComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private proxy: ProxyService,
+    private snackbar: MatSnackBar
   ) {
   }
 
@@ -94,7 +96,9 @@ export class ItemsFrameComponent implements OnInit {
   }
 
   public save() {
-    this.proxy.updateItems(this.route.snapshot.params.id, this.items).subscribe();
+    this.proxy.updateItems(this.route.snapshot.params.id, this.items).subscribe(
+      () => this.snackbar.open('Saved successfully.', 'Dismiss', {duration: 3000}),
+      () => this.snackbar.open('Failed to save.', 'Dismiss', {duration: 3000}));
   }
 
   public duplicate(element: Item) {
