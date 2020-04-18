@@ -11,6 +11,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     <div class="frame" *ngIf="data" style="min-height: 300px;">
       <button mat-raised-button color="primary" (click)="save()">Save</button>
       <bls-character-form [data]="data"></bls-character-form>
+      <pre *ngIf="debug">
+      {{data | json}}
+    </pre>
     </div>
   `,
   styles: [
@@ -26,6 +29,8 @@ export class CharacterFrameComponent implements OnInit {
   @Input()
   data: any;
 
+  debug = false;
+
   constructor(
     private proxy: ProxyService,
     private route: ActivatedRoute,
@@ -34,6 +39,7 @@ export class CharacterFrameComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.debug = !!localStorage.getItem('debug');
     this.route.paramMap
       .pipe(
         map(params => params.get('id')),
