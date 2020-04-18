@@ -9,16 +9,10 @@ export const CLASSES = [
 
 export const PETS = [];
 
-export const CURRENCIES = [
-  {
-    name: 'Money',
-    hash: 618814354,
-  },
-  {
-    name: 'Eridium',
-    hash: 3679636065,
-  },
-];
+export const CURRENCIES = {
+  money: 618814354,
+  eridium: 3679636065
+};
 
 export const INVENTORY_SLOTS =  [
 
