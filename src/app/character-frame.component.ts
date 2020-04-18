@@ -9,7 +9,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'bls-character-frame',
   template: `
     <div class="frame" *ngIf="data" style="min-height: 300px;">
-      <button mat-raised-button color="primary" (click)="save()">Save</button>
+      <div class="action-bar">
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
+      </div>
       <bls-character-form [data]="data"></bls-character-form>
       <pre *ngIf="debug">
       {{data | json}}
@@ -18,8 +20,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   `,
   styles: [
     `
+
     .frame {
       padding: 20px;
+    }
+
+    .action-bar {
+      padding: 20px;
+    }
+
+    .action-bar button {
+      margin-right: 10px;
     }
     `
   ]

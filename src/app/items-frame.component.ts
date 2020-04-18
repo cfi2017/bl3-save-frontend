@@ -1,18 +1,23 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProxyService } from './proxy.service';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { Item } from './model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTable } from '@angular/material/table';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ItemImportComponent } from './form/item-import.component';
 
 @Component({
   selector: 'bls-items-frame',
   template: `
     <div style="min-height: 300px;">
-      <button mat-raised-button color="primary" (click)="save()">Save</button>
+      <div class="action-bar">
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
+        <button mat-raised-button color="primary" (click)="openImportDialog()">Import Item</button>
+      </div>
       <table mat-table [dataSource]="items" multiTemplateDataRows>
         <ng-container matColumnDef="level">
           <th mat-header-cell *matHeaderCellDef>Level</th>
@@ -86,7 +91,8 @@ export class ItemsFrameComponent implements OnInit {
     private route: ActivatedRoute,
     private proxy: ProxyService,
     private snackbar: MatSnackBar,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private dialog: MatDialog
   ) {
   }
 
@@ -135,4 +141,19 @@ export class ItemsFrameComponent implements OnInit {
     this.items.pop();
     this.table.renderRows();
   }
+
+  public openImportDialog() {
+    this.dialog.open(ItemImportComponent, {
+      width: '80%'
+    }).afterClosed()
+      .pipe(
+        filter(r => !!r),
+        switchMap(code => this.proxy.convert(code))
+      ).subscribe(result => {
+        this.items.push(result);
+        moveItemInArray(this.items, this.items.length - 1, 0);
+        this.table.renderRows();
+      });
+  }
+
 }

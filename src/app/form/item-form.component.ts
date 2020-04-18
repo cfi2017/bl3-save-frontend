@@ -35,6 +35,9 @@ import { PartPickerComponent } from './part-picker.component';
   `,
   styles: [
     `
+      bls-part-picker {
+        width: 100%;
+      }
     `
   ]
 })

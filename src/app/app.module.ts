@@ -36,6 +36,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProfileFormComponent } from './form/profile-form.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CharacterFormComponent } from './form/character-form.component';
+import { ItemImportComponent } from './form/item-import.component';
 
 export const ROUTES: Routes = [
   {
@@ -69,7 +70,8 @@ export const ROUTES: Routes = [
     FilterPipe,
     AssetPipe,
     ProfileFormComponent,
-    CharacterFormComponent
+    CharacterFormComponent,
+    ItemImportComponent
   ],
   imports: [
     BrowserModule,

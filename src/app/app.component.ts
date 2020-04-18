@@ -15,7 +15,7 @@ import { MatSidenav } from '@angular/material/sidenav';
         <div fxFlex="5 1">
           <mat-form-field style="width: 100%;">
             <input name="dir" matInput [(ngModel)]="dir" />
-            <mat-label>Working Directory</mat-label>
+            <mat-label>Save Directory</mat-label>
           </mat-form-field>
         </div>
         <div fxFlex="1 1">
