@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProxyService } from './proxy.service';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { Item } from './model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTable } from '@angular/material/table';
@@ -78,11 +78,15 @@ export class ItemsFrameComponent implements OnInit {
 
   @ViewChild(MatTable)
   table: MatTable<any>;
+  // tslint:disable-next-line:variable-name
+  private _id: any;
+  private id: any;
 
   constructor(
     private route: ActivatedRoute,
     private proxy: ProxyService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private cdr: ChangeDetectorRef
   ) {
   }
 
@@ -90,13 +94,18 @@ export class ItemsFrameComponent implements OnInit {
     this.route.paramMap
       .pipe(
         map(params => params.get('id')),
+        tap(id => this._id = id),
         switchMap(id => this.proxy.getItems(id)),
       )
-      .subscribe(items => this.items = items);
+      .subscribe(items => {
+        this.id = this._id; // only change id on full load
+        this.items = items;
+        this.cdr.detectChanges();
+      });
   }
 
   public save() {
-    this.proxy.updateItems(this.route.snapshot.params.id, this.items).subscribe(
+    this.proxy.updateItems(this.id, this.items).subscribe(
       () => this.snackbar.open('Saved successfully.', 'Dismiss', {duration: 3000}),
       () => this.snackbar.open('Failed to save.', 'Dismiss', {duration: 3000}));
   }
