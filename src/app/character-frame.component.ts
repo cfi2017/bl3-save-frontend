@@ -1,16 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ProxyService } from './proxy.service';
 import { map, switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { getExpForLevel, getLevelForExp } from './const';
 
 @Component({
   selector: 'bls-character-frame',
   template: `
-    <pre style="min-height: 300px;">
-      {{data | json}}
-    </pre>
+    <div class="frame" *ngIf="data" style="min-height: 300px;">
+      <button mat-raised-button color="primary" (click)="save()">Save</button>
+      <bls-character-form [data]="data"></bls-character-form>
+    </div>
   `,
-  styles: []
+  styles: [
+    `
+    .frame {
+      padding: 20px;
+    }
+    `
+  ]
 })
 export class CharacterFrameComponent implements OnInit {
 
@@ -19,7 +27,8 @@ export class CharacterFrameComponent implements OnInit {
 
   constructor(
     private proxy: ProxyService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +37,20 @@ export class CharacterFrameComponent implements OnInit {
         map(params => params.get('id')),
         switchMap(id => this.proxy.getCharacter(id)),
       )
-      .subscribe(char => this.data = char);
+      .subscribe(char => {
+        this.data = char;
+        this.cdr.detectChanges();
+      });
+
+  }
+
+  save() {
+    this.route.paramMap
+      .pipe(
+        map(params => params.get('id')),
+        switchMap(id => this.proxy.updateCharacter(id, this.data)),
+      )
+      .subscribe();
   }
 
 }

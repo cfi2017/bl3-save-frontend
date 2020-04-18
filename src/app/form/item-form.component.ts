@@ -23,14 +23,14 @@ import { PartPickerComponent } from './part-picker.component';
         </mat-form-field>
       </div>
 
-      <div style="margin-bottom:5px;">
+      <div *ngIf="data.parts" style="margin-bottom:5px;">
         <bls-part-picker max="63" [pickedParts]="data.parts" [availableParts]="availableParts"></bls-part-picker>
       </div>
-      <div>
-        <bls-part-picker max="15" [pickedParts]="data.generics"
+      <div *ngIf="data.generics">
+        <bls-part-picker max="15" [pickedParts]="data.generics" exclusive="true"
                          partTitle="Anointments" [availableParts]="availableGenerics"></bls-part-picker>
       </div>
-      <pre>{{data | json}}</pre>
+      <pre *ngIf="debug">{{data | json}}</pre>
     </form>
   `,
   styles: [
@@ -46,12 +46,15 @@ export class ItemFormComponent implements OnInit {
   @Input()
   data: Item;
 
+  debug = false;
+
   constructor(
     private assets: AssetService,
     private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
+    this.debug = !!localStorage.getItem('debug');
     this.availableParts = [...this.assets.getAssets(this.data.balance.toLowerCase())];
     this.availableGenerics = [...this.assets.getAssetsForKey('InventoryGenericPartData')];
 

@@ -1,5 +1,33 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+export const CLASSES = [
+  {
+    name: 'Beastmaster',
+    key: '/Game/PlayerCharacters/Beastmaster/PlayerClassId_Beastmaster.PlayerClassId_Beastmaster',
+  },
+];
+
+export const PETS = [];
+
+export const CURRENCIES = [
+  {
+    name: 'Money',
+    hash: 618814354,
+  },
+  {
+    name: 'Eridium',
+    hash: 3679636065,
+  },
+];
+
+export const INVENTORY_SLOTS =  [
+
+];
+
+export const SDUS = [];
+export const AMMO = [];
+export const CHALLENGES = [];
+
 export const maxLevel = 57;
 export const expValues = [
   0,          // lvl 1
@@ -97,7 +125,7 @@ export function getLevelForExp(exp: number): number {
   return maxLevel;
 }
 
-@Pipe({name: 'level'})
+@Pipe({ name: 'level' })
 export class ExpToLevelPipe implements PipeTransform {
   public transform(value: number, ...args: []): any {
     return getLevelForExp(value);

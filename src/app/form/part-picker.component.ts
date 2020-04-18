@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -136,12 +136,17 @@ export class PartPickerComponent implements OnInit {
   @Input()
   max: number;
 
+  @Input()
+  exclusive = false;
+
   constructor(
-    private cdr: ChangeDetectorRef
   ) {
   }
 
   ngOnInit(): void {
+    if (this.exclusive) {
+      this.availableParts = this.availableParts.filter(i => this.pickedParts.indexOf(i) === -1);
+    }
   }
 
   public drop(event: CdkDragDrop<any>) {
@@ -149,11 +154,18 @@ export class PartPickerComponent implements OnInit {
   }
 
   removePart(index: number) {
-    this.pickedParts[index] = this.pickedParts[this.pickedParts.length - 1];
-    this.pickedParts.pop();
+    const [removed] = this.pickedParts.splice(index, 1);
+    if (this.exclusive) {
+      this.availableParts.push(removed);
+    }
   }
 
   addPart(part: string) {
     this.pickedParts.push(part);
+    if (this.exclusive) {
+      // remove part from available
+      const index = this.availableParts.indexOf(part);
+      this.availableParts.splice(index, 1);
+    }
   }
 }

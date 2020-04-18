@@ -33,6 +33,9 @@ import { FilterPipe } from './form/filter.pipe';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AssetPipe } from './form/asset.pipe';
 import { MatIconModule } from '@angular/material/icon';
+import { ProfileFormComponent } from './form/profile-form.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CharacterFormComponent } from './form/character-form.component';
 
 export const ROUTES: Routes = [
   {
@@ -64,7 +67,9 @@ export const ROUTES: Routes = [
     ItemFormComponent,
     PartPickerComponent,
     FilterPipe,
-    AssetPipe
+    AssetPipe,
+    ProfileFormComponent,
+    CharacterFormComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +95,7 @@ export const ROUTES: Routes = [
     MatTableModule,
     DragDropModule,
     MatIconModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

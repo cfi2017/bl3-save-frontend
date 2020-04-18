@@ -4,6 +4,7 @@ import { ProxyService } from './proxy.service';
 @Component({
   selector: 'bls-profile-frame',
   template: `
+    <bls-profile-form [data]="data"></bls-profile-form>
     <pre style="min-height: 300px;">
       {{data | json}}
     </pre>
