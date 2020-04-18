@@ -46,9 +46,21 @@ export class CharacterFormComponent implements OnInit {
   }
 
   get eridium(): number {
+    if (this.data.character.inventory_category_list.filter(l => l.base_category_definition_hash === CURRENCIES.eridium).length === 0) {
+      this.data.character.inventory_category_list.push({
+        base_category_definition_hash: CURRENCIES.eridium,
+        quantity: 0
+      });
+    }
     return this.data.character.inventory_category_list.filter(l => l.base_category_definition_hash === CURRENCIES.eridium)[0].quantity;
   }
   set eridium(e: number) {
+    if (this.data.character.inventory_category_list.filter(l => l.base_category_definition_hash === CURRENCIES.eridium).length === 0) {
+      this.data.character.inventory_category_list.push({
+        base_category_definition_hash: CURRENCIES.eridium,
+        quantity: 0
+      });
+    }
     this.data.character.inventory_category_list.filter(l => l.base_category_definition_hash === CURRENCIES.eridium)[0].quantity = e;
   }
   get money(): number {
