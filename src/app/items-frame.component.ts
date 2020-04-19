@@ -138,6 +138,7 @@ export class ItemsFrameComponent implements OnInit {
         e.inventory_list_index++;
       }
     });
+    if (this.itemRequest.active[0] > index) this.itemRequest.active[0]++;
     this.table.renderRows();
   }
 
@@ -151,6 +152,14 @@ export class ItemsFrameComponent implements OnInit {
         e.inventory_list_index--;
       }
     });
+    if (this.itemRequest.active.length > 0) {
+      if (this.itemRequest.active[0] === index) {
+        this.itemRequest.active[0] =
+          this.itemRequest.equipped.filter(e => e.enabled && e.inventory_list_index !== -1)[0].inventory_list_index;
+      } else if (this.itemRequest.active[0] > index) {
+        this.itemRequest.active[0]--;
+      }
+    }
     this.itemRequest.items.splice(index, 1);
     this.table.renderRows();
   }
@@ -168,6 +177,7 @@ export class ItemsFrameComponent implements OnInit {
         this.itemRequest.equipped.forEach(e => {
           e.inventory_list_index++;
         });
+        this.itemRequest.active[0]++;
         this.table.renderRows();
       });
   }
