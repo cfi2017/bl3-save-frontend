@@ -51,7 +51,7 @@ import { MatSidenav } from '@angular/material/sidenav';
             <mat-card-content>
               <mat-list>
                 <mat-list-item>
-                  Download the latest <a target="_blank" href="https://github.com/cfi2017/bl3-save/releases">Release</a>.
+                  Download the latest&nbsp;<a target="_blank" href="https://github.com/cfi2017/bl3-save/releases">Release</a>.
                 </mat-list-item>
               </mat-list>
             </mat-card-content>
