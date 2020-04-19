@@ -3,6 +3,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProxyService } from './proxy.service';
 import { untilComponentDestroyed } from './destroy-pipe';
 import { MatSidenav } from '@angular/material/sidenav';
+import { environment } from '../environments/environment';
+import compareVersions from 'compare-versions';
 
 @Component({
   selector: 'bls-root',
@@ -23,8 +25,11 @@ import { MatSidenav } from '@angular/material/sidenav';
         </div>
       </div>
     </mat-toolbar>
+    <mat-toolbar *ngIf="outOfDate" color="warn">
+      Your proxy version ({{version}}) is out of date. You need at least version {{minimumVersion}}.
+    </mat-toolbar>
     <div style="width: 100%;">
-      <mat-sidenav-container *ngIf="online; else offline">
+      <mat-sidenav-container *ngIf="online && !outOfDate; else offline">
         <mat-sidenav style="min-width: 200px;" #nav mode="side" opened>
           <mat-nav-list>
             <a mat-list-item routerLink="profile">Profile</a>
@@ -72,6 +77,9 @@ export class AppComponent implements OnInit, OnDestroy {
   chars: { name: string; experience: number; id: number }[];
   data: any;
   isCharacter = false;
+  version: string;
+  outOfDate = false;
+  minimumVersion: string;
 
   @ViewChild(MatSidenav)
   nav: MatSidenav;
@@ -95,6 +103,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.hasProfile = res.hasProfile;
         if (this.online === false && !this.chars) this.listChars();
         this.online = true;
+        this.version = res.buildVersion;
+        this.checkVersion();
       },
       () => {
         this.online = false;
@@ -127,5 +137,15 @@ export class AppComponent implements OnInit, OnDestroy {
         this.isCharacter = true;
       });
     }
+  }
+
+  private checkVersion() {
+    this.minimumVersion = environment.minimumVersion;
+    if (!this.version) {
+      this.outOfDate = true;
+      this.version = '<= 1.0.3';
+      return;
+    }
+    this.outOfDate = compareVersions(this.version, this.minimumVersion) === -1;
   }
 }

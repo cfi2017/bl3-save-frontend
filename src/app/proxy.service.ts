@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, timer } from 'rxjs';
 import { environment } from '../environments/environment';
 import { switchMapTo } from 'rxjs/operators';
-import { Item } from './model';
+import { Item, ItemRequest, Stats } from './model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +14,14 @@ export class ProxyService {
     private http: HttpClient
   ) { }
 
-  keepAlive(): Observable<{ pwd: string, hasProfile: boolean }> {
+  keepAlive(): Observable<Stats> {
     return timer(1000, 5000).pipe(
-      switchMapTo(this.http.get<{ pwd: string, hasProfile: boolean }>(`${environment.proxy}/stats`))
+      switchMapTo(this.http.get<Stats>(`${environment.proxy}/stats`))
     );
   }
 
-  getStatus(): Observable<{pwd: string, hasProfile: boolean }> {
-    return this.http.get<{pwd: string, hasProfile: boolean }>(`${environment.proxy}/stats`);
+  getStatus(): Observable<Stats> {
+    return this.http.get<Stats>(`${environment.proxy}/stats`);
   }
 
   cd(path: string): Observable<{pwd: string}> {
@@ -48,12 +48,12 @@ export class ProxyService {
     return this.http.post<any>(`${environment.proxy}/profile`, profile);
   }
 
-  getItems(id): Observable<Item[]> {
-    return this.http.get<Item[]>(`${environment.proxy}/characters/${id}/items`);
+  getItems(id): Observable<ItemRequest> {
+    return this.http.get<ItemRequest>(`${environment.proxy}/characters/${id}/items`);
   }
 
-  updateItems(id, items): Observable<Item[]> {
-    return this.http.post<Item[]>(`${environment.proxy}/characters/${id}/items`, items);
+  updateItems(id, items: ItemRequest): Observable<ItemRequest> {
+    return this.http.post<ItemRequest>(`${environment.proxy}/characters/${id}/items`, items);
   }
 
   convert(code: string): Observable<Item> {

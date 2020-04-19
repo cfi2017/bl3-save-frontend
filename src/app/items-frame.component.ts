@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProxyService } from './proxy.service';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
-import { Item } from './model';
+import { Item, ItemRequest } from './model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTable } from '@angular/material/table';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
@@ -18,7 +18,7 @@ import { ItemImportComponent } from './form/item-import.component';
         <button mat-raised-button color="primary" (click)="save()">Save</button>
         <button mat-raised-button color="primary" (click)="openImportDialog()">Import Item</button>
       </div>
-      <table mat-table [dataSource]="items" multiTemplateDataRows>
+      <table mat-table [dataSource]="itemRequest.items" multiTemplateDataRows>
         <ng-container matColumnDef="level">
           <th mat-header-cell *matHeaderCellDef>Level</th>
           <td mat-cell *matCellDef="let element">{{element.level}}</td>
@@ -75,7 +75,7 @@ import { ItemImportComponent } from './form/item-import.component';
 })
 export class ItemsFrameComponent implements OnInit {
 
-  items: Item[] = [];
+  itemRequest: ItemRequest;
   displayedColumns = [
     'level', 'balance', 'actions'
   ];
@@ -105,13 +105,13 @@ export class ItemsFrameComponent implements OnInit {
       )
       .subscribe(items => {
         this.id = this._id; // only change id on full load
-        this.items = items;
+        this.itemRequest = items;
         this.cdr.detectChanges();
       });
   }
 
   public save() {
-    this.proxy.updateItems(this.id, this.items).subscribe(
+    this.proxy.updateItems(this.id, this.itemRequest).subscribe(
       () => this.snackbar.open('Saved successfully.', 'Dismiss', {duration: 3000}),
       () => this.snackbar.open('Failed to save.', 'Dismiss', {duration: 3000}));
   }
@@ -130,15 +130,15 @@ export class ItemsFrameComponent implements OnInit {
         ...element.wrapper
       }
     };
-    const index = this.items.indexOf(element);
-    this.items.push(copyOfItem);
-    moveItemInArray(this.items, this.items.length - 1, index + 1);
+    const index = this.itemRequest.items.indexOf(element);
+    this.itemRequest.items.push(copyOfItem);
+    moveItemInArray(this.itemRequest.items, this.itemRequest.items.length - 1, index + 1);
     this.table.renderRows();
   }
 
   public promptDelete(element: Item) {
-    moveItemInArray(this.items, this.items.indexOf(element), this.items.length - 1);
-    this.items.pop();
+    moveItemInArray(this.itemRequest.items, this.itemRequest.items.indexOf(element), this.itemRequest.items.length - 1);
+    this.itemRequest.items.pop();
     this.table.renderRows();
   }
 
@@ -150,8 +150,8 @@ export class ItemsFrameComponent implements OnInit {
         filter(r => !!r),
         switchMap(code => this.proxy.convert(code))
       ).subscribe(result => {
-        this.items.push(result);
-        moveItemInArray(this.items, this.items.length - 1, 0);
+        this.itemRequest.items.push(result);
+        moveItemInArray(this.itemRequest.items, this.itemRequest.items.length - 1, 0);
         this.table.renderRows();
       });
   }
