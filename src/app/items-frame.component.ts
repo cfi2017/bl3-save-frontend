@@ -18,7 +18,7 @@ import { ItemImportComponent } from './form/item-import.component';
         <button mat-raised-button color="primary" (click)="save()">Save</button>
         <button mat-raised-button color="primary" (click)="openImportDialog()">Import Item</button>
       </div>
-      <table mat-table [dataSource]="itemRequest.items" multiTemplateDataRows>
+      <table mat-table [dataSource]="itemRequest?.items" multiTemplateDataRows>
         <ng-container matColumnDef="level">
           <th mat-header-cell *matHeaderCellDef>Level</th>
           <td mat-cell *matCellDef="let element">{{element.level}}</td>
@@ -133,12 +133,25 @@ export class ItemsFrameComponent implements OnInit {
     const index = this.itemRequest.items.indexOf(element);
     this.itemRequest.items.push(copyOfItem);
     moveItemInArray(this.itemRequest.items, this.itemRequest.items.length - 1, index + 1);
+    this.itemRequest.equipped.forEach(e => {
+      if (e.inventory_list_index > index) {
+        e.inventory_list_index++;
+      }
+    });
     this.table.renderRows();
   }
 
   public promptDelete(element: Item) {
-    moveItemInArray(this.itemRequest.items, this.itemRequest.items.indexOf(element), this.itemRequest.items.length - 1);
-    this.itemRequest.items.pop();
+    const index = this.itemRequest.items.indexOf(element);
+    this.itemRequest.equipped.forEach(e => {
+      if (e.inventory_list_index === index) {
+        // special case, check what to do in this case (unequip?)
+        e.inventory_list_index = -1;
+      } else if (e.inventory_list_index > index) {
+        e.inventory_list_index--;
+      }
+    });
+    this.itemRequest.items.splice(index, 1);
     this.table.renderRows();
   }
 
@@ -152,6 +165,9 @@ export class ItemsFrameComponent implements OnInit {
       ).subscribe(result => {
         this.itemRequest.items.push(result);
         moveItemInArray(this.itemRequest.items, this.itemRequest.items.length - 1, 0);
+        this.itemRequest.equipped.forEach(e => {
+          e.inventory_list_index++;
+        });
         this.table.renderRows();
       });
   }
