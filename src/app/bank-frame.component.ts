@@ -120,7 +120,7 @@ export class BankFrameComponent implements OnInit {
   }
 
   private checkVersion() {
-    this.minimumVersion = 'v1.0.5';
+    this.minimumVersion = 'v1.0.7';
     if (!this.version) {
       this.outOfDate = true;
       this.version = '<= 1.0.3';
