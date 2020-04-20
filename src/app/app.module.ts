@@ -37,8 +37,13 @@ import { ProfileFormComponent } from './form/profile-form.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CharacterFormComponent } from './form/character-form.component';
 import { ItemImportComponent } from './form/item-import.component';
+import { BankFrameComponent } from './bank-frame.component';
 
 export const ROUTES: Routes = [
+  {
+    path: 'profile/bank',
+    component: BankFrameComponent
+  },
   {
     path: 'profile',
     component: ProfileFrameComponent
@@ -71,7 +76,8 @@ export const ROUTES: Routes = [
     AssetPipe,
     ProfileFormComponent,
     CharacterFormComponent,
-    ItemImportComponent
+    ItemImportComponent,
+    BankFrameComponent
   ],
   imports: [
     BrowserModule,

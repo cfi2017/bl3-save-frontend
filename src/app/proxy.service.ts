@@ -59,4 +59,13 @@ export class ProxyService {
   convert(code: string): Observable<Item> {
     return this.http.post<Item>(`${environment.proxy}/convert`, {base64: code});
   }
+
+  getBankItems(): Observable<Item[]> {
+    return this.http.get<Item[]>(`${environment.proxy}/profile/bank`);
+  }
+
+  updateBankItems(items: Item[]): Observable<Item[]> {
+    return this.http.post<Item[]>(`${environment.proxy}/profile/bank`, items);
+  }
+
 }

@@ -32,7 +32,15 @@ import compareVersions from 'compare-versions';
       <mat-sidenav-container *ngIf="online && !outOfDate; else offline">
         <mat-sidenav style="min-width: 200px;" #nav mode="side" opened>
           <mat-nav-list>
-            <a mat-list-item routerLink="profile">Profile</a>
+            <mat-expansion-panel *ngIf="hasProfile">
+              <mat-expansion-panel-header>
+                <mat-panel-title>Profile</mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-nav-list>
+                <a routerLink="profile" mat-list-item>Profile</a>
+                <a routerLink="profile/bank" mat-list-item>Bank</a>
+              </mat-nav-list>
+            </mat-expansion-panel>
             <mat-expansion-panel
               *ngFor="let c of chars">
               <mat-expansion-panel-header>
