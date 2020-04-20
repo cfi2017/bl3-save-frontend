@@ -9,6 +9,7 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ItemImportComponent } from './form/item-import.component';
+import { ItemExportComponent } from './form/item-export.component';
 
 @Component({
   selector: 'bls-items-frame',
@@ -25,13 +26,16 @@ import { ItemImportComponent } from './form/item-import.component';
         </ng-container>
 
         <ng-container matColumnDef="balance">
-          <th mat-header-cell *matHeaderCellDef>Balance</th>
-          <td mat-cell *matCellDef="let element">{{element.balance | asset:'.'}}</td>
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{element.balance | asset:'.' | name}}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let element">
+            <button mat-icon-button matTooltip="Export" (click)="$event.preventDefault();export(element)">
+              <mat-icon>share</mat-icon>
+            </button>
             <button mat-icon-button matTooltip="Duplicate" (click)="$event.preventDefault();duplicate(element)">
               <mat-icon>file_copy</mat-icon>
             </button>
@@ -97,6 +101,10 @@ export class ItemsFrameComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  private loadData() {
     this.route.paramMap
       .pipe(
         map(params => params.get('id')),
@@ -111,9 +119,13 @@ export class ItemsFrameComponent implements OnInit {
   }
 
   public save() {
-    this.proxy.updateItems(this.id, this.itemRequest).subscribe(
-      () => this.snackbar.open('Saved successfully.', 'Dismiss', {duration: 3000}),
-      () => this.snackbar.open('Failed to save.', 'Dismiss', {duration: 3000}));
+    this.proxy.updateItems(this.id, this.itemRequest)
+      .pipe(
+        tap(
+          () => this.snackbar.open('Saved successfully.', 'Dismiss', {duration: 3000}),
+          () => this.snackbar.open('Failed to save.', 'Dismiss', {duration: 3000})
+        )
+      ).subscribe(() => this.loadData());
   }
 
   public duplicate(element: Item) {
@@ -172,4 +184,10 @@ export class ItemsFrameComponent implements OnInit {
       });
   }
 
+  public export(element: Item) {
+    this.dialog.open(ItemExportComponent, {
+      width: '80%',
+      data: element
+    });
+  }
 }

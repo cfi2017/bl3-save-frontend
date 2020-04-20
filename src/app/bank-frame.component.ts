@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ItemImportComponent } from './form/item-import.component';
 import { environment } from '../environments/environment';
 import compareVersions from 'compare-versions';
+import { ItemExportComponent } from './form/item-export.component';
 
 @Component({
   selector: 'bls-bank-frame',
@@ -32,12 +33,15 @@ import compareVersions from 'compare-versions';
 
           <ng-container matColumnDef="balance">
             <th mat-header-cell *matHeaderCellDef>Balance</th>
-            <td mat-cell *matCellDef="let element">{{element.balance | asset:'.'}}</td>
+            <td mat-cell *matCellDef="let element">{{element.balance | asset:'.' | name}}</td>
           </ng-container>
 
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let element">
+              <button mat-icon-button matTooltip="Export" (click)="$event.preventDefault();export(element)">
+                <mat-icon>share</mat-icon>
+              </button>
               <button mat-icon-button matTooltip="Duplicate" (click)="$event.preventDefault();duplicate(element)">
                 <mat-icon>file_copy</mat-icon>
               </button>
@@ -93,9 +97,6 @@ export class BankFrameComponent implements OnInit {
 
   @ViewChild(MatTable)
   table: MatTable<any>;
-  // tslint:disable-next-line:variable-name
-  private _id: any;
-  private id: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -107,16 +108,19 @@ export class BankFrameComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.proxy.getBankItems()
-      .subscribe(items => {
-        this.id = this._id; // only change id on full load
-        this.items = items;
-        this.cdr.detectChanges();
-      });
     this.proxy.getStatus().subscribe(status => {
       this.version = status.buildVersion;
       this.checkVersion();
     });
+    this.loadData();
+  }
+
+  private loadData() {
+    this.proxy.getBankItems()
+      .subscribe(items => {
+        this.items = items;
+        this.cdr.detectChanges();
+      });
   }
 
   private checkVersion() {
@@ -129,9 +133,12 @@ export class BankFrameComponent implements OnInit {
     this.outOfDate = compareVersions(this.version, this.minimumVersion) === -1;
   }
   public save() {
-    this.proxy.updateBankItems(this.items).subscribe(
-      () => this.snackbar.open('Saved successfully.', 'Dismiss', {duration: 3000}),
-      () => this.snackbar.open('Failed to save.', 'Dismiss', {duration: 3000}));
+    this.proxy.updateBankItems(this.items).pipe(
+      tap(
+        () => this.snackbar.open('Saved successfully.', 'Dismiss', {duration: 3000}),
+        () => this.snackbar.open('Failed to save.', 'Dismiss', {duration: 3000})
+      )
+    ).subscribe(() => this.loadData());
   }
 
   public duplicate(element: Item) {
@@ -171,6 +178,13 @@ export class BankFrameComponent implements OnInit {
       this.items.push(result);
       moveItemInArray(this.items, this.items.length - 1, 0);
       this.table.renderRows();
+    });
+  }
+
+  public export(element: Item) {
+    this.dialog.open(ItemExportComponent, {
+      width: '80%',
+      data: element
     });
   }
 

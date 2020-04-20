@@ -38,6 +38,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CharacterFormComponent } from './form/character-form.component';
 import { ItemImportComponent } from './form/item-import.component';
 import { BankFrameComponent } from './bank-frame.component';
+import { ItemExportComponent } from './form/item-export.component';
+import { NamePipe } from './name.pipe';
 
 export const ROUTES: Routes = [
   {
@@ -77,7 +79,9 @@ export const ROUTES: Routes = [
     ProfileFormComponent,
     CharacterFormComponent,
     ItemImportComponent,
-    BankFrameComponent
+    BankFrameComponent,
+    ItemExportComponent,
+    NamePipe
   ],
   imports: [
     BrowserModule,
