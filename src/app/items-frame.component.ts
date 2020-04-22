@@ -7,9 +7,11 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { MatTable } from '@angular/material/table';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ItemImportComponent } from './form/item-import.component';
 import { ItemExportComponent } from './form/item-export.component';
+import { JsonEditorOptions } from 'ang-jsoneditor';
+import { ConfigService } from './config.service';
 
 @Component({
   selector: 'bls-items-frame',
@@ -90,6 +92,7 @@ export class ItemsFrameComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   private _id: any;
   private id: any;
+  private editorOptions: JsonEditorOptions;
 
   constructor(
     private route: ActivatedRoute,

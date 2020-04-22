@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProxyService } from './proxy.service';
 import { map, switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CUSTOMIZATIONS } from './const';
+import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
+import { ConfigService } from './config.service';
 
 @Component({
   selector: 'bls-profile-frame',
@@ -15,9 +17,8 @@ import { CUSTOMIZATIONS } from './const';
         <button mat-raised-button color="primary" (click)="unlockCustomizations()">Unlock all customizations</button>
       </div>
       <bls-profile-form [data]="data"></bls-profile-form>
-      <pre *ngIf="debug">
-      {{data | json}}
-    </pre>
+      <json-editor *ngIf="config.advanced" style="height:100%;"
+                   [data]="data" [options]="editorOptions"></json-editor>
     </div>
   `,
   styles: [
@@ -38,16 +39,20 @@ import { CUSTOMIZATIONS } from './const';
 export class ProfileFrameComponent implements OnInit {
 
   data: any;
-  debug = false;
+  editorOptions: JsonEditorOptions;
 
   constructor(
     private proxy: ProxyService,
     private route: ActivatedRoute,
-    private snackbar: MatSnackBar
-  ) { }
+    private snackbar: MatSnackBar,
+    public config: ConfigService
+  ) {
+    this.editorOptions = new JsonEditorOptions();
+    this.editorOptions.mode = 'view';
+    this.editorOptions.modes = [/*'code', 'text', 'tree', */'view'];
+  }
 
   ngOnInit(): void {
-    this.debug = !!localStorage.getItem('debug');
     this.proxy.getProfile().subscribe(profile => this.data = profile);
   }
 

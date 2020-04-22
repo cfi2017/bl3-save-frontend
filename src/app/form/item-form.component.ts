@@ -1,8 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Item } from '../model';
 import { AssetService } from '../asset.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PartPickerComponent } from './part-picker.component';
+import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
+import { ConfigService } from '../config.service';
 
 @Component({
   selector: 'bls-item-form',
@@ -23,14 +25,21 @@ import { PartPickerComponent } from './part-picker.component';
         </mat-form-field>
       </div>
 
-      <div *ngIf="data.parts" style="margin-bottom:5px;">
+      <div *ngIf="data.parts">
         <bls-part-picker max="63" [pickedParts]="data.parts" [availableParts]="availableParts"></bls-part-picker>
       </div>
-      <div *ngIf="data.generics">
+      <div *ngIf="data.generics" style="margin-top:5px;">
         <bls-part-picker max="15" [pickedParts]="data.generics" exclusive="true"
                          partTitle="Anointments" [availableParts]="availableGenerics"></bls-part-picker>
       </div>
-      <pre *ngIf="debug">{{data | json}}</pre>
+      <div *ngIf="config.advanced" style="margin-top:5px;">
+        <mat-expansion-panel class="mat-elevation-z3">
+          <mat-expansion-panel-header>
+            <mat-panel-title>JSON Inspector</mat-panel-title>
+          </mat-expansion-panel-header>
+          <json-editor *ngIf="config.advanced" style="height:100%;" [data]="data" [options]="editorOptions"></json-editor>
+        </mat-expansion-panel>
+      </div>
     </form>
   `,
   styles: [
@@ -50,11 +59,19 @@ export class ItemFormComponent implements OnInit {
   data: Item;
 
   debug = false;
+  editorOptions: JsonEditorOptions;
+
+  @ViewChild(JsonEditorComponent, {static: true})
+  editor: JsonEditorComponent;
 
   constructor(
     private assets: AssetService,
-    private dialog: MatDialog
-  ) { }
+    public config: ConfigService
+  ) {
+    this.editorOptions = new JsonEditorOptions();
+    this.editorOptions.mode = 'view';
+    this.editorOptions.modes = [/*'code', 'text', 'tree', */'view'];
+  }
 
   ngOnInit(): void {
     this.debug = !!localStorage.getItem('debug');

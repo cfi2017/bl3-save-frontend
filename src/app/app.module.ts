@@ -40,6 +40,9 @@ import { ItemImportComponent } from './form/item-import.component';
 import { BankFrameComponent } from './bank-frame.component';
 import { ItemExportComponent } from './form/item-export.component';
 import { NamePipe } from './name.pipe';
+import { NgJsonEditorModule } from 'ang-jsoneditor';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DeveloperMessageComponent } from './developer-message.component';
 
 export const ROUTES: Routes = [
   {
@@ -81,7 +84,8 @@ export const ROUTES: Routes = [
     ItemImportComponent,
     BankFrameComponent,
     ItemExportComponent,
-    NamePipe
+    NamePipe,
+    DeveloperMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -106,8 +110,10 @@ export const ROUTES: Routes = [
     MatExpansionModule,
     MatTableModule,
     DragDropModule,
+    NgJsonEditorModule,
     MatIconModule,
     MatTooltipModule,
+    MatSlideToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

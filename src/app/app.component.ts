@@ -5,24 +5,28 @@ import { untilComponentDestroyed } from './destroy-pipe';
 import { MatSidenav } from '@angular/material/sidenav';
 import { environment } from '../environments/environment';
 import compareVersions from 'compare-versions';
+import { ConfigService } from './config.service';
 
 @Component({
   selector: 'bls-root',
   template: `
-    <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="30px">
-      <div style="align-content: center">
+    <mat-toolbar color="primary" fxLayoutAlign="space-between" fxLayoutGap="30px">
+      <div fxLayout="column" fxLayoutAlign="center">
         <h1>bl3-save editor</h1>
       </div>
-      <div *ngIf="online" fxFlex="grow" fxLayout="row" fxLayoutGap="10px">
+      <div *ngIf="online" fxFlex="1 1 auto" fxLayout="row" fxLayoutGap="10px">
         <div fxFlex="5 1">
           <mat-form-field style="width: 100%;">
             <input name="dir" matInput [(ngModel)]="dir" />
             <mat-label>Save Directory</mat-label>
           </mat-form-field>
         </div>
-        <div fxFlex="1 1">
-          <button (click)="cd()" mat-raised-button>Change</button>
+        <div fxFlex="1 0" fxLayout="column" fxLayoutAlign="center">
+          <button style="width: 80px;" (click)="cd()" mat-raised-button>Change</button>
         </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center">
+        <mat-slide-toggle [(ngModel)]="config.advanced">Advanced Mode</mat-slide-toggle>
       </div>
     </mat-toolbar>
     <mat-toolbar *ngIf="outOfDate" color="warn">
@@ -94,7 +98,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private snackbar: MatSnackBar,
-    private proxy: ProxyService
+    private proxy: ProxyService,
+    public config: ConfigService
   ) { }
 
   ngOnDestroy(): void {

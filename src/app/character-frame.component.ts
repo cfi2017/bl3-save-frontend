@@ -1,9 +1,11 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ProxyService } from './proxy.service';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { getExpForLevel, getLevelForExp } from './const';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
+import { CharacterWrapper } from './model';
+import { ConfigService } from './config.service';
 
 @Component({
   selector: 'bls-character-frame',
@@ -13,47 +15,57 @@ import { MatSnackBar } from '@angular/material/snack-bar';
         <button mat-raised-button color="primary" (click)="save()">Save</button>
       </div>
       <bls-character-form [data]="data"></bls-character-form>
-      <pre *ngIf="debug">
-      {{data | json}}
-    </pre>
+      <json-editor *ngIf="config.advanced" style="height:100%;" [data]="data" [options]="editorOptions"></json-editor>
     </div>
   `,
   styles: [
-    `
+      `
 
-    .frame {
-      padding: 20px;
-    }
+      .frame {
+        padding: 20px;
+      }
 
-    .action-bar {
-      padding: 20px;
-    }
+      .action-bar {
+        padding: 20px;
+      }
 
-    .action-bar button {
-      margin-right: 10px;
-    }
-    `
-  ]
+      .action-bar button {
+        margin-right: 10px;
+      }
+
+      bls-character-form {
+        margin-bottom: 10px;
+      }
+    `,
+  ],
 })
 export class CharacterFrameComponent implements OnInit {
 
   @Input()
-  data: any;
+  data: CharacterWrapper;
 
-  debug = false;
   // tslint:disable-next-line:variable-name
   private _id: any;
   private id: any;
+
+  editorOptions: JsonEditorOptions;
+  @ViewChild(JsonEditorComponent, {static: true})
+  editor: JsonEditorComponent;
+
 
   constructor(
     private proxy: ProxyService,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private snackbar: MatSnackBar
-  ) { }
+    private snackbar: MatSnackBar,
+    public config: ConfigService
+  ) {
+    this.editorOptions = new JsonEditorOptions();
+    this.editorOptions.mode = 'view';
+    this.editorOptions.modes = [/*'code', 'text', 'tree', */'view'];
+  }
 
   ngOnInit(): void {
-    this.debug = !!localStorage.getItem('debug');
     this.route.paramMap
       .pipe(
         map(params => params.get('id')),
@@ -71,8 +83,9 @@ export class CharacterFrameComponent implements OnInit {
   save() {
     this.proxy.updateCharacter(this.id, this.data)
       .subscribe(
-        () => this.snackbar.open('Saved successfully.', 'Dismiss', {duration: 3000}),
-        () => this.snackbar.open('Failed to save.', 'Dismiss', {duration: 3000}));
+        () => this.snackbar.open('Saved successfully.', 'Dismiss', { duration: 3000 }),
+        () => this.snackbar.open('Failed to save.', 'Dismiss', { duration: 3000 }),
+      );
   }
 
 }

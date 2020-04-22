@@ -36,3 +36,37 @@ export interface ItemWrapper {
   readonly item_serial_number: string;
   readonly pickup_order_index: number;
 }
+export interface Save {
+
+}
+export interface Wrapper {
+  save: Save;
+}
+export interface CharacterWrapper extends Wrapper {
+  character: Character;
+}
+
+export interface ProfileWrapper extends Wrapper {
+  profile: Profile;
+}
+
+export interface Character {
+  experience_points: number;
+  inventory_category_list: {base_category_definition_hash: number, quantity: number}[];
+  equipped_inventory_list: EquippedInventoryItem[];
+  sdu_list: {
+    sdu_level: number;
+    sdu_data_path: string;
+  }[];
+}
+
+// tslint:disable-next-line:no-empty-interface
+export interface Profile {
+
+}
+
+export interface EquippedInventoryItem {
+  inventory_list_index: number;
+  enabled: boolean;
+  slot_data_path: string;
+}
