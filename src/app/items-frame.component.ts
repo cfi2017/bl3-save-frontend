@@ -12,6 +12,7 @@ import { ItemImportComponent } from './form/item-import.component';
 import { ItemExportComponent } from './form/item-export.component';
 import { JsonEditorOptions } from 'ang-jsoneditor';
 import { ConfigService } from './config.service';
+import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component';
 
 @Component({
   selector: 'bls-items-frame',
@@ -20,6 +21,7 @@ import { ConfigService } from './config.service';
       <div class="action-bar">
         <button mat-raised-button color="primary" (click)="save()">Save</button>
         <button mat-raised-button color="primary" (click)="openImportDialog()">Import Item</button>
+        <button mat-raised-button color="primary" (click)="openLevelChangeDialog()">Change Level of all Items</button>
       </div>
       <table mat-table [dataSource]="itemRequest?.items" multiTemplateDataRows>
         <ng-container matColumnDef="level">
@@ -185,6 +187,17 @@ export class ItemsFrameComponent implements OnInit {
         });
         this.table.renderRows();
       });
+  }
+
+  public openLevelChangeDialog() {
+    this.dialog.open(MassItemLevelDialogComponent, {
+      width: '80%'
+    }).afterClosed().subscribe(l => {
+      if (!!l) {
+        this.itemRequest.items.forEach(i => i.level = l);
+        this.table.renderRows();
+      }
+    });
   }
 
   public export(element: Item) {

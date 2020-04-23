@@ -36,9 +36,11 @@ export interface ItemWrapper {
   readonly item_serial_number: string;
   readonly pickup_order_index: number;
 }
+// tslint:disable-next-line:no-empty-interface
 export interface Save {
 
 }
+
 export interface Wrapper {
   save: Save;
 }
@@ -62,7 +64,20 @@ export interface Character {
 
 // tslint:disable-next-line:no-empty-interface
 export interface Profile {
-
+  CitizenScienceCSBucksAmount: number;
+  guardian_rank: {
+    guardian_rank: number;
+    rank_rewards: {
+      num_tokens: number;
+      reward_data_path: string;
+    }[];
+    guardian_reward_random_seed: number;
+    new_guardian_experience: number;
+  };
+  profile_sdu_list: {
+    sdu_level: number;
+    sdu_data_path: string;
+  }[];
 }
 
 export interface EquippedInventoryItem {

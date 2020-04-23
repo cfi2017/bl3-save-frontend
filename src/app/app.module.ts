@@ -7,7 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
-import { FlexModule } from '@angular/flex-layout';
+import { FlexModule, GridModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatOptionModule } from '@angular/material/core';
@@ -43,6 +43,7 @@ import { NamePipe } from './name.pipe';
 import { NgJsonEditorModule } from 'ang-jsoneditor';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DeveloperMessageComponent } from './developer-message.component';
+import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component';
 
 export const ROUTES: Routes = [
   {
@@ -85,7 +86,8 @@ export const ROUTES: Routes = [
     BankFrameComponent,
     ItemExportComponent,
     NamePipe,
-    DeveloperMessageComponent
+    DeveloperMessageComponent,
+    MassItemLevelDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +96,7 @@ export const ROUTES: Routes = [
     HttpClientModule,
     MatSnackBarModule,
     MatDividerModule,
+    GridModule,
     FlexModule,
     MatCardModule,
     MatListModule,

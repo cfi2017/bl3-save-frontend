@@ -12,6 +12,7 @@ import { ItemImportComponent } from './form/item-import.component';
 import { environment } from '../environments/environment';
 import compareVersions from 'compare-versions';
 import { ItemExportComponent } from './form/item-export.component';
+import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component';
 
 @Component({
   selector: 'bls-bank-frame',
@@ -24,6 +25,7 @@ import { ItemExportComponent } from './form/item-export.component';
         <div class="action-bar">
           <button mat-raised-button color="primary" (click)="save()">Save</button>
           <button mat-raised-button color="primary" (click)="openImportDialog()">Import Item</button>
+          <button mat-raised-button color="primary" (click)="openLevelChangeDialog()">Change Level of all Items</button>
         </div>
         <table mat-table [dataSource]="items" multiTemplateDataRows>
           <ng-container matColumnDef="level">
@@ -188,4 +190,14 @@ export class BankFrameComponent implements OnInit {
     });
   }
 
+  public openLevelChangeDialog() {
+    this.dialog.open(MassItemLevelDialogComponent, {
+      width: '80%'
+    }).afterClosed().subscribe(l => {
+      if (!!l) {
+        this.items.forEach(i => i.level = l);
+        this.table.renderRows();
+      }
+    });
+  }
 }
