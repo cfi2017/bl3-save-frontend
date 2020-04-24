@@ -1,13 +1,28 @@
-﻿{
-  "InventoryData": {
-    "versions": [
-      {"version":1,"bits":7},
-      {"version":17,"bits":8},
-      {"version":21,"bits":9},
-      {"version":22,"bits":10},
-      {"version":37,"bits":11}
+{
+  "InventoryData":{
+    "versions":[
+      {
+        "version":1,
+        "bits":7
+      },
+      {
+        "version":17,
+        "bits":8
+      },
+      {
+        "version":21,
+        "bits":9
+      },
+      {
+        "version":22,
+        "bits":10
+      },
+      {
+        "version":37,
+        "bits":11
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Enemies/DropShipTurret/COV/_Design/Weapon/InvData_DropShipTurretCOV.InvData_DropShipTurretCOV",
       "/Game/Enemies/DropShipTurret/_Shared/_Design/Weapon/InvData_DropShipTurret.InvData_DropShipTurret",
       "/Game/Enemies/ServiceBot/EMS/_Design/Weapon/InvData_ServiceBot_EMS.InvData_ServiceBot_EMS",
@@ -1335,14 +1350,26 @@
       "/Game/PatchDLC/Takedown2/InteractiveObjects/PlayerQuarters/RoomDeco_Takedown2.InvData_RoomDeco_Takedown2"
     ]
   },
-  "InventoryBalanceData": {
-    "versions": [
-      {"version":1,"bits":9},
-      {"version":15,"bits":10},
-      {"version":25,"bits":11},
-      {"version":53,"bits":12}
+  "InventoryBalanceData":{
+    "versions":[
+      {
+        "version":1,
+        "bits":9
+      },
+      {
+        "version":15,
+        "bits":10
+      },
+      {
+        "version":25,
+        "bits":11
+      },
+      {
+        "version":53,
+        "bits":12
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/GrenadeMods/_Design/PartSets/Part_Behavior/Money/InvBal_GrenadeBehavior_Money_1.InvBal_GrenadeBehavior_Money_1",
       "/Game/Gear/GrenadeMods/_Design/PartSets/Part_Behavior/Money/InvBal_GrenadeBehavior_Money_3.InvBal_GrenadeBehavior_Money_3",
       "/Game/Gear/Weapons/SMGs/Dahl/_Shared/_Design/BalanceState/Balance_SM_DAHL_01_Common_No_Elemental.Balance_SM_DAHL_01_Common_No_Elemental",
@@ -3582,14 +3609,26 @@
       "/Game/PatchDLC/Takedown2/Gear/Weapons/WebSlinger/Balance/Balance_AR_VLA_WebSlinger.Balance_AR_VLA_WebSlinger"
     ]
   },
-  "BPVehiclePart_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":6,"bits":7},
-      {"version":24,"bits":8},
-      {"version":45,"bits":9}
+  "BPVehiclePart_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":6,
+        "bits":7
+      },
+      {
+        "version":24,
+        "bits":8
+      },
+      {
+        "version":45,
+        "bits":9
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Vehicles/Technical/Design/Parts/Armor/VehiclePart_Technical_Armor_MeatGrinder.VehiclePart_Technical_Armor_MeatGrinder",
       "/Game/Vehicles/Technical/Design/Parts/Accessory/FlatBed/VehiclePart_CoreMod_Flatbed.VehiclePart_CoreMod_Flatbed",
       "/Game/Vehicles/Technical/Design/Parts/Materials/VehiclePart_Mat_VehiclePart_Technical_Hood_V1.VehiclePart_Mat_VehiclePart_Technical_Hood_V1",
@@ -3861,12 +3900,18 @@
       "/Game/PatchDLC/Hibiscus/Vehicles/Technical/Design/Parts/Materials/VehiclePart_Mat_VehiclePart_Technical_Tentacle.VehiclePart_Mat_VehiclePart_Technical_Tentacle"
     ]
   },
-  "BPInvPart_Dahl_SMG_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":16,"bits":7}
+  "BPInvPart_Dahl_SMG_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":16,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/SMGs/Dahl/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SM_DAL_Barrel_01.Part_SM_DAL_Barrel_01",
       "/Game/Gear/Weapons/SMGs/Dahl/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SM_DAL_Barrel_01_A.Part_SM_DAL_Barrel_01_A",
       "/Game/Gear/Weapons/SMGs/Dahl/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SM_DAL_Barrel_01_B.Part_SM_DAL_Barrel_01_B",
@@ -3950,12 +3995,18 @@
       "/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Unique/Kaoson/Parts/Part_SM_DAL_Material_Kaoson.Part_SM_DAL_Material_Kaoson"
     ]
   },
-  "BPInvPart_VLA_AR_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":7,"bits":7}
+  "BPInvPart_VLA_AR_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":7,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/AssaultRifles/Vladof/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_VLA_Barrel_01.Part_AR_VLA_Barrel_01",
       "/Game/Gear/Weapons/AssaultRifles/Vladof/_Shared/_Design/Parts/Barrel/Barrel_03/Part_AR_VLA_Barrel_03.Part_AR_VLA_Barrel_03",
       "/Game/Gear/Weapons/AssaultRifles/Vladof/_Shared/_Design/Parts/Barrel/Barrel_04/Part_AR_VLA_Barrel_04.Part_AR_VLA_Barrel_04",
@@ -4052,11 +4103,14 @@
       "/Game/PatchDLC/Takedown2/Gear/Weapons/WebSlinger/Parts/Part_AR_VLA_Material_WebSlinger.Part_AR_VLA_Material_WebSlinger"
     ]
   },
-  "BPInvPart_PS_DAL_C": {
-    "versions": [
-      {"version":1,"bits":6}
+  "BPInvPart_PS_DAL_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Pistols/Dahl/_Shared/_Design/Parts/Barrel/Barrel_01/Part_Dal_PS_Barrel_01.Part_Dal_PS_Barrel_01",
       "/Game/Gear/Weapons/Pistols/Dahl/_Shared/_Design/Parts/Barrel/Barrel_01/Part_Dal_PS_Barrel_01_A.Part_Dal_PS_Barrel_01_A",
       "/Game/Gear/Weapons/Pistols/Dahl/_Shared/_Design/Parts/Body/Part_Dal_PS_Body.Part_Dal_PS_Body",
@@ -4117,12 +4171,18 @@
       "/Game/PatchDLC/Hibiscus/Gear/Weapon/_Unique/Kaleidoscope/Parts/Part_Dal_PS_Mat_Kaleidoscope.Part_Dal_PS_Mat_Kaleidoscope"
     ]
   },
-  "BPInvPart_Maliwan_SMG_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":27,"bits":7}
+  "BPInvPart_Maliwan_SMG_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":27,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/SMGs/Maliwan/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SM_MAL_Barrel_01.Part_SM_MAL_Barrel_01",
       "/Game/Gear/Weapons/SMGs/Maliwan/_Shared/_Design/Parts/Barrel/Barrel_02/Part_SM_MAL_Barrel_02.Part_SM_MAL_Barrel_02",
       "/Game/Gear/Weapons/SMGs/Maliwan/_Shared/_Design/Parts/Barrel/Barrel_03/Part_SM_MAL_Barrel_03.Part_SM_MAL_Barrel_03",
@@ -4215,12 +4275,18 @@
       "/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Unique/DNA/Parts/Part_SM_MAL_Material_DNA.Part_SM_MAL_Material_DNA"
     ]
   },
-  "BPInvPart_MAL_SR_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":10,"bits":7}
+  "BPInvPart_MAL_SR_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":10,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/SniperRifles/Maliwan/Shared/_Design/Parts/Barrel/Barrel_01/Part_MAL_SR_Barrel_01.Part_MAL_SR_Barrel_01",
       "/Game/Gear/Weapons/SniperRifles/Maliwan/Shared/_Design/Parts/Barrel/Barrel_01/Part_MAL_SR_Barrel_01_A.Part_MAL_SR_Barrel_01_A",
       "/Game/Gear/Weapons/SniperRifles/Maliwan/Shared/_Design/Parts/Body/Part_MAL_SR_Body.Part_MAL_SR_Body",
@@ -4300,12 +4366,18 @@
       "/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/ImaginaryNumber/Parts/Part_MAL_SR_Barrel_ImaginaryNumber.Part_MAL_SR_Barrel_ImaginaryNumber"
     ]
   },
-  "BPInvPart_HW_COV_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":57,"bits":7}
+  "BPInvPart_HW_COV_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":57,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/HeavyWeapons/ChildrenOfTheVault/_Shared/_Design/Parts/Barrel/Barrel_01/Part_HW_COV_Barrel_01.Part_HW_COV_Barrel_01",
       "/Game/Gear/Weapons/HeavyWeapons/ChildrenOfTheVault/_Shared/_Design/Parts/Barrel/Barrel_01/Part_HW_COV_Barrel_01_A.Part_HW_COV_Barrel_01_A",
       "/Game/Gear/Weapons/HeavyWeapons/ChildrenOfTheVault/_Shared/_Design/Parts/Barrel/Barrel_01/Part_HW_COV_Barrel_01_B.Part_HW_COV_Barrel_01_B",
@@ -4373,12 +4445,18 @@
       "/Game/PatchDLC/Takedown2/Gear/Weapons/Globetrotter/Parts/Part_HW_COV_Material_Globetrotter.Part_HW_COV_Material_Globetrotter"
     ]
   },
-  "BPInvPart_SG_MAL_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":50,"bits":7}
+  "BPInvPart_SG_MAL_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":50,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Shotguns/Maliwan/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SG_MAL_Barrel_01.Part_SG_MAL_Barrel_01",
       "/Game/Gear/Weapons/Shotguns/Maliwan/_Shared/_Design/Parts/Body/Part_SG_MAL_Body.Part_SG_MAL_Body",
       "/Game/Gear/Weapons/Shotguns/Maliwan/_Shared/_Design/Parts/Body/Part_SG_MAL_Body_A.Part_SG_MAL_Body_A",
@@ -4453,12 +4531,18 @@
       "/Game/PatchDLC/Hibiscus/Gear/Weapon/_Unique/TheNothing/Parts/Part_SG_MAL_Material_TheNothing.Part_SG_MAL_Material_TheNothing"
     ]
   },
-  "BPInvPart_Jakobs_Pistol_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":34,"bits":7}
+  "BPInvPart_Jakobs_Pistol_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":34,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Pistols/Jakobs/_Shared/_Design/Parts/Barrel/Barrel_01/Part_PS_JAK_Barrel_01.Part_PS_JAK_Barrel_01",
       "/Game/Gear/Weapons/Pistols/Jakobs/_Shared/_Design/Parts/Barrel/Barrel_01/Part_PS_JAK_Barrel_01_A.Part_PS_JAK_Barrel_01_A",
       "/Game/Gear/Weapons/Pistols/Jakobs/_Shared/_Design/Parts/Barrel/Barrel_01/Part_PS_JAK_Barrel_01_B.Part_PS_JAK_Barrel_01_B",
@@ -4573,11 +4657,14 @@
       "/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Sheriff/Parts/Part_PS_JAK_Material_Sheriff.Part_PS_JAK_Material_Sheriff"
     ]
   },
-  "BPInvPart_ATL_AR_C": {
-    "versions": [
-      {"version":1,"bits":6}
+  "BPInvPart_ATL_AR_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/AssaultRifles/Atlas/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_ATL_Barrel_01.Part_AR_ATL_Barrel_01",
       "/Game/Gear/Weapons/AssaultRifles/Atlas/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_ATL_Barrel_01_A.Part_AR_ATL_Barrel_01_A",
       "/Game/Gear/Weapons/AssaultRifles/Atlas/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_ATL_Barrel_01_B.Part_AR_ATL_Barrel_01_B",
@@ -4627,12 +4714,18 @@
       "/Game/PatchDLC/Event2/Gear/Weapon/_Unique/OPQ/Parts/Part_AR_ATL_Tracker_OPQ.Part_AR_ATL_Tracker_OPQ"
     ]
   },
-  "BPInvPart_AR_COV_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":55,"bits":7}
+  "BPInvPart_AR_COV_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":55,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/AssaultRifles/ChildrenOfTheVault/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_COV_Barrel_01.Part_AR_COV_Barrel_01",
       "/Game/Gear/Weapons/AssaultRifles/ChildrenOfTheVault/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_COV_Barrel_01_A.Part_AR_COV_Barrel_01_A",
       "/Game/Gear/Weapons/AssaultRifles/ChildrenOfTheVault/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_COV_Barrel_01_B.Part_AR_COV_Barrel_01_B",
@@ -4699,12 +4792,18 @@
       "/Game/PatchDLC/Event2/Gear/Weapon/_Unique/PewPew/Parts/Part_AR_COV_Material_PewPew.Part_AR_COV_Material_PewPew"
     ]
   },
-  "BPInvPart_AR_DAL_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":23,"bits":7}
+  "BPInvPart_AR_DAL_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":23,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/AssaultRifles/Dahl/_Shared/_Design/Parts/Barrel/Barrel_01/Part_DAL_AR_Barrel_01.Part_DAL_AR_Barrel_01",
       "/Game/Gear/Weapons/AssaultRifles/Dahl/_Shared/_Design/Parts/Barrel/Barrel_01/Part_DAL_AR_Barrel_01_A.Part_DAL_AR_Barrel_01_A",
       "/Game/Gear/Weapons/AssaultRifles/Dahl/_Shared/_Design/Parts/Barrel/Barrel_01/Part_DAL_AR_Barrel_01_B.Part_DAL_AR_Barrel_01_B",
@@ -4788,12 +4887,18 @@
       "/Game/PatchDLC/Hibiscus/Gear/Weapon/_Unique/Soulrender/Parts/Part_DAL_AR_Material_Soulrender.Part_DAL_AR_Material_Soulrender"
     ]
   },
-  "BPInvPart_JAK_AR_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":52,"bits":7}
+  "BPInvPart_JAK_AR_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":52,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/AssaultRifles/Jakobs/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_JAK_Barrel_01.Part_AR_JAK_Barrel_01",
       "/Game/Gear/Weapons/AssaultRifles/Jakobs/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_JAK_Barrel_01_A.Part_AR_JAK_Barrel_01_A",
       "/Game/Gear/Weapons/AssaultRifles/Jakobs/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_JAK_Barrel_01_B.Part_AR_JAK_Barrel_01_B",
@@ -4867,11 +4972,14 @@
       "/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/CoolBeans/Parts/Part_AR_JAK_Material_CoolBeans.Part_AR_JAK_Material_CoolBeans"
     ]
   },
-  "BPInvPart_ATL_HW_C": {
-    "versions": [
-      {"version":1,"bits":6}
+  "BPInvPart_ATL_HW_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/HeavyWeapons/ATL/_Shared/_Design/Parts/Barrel/Barrel_01/Part_ATL_Barrel_01.Part_ATL_Barrel_01",
       "/Game/Gear/Weapons/HeavyWeapons/ATL/_Shared/_Design/Parts/Barrel/Barrel_01/Part_ATL_Barrel_01_A.Part_ATL_Barrel_01_A",
       "/Game/Gear/Weapons/HeavyWeapons/ATL/_Shared/_Design/Parts/Barrel/Barrel_01/Part_ATL_Barrel_01_B.Part_ATL_Barrel_01_B",
@@ -4918,12 +5026,18 @@
       "/Game/Gear/Weapons/HeavyWeapons/ATL/_Shared/_Design/_Unique/RubysWrath/Parts/Part_ATL_Material_RubysWrath.Part_ATL_Material_RubysWrath"
     ]
   },
-  "BPInvPart_HW_TOR_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":47,"bits":7}
+  "BPInvPart_HW_TOR_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":47,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/HeavyWeapons/Torgue/_Shared/_Design/Parts/Barrel/Barrel_01/Part_HW_TOR_Barrel_01.Part_HW_TOR_Barrel_01",
       "/Game/Gear/Weapons/HeavyWeapons/Torgue/_Shared/_Design/Parts/Barrel/Barrel_01/Part_HW_TOR_Barrel_01_A.Part_HW_TOR_Barrel_01_A",
       "/Game/Gear/Weapons/HeavyWeapons/Torgue/_Shared/_Design/Parts/Barrel/Barrel_01/Part_HW_TOR_Barrel_01_B.Part_HW_TOR_Barrel_01_B",
@@ -4994,11 +5108,14 @@
       "/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Unique/Plague/Parts/Part_HW_TOR_Material_Plague.Part_HW_TOR_Material_Plague"
     ]
   },
-  "BPInvPart_HW_VLA_C": {
-    "versions": [
-      {"version":1,"bits":6}
+  "BPInvPart_HW_VLA_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/HeavyWeapons/Vladof/_Shared/_Design/Parts/Barrel/Barrel_01/Part_HW_VLA_Barrel_01.Part_HW_VLA_Barrel_01",
       "/Game/Gear/Weapons/HeavyWeapons/Vladof/_Shared/_Design/Parts/Barrel/Barrel_01/Part_HW_VLA_Barrel_01_A.Part_HW_VLA_Barrel_01_A",
       "/Game/Gear/Weapons/HeavyWeapons/Vladof/_Shared/_Design/Parts/Barrel/Barrel_01/Part_HW_VLA_Barrel_01_B.Part_HW_VLA_Barrel_01_B",
@@ -5062,11 +5179,14 @@
       "/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Unique/Backburner/Parts/Part_HW_VLA_Material_BackBurner.Part_HW_VLA_Material_BackBurner"
     ]
   },
-  "BPInvPart_PS_ATL_C": {
-    "versions": [
-      {"version":1,"bits":6}
+  "BPInvPart_PS_ATL_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Pistols/Atlas/_Shared/_Design/Parts/Barrel/Barrel_01/Part_PS_ATL_Barrel_01.Part_PS_ATL_Barrel_01",
       "/Game/Gear/Weapons/Pistols/Atlas/_Shared/_Design/Parts/Barrel/Barrel_01/Part_PS_ATL_Barrel_01_A.Part_PS_ATL_Barrel_01_A",
       "/Game/Gear/Weapons/Pistols/Atlas/_Shared/_Design/Parts/Barrel/Barrel_01/Part_PS_ATL_Barrel_01_B.Part_PS_ATL_Barrel_01_B",
@@ -5108,20 +5228,29 @@
       "/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Unique/DoubleTap/Parts/Part_PS_ATL_Launcher_DoubleTap.Part_PS_ATL_Launcher_DoubleTap"
     ]
   },
-  "BPInvPartData_EridianFabricator_C": {
-    "versions": [
-      {"version":1,"bits":1}
+  "BPInvPartData_EridianFabricator_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":1
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/HeavyWeapons/Eridian/_Shared/_Design/Parts/Part_Eridian_Fabricator.Part_Eridian_Fabricator"
     ]
   },
-  "BPInvPart_PS_MAL_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":34,"bits":7}
+  "BPInvPart_PS_MAL_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":34,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Pistols/Maliwan/_Shared/_Design/Parts/Barrel/Barrel_01/Part_PS_MAL_Barrel_01.Part_PS_MAL_Barrel_01",
       "/Game/Gear/Weapons/Pistols/Maliwan/_Shared/_Design/Parts/Barrel/Barrel_01/Part_PS_MAL_Barrel_01_A.Part_PS_MAL_Barrel_01_A",
       "/Game/Gear/Weapons/Pistols/Maliwan/_Shared/_Design/Parts/Barrel/Barrel_01/Part_PS_MAL_Barrel_01_B.Part_PS_MAL_Barrel_01_B",
@@ -5197,12 +5326,18 @@
       "/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/BubbleBlaster/Parts/Part_PS_MAL_Material_BubbleBlaster.Part_PS_MAL_Material_BubbleBlaster"
     ]
   },
-  "BPInvPart_PS_VLA_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":20,"bits":7}
+  "BPInvPart_PS_VLA_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":20,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Pistols/Vladof/_Shared/_Design/Parts/Barrels/Barrel_01/Part_PS_VLA_Barrel_01.Part_PS_VLA_Barrel_01",
       "/Game/Gear/Weapons/Pistols/Vladof/_Shared/_Design/Parts/Barrels/Barrel_01/Part_PS_VLA_Barrel_01_A.Part_PS_VLA_Barrel_01_A",
       "/Game/Gear/Weapons/Pistols/Vladof/_Shared/_Design/Parts/Barrels/Barrel_01/Part_PS_VLA_Barrel_01_B.Part_PS_VLA_Barrel_01_B",
@@ -5277,12 +5412,18 @@
       "/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Miscreant/Parts/Part_PS_VLA_Material_Miscreant.Part_PS_VLA_Material_Miscreant"
     ]
   },
-  "BPInvPart_SG_JAK_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":13,"bits":7}
+  "BPInvPart_SG_JAK_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":13,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Shotguns/Jakobs/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SG_JAK_Barrel_01.Part_SG_JAK_Barrel_01",
       "/Game/Gear/Weapons/Shotguns/Jakobs/_Shared/_Design/Parts/Barrel/Barrel_02/Part_SG_JAK_Barrel_02.Part_SG_JAK_Barrel_02",
       "/Game/Gear/Weapons/Shotguns/Jakobs/_Shared/_Design/Parts/Barrel/Barrel_03/Part_SG_JAK_Barrel_03.Part_SG_JAK_Barrel_03",
@@ -5374,12 +5515,18 @@
       "/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/McSmugger/Parts/Part_SG_JAK_Material_McSmugger.Part_SG_JAK_Material_McSmugger"
     ]
   },
-  "BPInvPart_SG_TED_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":56,"bits":7}
+  "BPInvPart_SG_TED_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":56,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Shotguns/Tediore/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SG_TED_Barrel_01.Part_SG_TED_Barrel_01",
       "/Game/Gear/Weapons/Shotguns/Tediore/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SG_TED_Barrel_01_A.Part_SG_TED_Barrel_01_A",
       "/Game/Gear/Weapons/Shotguns/Tediore/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SG_TED_Barrel_01_B.Part_SG_TED_Barrel_01_B",
@@ -5446,12 +5593,18 @@
       "/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Brightside/Parts/Part_SG_TED_TypeMod_Brightside.Part_SG_TED_TypeMod_Brightside"
     ]
   },
-  "BPInvPart_SG_Torgue_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":54,"bits":7}
+  "BPInvPart_SG_Torgue_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":54,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Shotguns/Torgue/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SG_Torgue_Barrel_01.Part_SG_Torgue_Barrel_01",
       "/Game/Gear/Weapons/Shotguns/Torgue/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SG_Torgue_Barrel_01_A.Part_SG_Torgue_Barrel_01_A",
       "/Game/Gear/Weapons/Shotguns/Torgue/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SG_Torgue_Barrel_01_B.Part_SG_Torgue_Barrel_01_B",
@@ -5521,12 +5674,18 @@
       "/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Shoveler/Parts/Part_SG_Torgue_Barrel_Shoveler.Part_SG_Torgue_Barrel_Shoveler"
     ]
   },
-  "BPInvPart_SM_TED_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":56,"bits":7}
+  "BPInvPart_SM_TED_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":56,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/SMGs/Tediore/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SM_TED_Barrel_01.Part_SM_TED_Barrel_01",
       "/Game/Gear/Weapons/SMGs/Tediore/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SM_TED_Barrel_01_A.Part_SM_TED_Barrel_01_A",
       "/Game/Gear/Weapons/SMGs/Tediore/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SM_TED_Barrel_01_B.Part_SM_TED_Barrel_01_B",
@@ -5593,12 +5752,18 @@
       "/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Earthbound/Parts/Part_SM_TED_Barrel_Earthbound.Part_SM_TED_Barrel_Earthbound"
     ]
   },
-  "BPInvPart_SR_DAL_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":35,"bits":7}
+  "BPInvPart_SR_DAL_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":35,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/SniperRifles/Dahl/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SR_DAL_Barrel_01.Part_SR_DAL_Barrel_01",
       "/Game/Gear/Weapons/SniperRifles/Dahl/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SR_DAL_Barrel_01_A.Part_SR_DAL_Barrel_01_A",
       "/Game/Gear/Weapons/SniperRifles/Dahl/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SR_DAL_Barrel_01_B.Part_SR_DAL_Barrel_01_B",
@@ -5678,12 +5843,18 @@
       "/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Unique/SandHawk/PArts/Part_SR_DAL_Scope_SandHawk.Part_SR_DAL_Scope_SandHawk"
     ]
   },
-  "BPInvPart_SR_HYP_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":29,"bits":7}
+  "BPInvPart_SR_HYP_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":29,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/SniperRifles/Hyperion/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SR_HYP_Barrel_01.Part_SR_HYP_Barrel_01",
       "/Game/Gear/Weapons/SniperRifles/Hyperion/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SR_HYP_Barrel_01_A.Part_SR_HYP_Barrel_01_A",
       "/Game/Gear/Weapons/SniperRifles/Hyperion/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SR_HYP_Barrel_01_B.Part_SR_HYP_Barrel_01_B",
@@ -5755,12 +5926,18 @@
       "/Game/PatchDLC/Raid1/Re-Engagement/Weapons/Tankman/Parts/Part_SR_HYP_Tankman.Part_SR_HYP_Tankman"
     ]
   },
-  "BPInvPart_SR_JAK_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":51,"bits":7}
+  "BPInvPart_SR_JAK_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":51,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/SniperRifles/Jakobs/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SR_JAK_Barrel_01.Part_SR_JAK_Barrel_01",
       "/Game/Gear/Weapons/SniperRifles/Jakobs/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SR_JAK_Barrel_01_A.Part_SR_JAK_Barrel_01_A",
       "/Game/Gear/Weapons/SniperRifles/Jakobs/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SR_JAK_Barrel_01_B.Part_SR_JAK_Barrel_01_B",
@@ -5834,12 +6011,18 @@
       "/Game/PatchDLC/Hibiscus/Gear/Weapon/_Unique/UnseenThreat/Parts/Part_SR_JAK_Material_UnseenThreat.Part_SR_JAK_Material_UnseenThreat"
     ]
   },
-  "BPInvPart_VLA_SR_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":33,"bits":7}
+  "BPInvPart_VLA_SR_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":33,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/SniperRifles/Vladof/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SR_VLA_Barrel_01.Part_SR_VLA_Barrel_01",
       "/Game/Gear/Weapons/SniperRifles/Vladof/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SR_VLA_Barrel_01_A.Part_SR_VLA_Barrel_01_A",
       "/Game/Gear/Weapons/SniperRifles/Vladof/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SR_VLA_Barrel_01_B.Part_SR_VLA_Barrel_01_B",
@@ -5912,12 +6095,18 @@
       "/Game/PatchDLC/Takedown2/Gear/Weapons/WebSlinger/Parts/Part_SR_VLA_Barrel_WebSlinger.Part_SR_VLA_Barrel_WebSlinger"
     ]
   },
-  "BPInvPart_GrenadeMod_C": {
-    "versions": [
-      {"version":1,"bits":7},
-      {"version":32,"bits":8}
+  "BPInvPart_GrenadeMod_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":7
+      },
+      {
+        "version":32,
+        "bits":8
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/GrenadeMods/_Design/PartSets/Part_Behavior/Large/GM_Part_Behavior_01_Large.GM_Part_Behavior_01_Large",
       "/Game/Gear/GrenadeMods/_Design/PartSets/Part_Behavior/GM_Part_Behavior_NONE.GM_Part_Behavior_NONE",
       "/Game/Gear/GrenadeMods/_Design/PartSets/Part_Manufacturer/GM_Part_Manufacturer_01_Torgue.GM_Part_Manufacturer_01_Torgue",
@@ -6079,12 +6268,18 @@
       "/Game/PatchDLC/Takedown2/Gear/GrenadeMods/Lightspeed/Parts/Part_GM_Mat_Lightspeed.Part_GM_Mat_Lightspeed"
     ]
   },
-  "BPInvPart_Shield_C": {
-    "versions": [
-      {"version":1,"bits":7},
-      {"version":14,"bits":8}
+  "BPInvPart_Shield_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":7
+      },
+      {
+        "version":14,
+        "bits":8
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Shields/_Design/PartSets/Part_Augment/Shield_Part_Aug_00_None.Shield_Part_Aug_00_None",
       "/Game/Gear/Shields/_Design/PartSets/Part_Augment/Resistance/Visual/Part_Shield_Aug_ANS_Resistance.Part_Shield_Aug_ANS_Resistance",
       "/Game/Gear/Shields/_Design/PartSets/Part_Augment/Nova/Visual/Part_Shield_Aug_ANS_Nova.Part_Shield_Aug_ANS_Nova",
@@ -6326,13 +6521,22 @@
       "/Game/PatchDLC/Takedown2/Gear/Shields/Aesclepius/Parts/Part_Shield_ANS_Material_LGD_Aesclepius.Part_Shield_ANS_Material_LGD_Aesclepius"
     ]
   },
-  "BPInvPart_Artifact_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":18,"bits":7},
-      {"version":28,"bits":8}
+  "BPInvPart_Artifact_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":18,
+        "bits":7
+      },
+      {
+        "version":28,
+        "bits":8
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Artifacts/_Design/PartSets/Abilities/MeleeArtifacts/BloodFrenzy/Artifact_Part_Ability_BloodFrenzy.Artifact_Part_Ability_BloodFrenzy",
       "/Game/Gear/Artifacts/_Design/PartSets/Abilities/SlideArtifacts/ElectricSlide/Artifact_Part_Ability_ElectricSlide.Artifact_Part_Ability_ElectricSlide",
       "/Game/Gear/Artifacts/_Design/PartSets/Abilities/DamageArtifacts/ElementalOrigin/Artifact_Part_Ability_ElementalOrigin.Artifact_Part_Ability_ElementalOrigin",
@@ -6507,13 +6711,22 @@
       "/Game/PatchDLC/Hibiscus/Gear/Artifacts/_Design/_Unique/Lunacy/Artifact_Part_Stat_Lunacy.Artifact_Part_Stat_Lunacy"
     ]
   },
-  "BPInvPart_ClassMod_C": {
-    "versions": [
-      {"version":1,"bits":8},
-      {"version":4,"bits":9},
-      {"version":26,"bits":10}
+  "BPInvPart_ClassMod_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":8
+      },
+      {
+        "version":4,
+        "bits":9
+      },
+      {
+        "version":26,
+        "bits":10
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/ClassMods/_Design/PartSets/Gunner/_Deprecated/ClassMod_Part_Gunner_01.ClassMod_Part_Gunner_01",
       "/Game/Gear/ClassMods/_Design/PartSets/Gunner/Classmod_01/ClassMod_Part_Gunner_01_Stats.ClassMod_Part_Gunner_01_Stats",
       "/Game/Gear/ClassMods/_Design/PartSets/Gunner/_Deprecated/ClassMod_Part_Gunner_01_Stat_02.ClassMod_Part_Gunner_01_Stat_02",
@@ -7298,11 +7511,14 @@
       "/Game/PatchDLC/Hibiscus/Gear/ClassMods/_Design/GUN/ClassMod_Part_Skill_Gunner_MeansOfDestruction_HIB.ClassMod_Part_Skill_Gunner_MeansOfDestruction_HIB"
     ]
   },
-  "BPInvPart_Tediore_Pistol_C": {
-    "versions": [
-      {"version":1,"bits":6}
+  "BPInvPart_Tediore_Pistol_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Pistols/Tediore/Shared/_Design/Parts/Barrels/Barrel_01/Part_PS_TED_Barrel_01.Part_PS_TED_Barrel_01",
       "/Game/Gear/Weapons/Pistols/Tediore/Shared/_Design/Parts/Barrels/Barrel_01/Part_PS_TED_Barrel_01_A.Part_PS_TED_Barrel_01_A",
       "/Game/Gear/Weapons/Pistols/Tediore/Shared/_Design/Parts/Barrels/Barrel_01/Part_PS_TED_Barrel_01_B.Part_PS_TED_Barrel_01_B",
@@ -7357,12 +7573,18 @@
       "/Game/PatchDLC/Raid1/Re-Engagement/Weapons/Execute/Parts/Part_PS_TED_Material_Execute.Part_PS_TED_Material_Execute"
     ]
   },
-  "BPInvPart_Hyperion_Shotgun_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":37,"bits":7}
+  "BPInvPart_Hyperion_Shotgun_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":37,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Shotguns/Hyperion/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SG_Hyp_Barrel_01.Part_SG_Hyp_Barrel_01",
       "/Game/Gear/Weapons/Shotguns/Hyperion/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SG_Hyp_Barrel_01_A.Part_SG_Hyp_Barrel_01_A",
       "/Game/Gear/Weapons/Shotguns/Hyperion/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SG_Hyp_Barrel_01_B.Part_SG_Hyp_Barrel_01_B",
@@ -7447,12 +7669,18 @@
       "/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Unique/Reflux/Parts/Part_SG_Hyp_Material_Reflux.Part_SG_Hyp_Material_Reflux"
     ]
   },
-  "BPInvPart_SM_Hyperion_C": {
-    "versions": [
-      {"version":1,"bits":6},
-      {"version":37,"bits":7}
+  "BPInvPart_SM_Hyperion_C":{
+    "versions":[
+      {
+        "version":1,
+        "bits":6
+      },
+      {
+        "version":37,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/SMGs/Hyperion/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SM_HYP_Barrel_01.Part_SM_HYP_Barrel_01",
       "/Game/Gear/Weapons/SMGs/Hyperion/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SM_HYP_Barrel_01_A.Part_SM_HYP_Barrel_01_A",
       "/Game/Gear/Weapons/SMGs/Hyperion/_Shared/_Design/Parts/Barrel/Barrel_01/Part_SM_HYP_Barrel_01_B.Part_SM_HYP_Barrel_01_B",
@@ -7535,12 +7763,18 @@
       "/Game/PatchDLC/Takedown2/Gear/Weapons/Smog/Parts/Part_SM_HYP_Barrel_Smog.Part_SM_HYP_Barrel_Smog"
     ]
   },
-  "ManufacturerData": {
-    "versions": [
-      {"version":1,"bits":5},
-      {"version":43,"bits":6}
+  "ManufacturerData":{
+    "versions":[
+      {
+        "version":1,
+        "bits":5
+      },
+      {
+        "version":43,
+        "bits":6
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Manufacturers/_Design/Misc/Currency.Currency",
       "/Game/Gear/Manufacturers/_Design/Dahl.Dahl",
       "/Game/Gear/Manufacturers/_Design/Torgue.Torgue",
@@ -7575,11 +7809,14 @@
       "/Game/Gear/Manufacturers/_Design/Eridian_NoMinGamestage.Eridian_NoMinGamestage"
     ]
   },
-  "BPInvPart_PS_COV_C": {
-    "versions": [
-      {"version":2,"bits":6}
+  "BPInvPart_PS_COV_C":{
+    "versions":[
+      {
+        "version":2,
+        "bits":6
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Pistols/ChildrenOfTheVault/_Shared/_Design/Parts/Accessory/Part_PS_COV_Accessory_01.Part_PS_COV_Accessory_01",
       "/Game/Gear/Weapons/Pistols/ChildrenOfTheVault/_Shared/_Design/Parts/Accessory/Part_PS_COV_Accessory_02.Part_PS_COV_Accessory_02",
       "/Game/Gear/Weapons/Pistols/ChildrenOfTheVault/_Shared/_Design/Parts/Accessory/Part_PS_COV_Accessory_03.Part_PS_COV_Accessory_03",
@@ -7644,12 +7881,18 @@
       "/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Gargoyle/Parts/Part_PS_COV_Material_Gargoyle.Part_PS_COV_Material_Gargoyle"
     ]
   },
-  "BPInvPart_PS_TOR_C": {
-    "versions": [
-      {"version":3,"bits":6},
-      {"version":35,"bits":7}
+  "BPInvPart_PS_TOR_C":{
+    "versions":[
+      {
+        "version":3,
+        "bits":6
+      },
+      {
+        "version":35,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/Pistols/Torgue/_Shared/_Design/Parts/Barrel/Barrel_01/Part_PS_TOR_Barrel_01.Part_PS_TOR_Barrel_01",
       "/Game/Gear/Weapons/Pistols/Torgue/_Shared/_Design/Parts/Barrel/Barrel_01/Part_PS_TOR_Barrel_01_B.Part_PS_TOR_Barrel_01_B",
       "/Game/Gear/Weapons/Pistols/Torgue/_Shared/_Design/Parts/Scope/Part_PS_TOR_Scope_01.Part_PS_TOR_Scope_01",
@@ -7722,12 +7965,18 @@
       "/Game/PatchDLC/Dandelion/Gear/Weapon/_Unique/Craps/Parts/Part_PS_TOR_Material_Craps.Part_PS_TOR_Material_Craps"
     ]
   },
-  "BPInvPart_AR_TOR_C": {
-    "versions": [
-      {"version":5,"bits":6},
-      {"version":48,"bits":7}
+  "BPInvPart_AR_TOR_C":{
+    "versions":[
+      {
+        "version":5,
+        "bits":6
+      },
+      {
+        "version":48,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/Weapons/AssaultRifles/Torgue/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_TOR_Barrel_01.Part_AR_TOR_Barrel_01",
       "/Game/Gear/Weapons/AssaultRifles/Torgue/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_TOR_Barrel_01_A.Part_AR_TOR_Barrel_01_A",
       "/Game/Gear/Weapons/AssaultRifles/Torgue/_Shared/_Design/Parts/Barrel/Barrel_01/Part_AR_TOR_Barrel_01_B.Part_AR_TOR_Barrel_01_B",
@@ -7796,14 +8045,26 @@
       "/Game/PatchDLC/Raid1/Re-Engagement/Weapons/Juliet/Parts/Part_AR_TOR_Material_Juliet.Part_AR_TOR_Material_Juliet"
     ]
   },
-  "InventoryCustomizationPartData": {
-    "versions": [
-      {"version":8,"bits":2},
-      {"version":17,"bits":4},
-      {"version":19,"bits":7},
-      {"version":46,"bits":8}
+  "InventoryCustomizationPartData":{
+    "versions":[
+      {
+        "version":8,
+        "bits":2
+      },
+      {
+        "version":17,
+        "bits":4
+      },
+      {
+        "version":19,
+        "bits":7
+      },
+      {
+        "version":46,
+        "bits":8
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/WeaponSkins/_Design/SkinParts/WeaponSkin_01.WeaponSkin_01",
       "/Game/Gear/WeaponTrinkets/_Design/TrinketParts/WeaponTrinket_01.WeaponTrinket_01",
       "/Game/Gear/WeaponSkins/_Design/SkinParts/WeaponSkin_02.WeaponSkin_02",
@@ -7948,12 +8209,18 @@
       "/Game/PatchDLC/Steam/Gear/WeaponTrinkets/WeaponTrinket_SteamPunk.WeaponTrinket_SteamPunk"
     ]
   },
-  "BPInvPart_Customization_Head_C": {
-    "versions": [
-      {"version":9,"bits":4},
-      {"version":11,"bits":7}
+  "BPInvPart_Customization_Head_C":{
+    "versions":[
+      {
+        "version":9,
+        "bits":4
+      },
+      {
+        "version":11,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Pickups/Customizations/_Design/PartSets/Heads/Gunner/Part_Customization_Head_Gunner_1.Part_Customization_Head_Gunner_1",
       "/Game/Pickups/Customizations/_Design/PartSets/Heads/Gunner/Part_Customization_Head_Gunner_2.Part_Customization_Head_Gunner_2",
       "/Game/Pickups/Customizations/_Design/PartSets/Heads/Gunner/Part_Customization_Head_Gunner_3.Part_Customization_Head_Gunner_3",
@@ -8041,12 +8308,18 @@
       "/Game/Pickups/Customizations/_Design/PartSets/Heads/Siren/Part_Customization_Head_Siren_9.Part_Customization_Head_Siren_9"
     ]
   },
-  "BPInvPart_Customization_Skin_C": {
-    "versions": [
-      {"version":11,"bits":6},
-      {"version":12,"bits":8}
+  "BPInvPart_Customization_Skin_C":{
+    "versions":[
+      {
+        "version":11,
+        "bits":6
+      },
+      {
+        "version":12,
+        "bits":8
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Pickups/Customizations/_Design/PartSets/Skins/Gunner/Part_Customization_Skin_Gunner_1.Part_Customization_Skin_Gunner_1",
       "/Game/Pickups/Customizations/_Design/PartSets/Skins/Gunner/Part_Customization_Skin_Gunner_2.Part_Customization_Skin_Gunner_2",
       "/Game/Pickups/Customizations/_Design/PartSets/Skins/Gunner/Part_Customization_Skin_Gunner_3.Part_Customization_Skin_Gunner_3",
@@ -8214,17 +8487,38 @@
       "/Game/Pickups/Customizations/_Design/PartSets/Skins/Siren/Part_Customization_Skin_Siren_9.Part_Customization_Skin_Siren_9"
     ]
   },
-  "InventoryGenericPartData": {
-    "versions": [
-      {"version":30,"bits":1},
-      {"version":31,"bits":2},
-      {"version":38,"bits":3},
-      {"version":39,"bits":4},
-      {"version":40,"bits":5},
-      {"version":41,"bits":6},
-      {"version":45,"bits":7}
+  "InventoryGenericPartData":{
+    "versions":[
+      {
+        "version":30,
+        "bits":1
+      },
+      {
+        "version":31,
+        "bits":2
+      },
+      {
+        "version":38,
+        "bits":3
+      },
+      {
+        "version":39,
+        "bits":4
+      },
+      {
+        "version":40,
+        "bits":5
+      },
+      {
+        "version":41,
+        "bits":6
+      },
+      {
+        "version":45,
+        "bits":7
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Automation/_Shared/_Design/DummyGenericPart.DummyGenericPart",
       "/Game/Gear/Weapons/_Shared/_Design/EndGameParts/Test/TestingEndGame.TestingEndGame",
       "/Game/Gear/Weapons/_Shared/_Design/EndGameParts/Character/Siren/Cast_WeaponDamage/GPart_Siren_Cast_WeaponDamage.GPart_Siren_Cast_WeaponDamage",
@@ -8346,24 +8640,36 @@
       "/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Design/MayhemParts/Part_WeaponMayhemLevel_10.Part_WeaponMayhemLevel_10"
     ]
   },
-  "DownloadableEntitlementPartData": {
-    "versions": [
-      {"version":36,"bits":2},
-      {"version":44,"bits":3}
+  "DownloadableEntitlementPartData":{
+    "versions":[
+      {
+        "version":36,
+        "bits":2
+      },
+      {
+        "version":44,
+        "bits":3
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/GameData/DLC/Entitlements/EntitlementPart_Currency_Eridium.EntitlementPart_Currency_Eridium",
       "/Game/GameData/DLC/Entitlements/EntitlementPart_Currency_GoldenKey.EntitlementPart_Currency_GoldenKey",
       "/Game/GameData/DLC/Entitlements/EntitlementPart_Currency_Money.EntitlementPart_Currency_Money",
       "/Game/GameData/DLC/Entitlements/EntitlementPart_Currency_DiamondKey.EntitlementPart_Currency_DiamondKey"
     ]
   },
-  "ItemPoolData": {
-    "versions": [
-      {"version":37,"bits":10},
-      {"version":45,"bits":11}
+  "ItemPoolData":{
+    "versions":[
+      {
+        "version":37,
+        "bits":10
+      },
+      {
+        "version":45,
+        "bits":11
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/Gear/GrenadeMods/_Design/PartSets/Part_Behavior/Money/ItemPool_GrenadeMod_Money_3.ItemPool_GrenadeMod_Money_3",
       "/Game/Gear/GrenadeMods/_Design/PartSets/Part_Behavior/Money/ItemPool_GrenadeMod_Money_1.ItemPool_GrenadeMod_Money_1",
       "/Game/Gear/GrenadeMods/_Design/PartSets/Part_Behavior/Money/ItemPool_GrenadeMod_Money_2.ItemPool_GrenadeMod_Money_2",
@@ -9903,13 +10209,22 @@
       "/Geranium/NonPlayerCharacters/Rose/_TheBoss/Weapon/ItemPool_RoseBoss_Pistol.ItemPool_RoseBoss_Pistol"
     ]
   },
-  "OakDownloadableContentLicenseData": {
-    "versions": [
-      {"version":41,"bits":1},
-      {"version":42,"bits":3},
-      {"version":49,"bits":4}
+  "OakDownloadableContentLicenseData":{
+    "versions":[
+      {
+        "version":41,
+        "bits":1
+      },
+      {
+        "version":42,
+        "bits":3
+      },
+      {
+        "version":49,
+        "bits":4
+      }
     ],
-    "assets": [
+    "assets":[
       "/Game/GameData/DLC/Preorders/NeonPack/DlcLicense_Preorder_NeonPack.DlcLicense_Preorder_NeonPack",
       "/Game/GameData/DLC/Preorders/BoosterPack/DlcLicense_Preorder_BoosterPack.DlcLicense_Preorder_BoosterPack",
       "/Game/GameData/DLC/Preorders/ButtStallionPack/DlcLicense_Preorder_ButtStallionPack.DlcLicense_Preorder_ButtStallionPack",
