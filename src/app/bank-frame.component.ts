@@ -1,15 +1,14 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProxyService } from './proxy.service';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
-import { Item, ItemRequest } from './model';
+import { filter, switchMap, tap } from 'rxjs/operators';
+import { Item } from './model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTable } from '@angular/material/table';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ItemImportComponent } from './form/item-import.component';
-import { environment } from '../environments/environment';
 import compareVersions from 'compare-versions';
 import { ItemExportComponent } from './form/item-export.component';
 import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component';
@@ -80,17 +79,17 @@ import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component
   ],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
-    ])
-  ]
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class BankFrameComponent implements OnInit {
 
   items: Item[] = [];
   displayedColumns = [
-    'level', 'balance', 'actions'
+    'level', 'balance', 'actions',
   ];
   expandedElement: Item;
   version: string;
@@ -105,7 +104,7 @@ export class BankFrameComponent implements OnInit {
     private proxy: ProxyService,
     private snackbar: MatSnackBar,
     private cdr: ChangeDetectorRef,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
   }
 
@@ -134,12 +133,13 @@ export class BankFrameComponent implements OnInit {
     }
     this.outOfDate = compareVersions(this.version, this.minimumVersion) === -1;
   }
+
   public save() {
     this.proxy.updateBankItems(this.items).pipe(
       tap(
-        () => this.snackbar.open('Saved successfully.', 'Dismiss', {duration: 3000}),
-        () => this.snackbar.open('Failed to save.', 'Dismiss', {duration: 3000})
-      )
+        () => this.snackbar.open('Saved successfully.', 'Dismiss', { duration: 3000 }),
+        () => this.snackbar.open('Failed to save.', 'Dismiss', { duration: 3000 }),
+      ),
     ).subscribe(() => this.loadData());
   }
 
@@ -154,8 +154,8 @@ export class BankFrameComponent implements OnInit {
       balance: element.balance,
       manufacturer: element.manufacturer,
       wrapper: {
-        ...element.wrapper
-      }
+        ...element.wrapper,
+      },
     };
     const index = this.items.indexOf(element);
     this.items.push(copyOfItem);
@@ -171,11 +171,11 @@ export class BankFrameComponent implements OnInit {
 
   public openImportDialog() {
     this.dialog.open(ItemImportComponent, {
-      width: '80%'
+      width: '80%',
     }).afterClosed()
       .pipe(
         filter(r => !!r),
-        switchMap(code => this.proxy.convert(code))
+        switchMap(code => this.proxy.convert(code)),
       ).subscribe(result => {
       this.items.push(result);
       moveItemInArray(this.items, this.items.length - 1, 0);
@@ -186,16 +186,29 @@ export class BankFrameComponent implements OnInit {
   public export(element: Item) {
     this.dialog.open(ItemExportComponent, {
       width: '80%',
-      data: element
+      data: element,
     });
   }
 
   public openLevelChangeDialog() {
     this.dialog.open(MassItemLevelDialogComponent, {
-      width: '80%'
+      width: '80%',
     }).afterClosed().subscribe(l => {
+      const mayhemTemplate
+        = '/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Design/MayhemParts/Part_WeaponMayhemLevel_10.Part_WeaponMayhemLevel_';
       if (!!l) {
-        this.items.forEach(i => i.level = l);
+        this.items.forEach(i => {
+          i.level = l.level;
+          if (l.mayhemLevel > 10) l.mayhemLevel = 10;
+          if (l.mayhemLevel < 0) l.mayhemLevel = 0;
+          const mlString = `${l.mayhemLevel}`.padStart(2, '0');
+          if (l.mayhem) {
+            i.generics = i.generics.filter(p => !p.includes('Part_WeaponMayhemLevel'));
+            if (i.generics.length < 15) {
+              i.generics.push(`${mayhemTemplate}${mlString}`);
+            }
+          }
+        });
         this.table.renderRows();
       }
     });

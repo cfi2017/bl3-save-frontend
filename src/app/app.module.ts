@@ -44,6 +44,7 @@ import { NgJsonEditorModule } from 'ang-jsoneditor';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DeveloperMessageComponent } from './developer-message.component';
 import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 export const ROUTES: Routes = [
   {
@@ -117,6 +118,7 @@ export const ROUTES: Routes = [
     MatIconModule,
     MatTooltipModule,
     MatSlideToggleModule,
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

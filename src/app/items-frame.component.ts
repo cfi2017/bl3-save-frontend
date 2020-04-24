@@ -193,8 +193,21 @@ export class ItemsFrameComponent implements OnInit {
     this.dialog.open(MassItemLevelDialogComponent, {
       width: '80%'
     }).afterClosed().subscribe(l => {
+      const mayhemTemplate
+        = '/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Design/MayhemParts/Part_WeaponMayhemLevel_10.Part_WeaponMayhemLevel_';
       if (!!l) {
-        this.itemRequest.items.forEach(i => i.level = l);
+        this.itemRequest.items.forEach(i => {
+          i.level = l.level;
+          if (l.mayhemLevel > 10) l.mayhemLevel = 10;
+          if (l.mayhemLevel < 0) l.mayhemLevel = 0;
+          const mlString = `${l.mayhemLevel}`.padStart(2, '0');
+          if (l.mayhem) {
+            i.generics = i.generics.filter(p => !p.includes('Part_WeaponMayhemLevel'));
+            if (i.generics.length < 15) {
+              i.generics.push(`${mayhemTemplate}${mlString}`);
+            }
+          }
+        });
         this.table.renderRows();
       }
     });
