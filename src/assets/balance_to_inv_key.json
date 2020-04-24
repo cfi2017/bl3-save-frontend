@@ -4461,5 +4461,13 @@
   "/game/patchdlc/takedown2/gear/shields/stinger/balance/invbald_shield_lgd_stinger.invbald_shield_lgd_stinger": "BPInvPart_Shield_C",
   "/game/patchdlc/takedown2/gear/shields/aesclepius/balance/invbald_shield_lgd_aesclepius.invbald_shield_lgd_aesclepius": "BPInvPart_Shield_C",
   "/game/patchdlc/geranium/gear/weapon/_unique/sheriff/balance/balance_ps_jak_sheriff.balance_ps_jak_sheriff": "BPInvPart_Jakobs_Pistol_C",
-  "/game/patchdlc/takedown2/gear/weapons/webslinger/balance/balance_ar_vla_webslinger.balance_ar_vla_webslinger": "BPInvPart_VLA_AR_C"
+  "/game/patchdlc/takedown2/gear/weapons/webslinger/balance/balance_ar_vla_webslinger.balance_ar_vla_webslinger": "BPInvPart_VLA_AR_C",
+  "/game/patchdlc/event2/gear/weapon/_unique/icepick/balance/balance_ps_mal_icepick.balance_ps_mal_icepick": "BPInvPart_PS_MAL_C",
+  "/game/patchdlc/event2/gear/shield/_unique/wattson/balance/invbald_shield_legendary_wattson.invbald_shield_legendary_wattson": "BPInvPart_Shield_C",
+  "/game/patchdlc/event2/gear/weapon/_unique/pricker/balance/balance_sm_hyp_pricker.balance_sm_hyp_pricker": "BPInvPart_SM_Hyperion_C",
+  "/game/patchdlc/event2/gear/shield/_unique/meat/invbal_meat_booster.invbal_meat_booster": "BPInvPart_Shield_C",
+  "/game/patchdlc/event2/gear/weapon/_unique/pewpew/balance/balance_ar_cov_pewpew.balance_ar_cov_pewpew": "BPInvPart_AR_COV_C",
+  "/game/patchdlc/event2/gear/weapon/_unique/greasetrap/balance/balance_ps_mal_greasetrap.balance_ps_mal_greasetrap": "BPInvPart_PS_MAL_C",
+  "/game/patchdlc/event2/gear/weapon/_unique/opq/balance/balance_atl_ar_opq.balance_atl_ar_opq": "BPInvPart_ATL_AR_C",
+  "/game/patchdlc/event2/gear/grenademods/fishslap/balance/invbald_gm_fishslap.invbald_gm_fishslap": "BPInvPart_GrenadeMod_C"
 }
