@@ -77,7 +77,8 @@ export class ItemFormComponent implements OnInit {
     this.debug = !!localStorage.getItem('debug');
     this.availableParts = [...this.assets.getAssets(this.data.balance.toLowerCase())];
     this.availableGenerics = [...this.assets.getAssetsForKey('InventoryGenericPartData')];
-
+    this.data.generics = this.data.generics || [];
+    this.data.parts = this.data.parts || [];
   }
 
 }
