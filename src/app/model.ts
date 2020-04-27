@@ -60,11 +60,39 @@ export interface Character {
     sdu_level: number;
     sdu_data_path: string;
   }[];
+  player_class_data: {
+    player_class_path: string;
+  };
+  ability_data: {
+    ability_points: number;
+    tree_item_list: {
+      item_asset_path: string;
+      points: number;
+      max_points: number;
+    }[];
+    ability_slot_list: {
+      ability_class_path: string;
+      slot_asset_path: string;
+    }[];
+    augment_slot_list: {
+      action_ability_class_path: string;
+      slot_asset_path: string;
+      augment_asset_path: string;
+    }[];
+  };
 }
 
 // tslint:disable-next-line:no-empty-interface
 export interface Profile {
   CitizenScienceCSBucksAmount: number;
+  unlocked_crew_quarters_decorations: {
+    is_new: boolean;
+    decoration_item_asset_path: string;
+  };
+  unlocked_customizations: {
+    is_new: boolean;
+    customization_asset_path: string;
+  };
   guardian_rank: {
     guardian_rank: number;
     rank_rewards: {

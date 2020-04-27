@@ -3,21 +3,142 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export const CLASSES = [
   {
-    name: 'Beastmaster',
-    key: '/Game/PlayerCharacters/Beastmaster/PlayerClassId_Beastmaster.PlayerClassId_Beastmaster',
+    id: '/Game/PlayerCharacters/Operative/PlayerClassId_Operative.PlayerClassId_Operative',
+    label: 'Zane | Operative',
   },
+  {
+    id: '/Game/PlayerCharacters/SirenBrawler/PlayerClassId_Siren.PlayerClassId_Siren',
+    label: 'Amara | Siren',
+  },
+  {
+    id: '/Game/PlayerCharacters/Beastmaster/PlayerClassId_Beastmaster.PlayerClassId_Beastmaster',
+    label: 'FL4K | Beastmaster',
+  },
+  {
+    id: '/Game/PlayerCharacters/Gunner/PlayerClassId_Gunner.PlayerClassId_Gunner',
+    label: 'Moze | Gunner',
+  },
+];
+
+export const BALANCE_BLACKLIST = [
+  'EchoLog',
+  'RoomDecoration',
+  'Enemies',
+  'Vehicles',
+  'Pickups',
+  'WeaponSkin',
+  'WeaponTrinket',
+  'CustomSkin',
+  'CustomHead',
+  'NPC_Weapons',
+  '_ForAI',
+  'RoomDeco',
+  'CustomEmote',
+  '/Developers/',
+  'DigiClone',
+  '/Automation/',
+  'ECHOTheme',
+  '/Missions/',
+  '/Maps/',
+  '_TEST',
+  '/Abilities/',
+  '/PlayerCharacters/',
+  'EchoTheme',
+  'CrazyEarlDefault',
+  '_ARCHIVED',
+  '/NonPlayerCharacters/',
+  '/DA_MadMoxxiDrinkEvent',
+  '/PartSets/',
+  'TEMP/',
+];
+
+export const MANUFACTURER_BLACKLIST = [
+  '/Vehicles/',
+  '/Enemies/',
+  'Ammo',
+  'NoManufacturer',
+  'Eridian_NoMinGamestage',
+  'Emote',
+  'CrewQuarters',
+  'SDU',
+  'EchoSkin',
+  'WeaponTrinket',
+  'WeaponSkin',
+  'PlayerHead',
+  'PlayerSkin',
+  'Health',
+  'Currency',
+  'AI_Custom',
+  'Mission'
+];
+
+export const MANUFACTURER_MAPPINGS = [
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Dahl.Dahl',
+    keys: ['DAHL', 'DAL']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Vladof.Vladof',
+    keys: ['Vladof', 'VLA']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Torgue.Torgue',
+    keys: ['Torgue', 'TOR']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Maliwan.Maliwan',
+    keys: ['MAL']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Tediore.Tediore',
+    keys: ['Tediore', 'TED']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/CoV.CoV',
+    keys: ['COV']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Eridian.Eridian',
+    keys: ['Fabricator']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Atlas.Atlas',
+    keys: ['Atlas', 'ATL']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Jakobs.Jakobs',
+    keys: ['JAK']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Hyperion.Hyperion',
+    keys: ['Hyperion', 'HYP']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Pangolin.Pangolin',
+    keys: ['Pangolin', 'PAN']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Anshin.Anshin',
+    keys: ['Anshin']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/ClassMod.ClassMod',
+    keys: ['ClassMod']
+  },
+  {
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Artifact.Artifact',
+    keys: ['Artifact']
+  }
 ];
 
 export const PETS = [];
 
 export const CURRENCIES = {
   money: 618814354,
-  eridium: 3679636065
+  eridium: 3679636065,
 };
 
-export const INVENTORY_SLOTS =  [
-
-];
+export const INVENTORY_SLOTS = [];
 
 export const SDUS = [];
 export const AMMO = [];
@@ -693,7 +814,18 @@ export const CUSTOMIZATIONS = [
   '/Game/PlayerCharacters/_Customizations/EchoDevice/ECHOTheme_17.ECHOTheme_17',
   '/Game/PlayerCharacters/_Customizations/EchoDevice/ECHOTheme_15.ECHOTheme_15',
   '/Game/PlayerCharacters/_Customizations/EchoDevice/ECHOTheme_13.ECHOTheme_13',
-  '/Game/PatchDLC/Customizations/PlayerCharacters/_Customizations/EchoDevice/ECHOTheme_37.ECHOTheme_37'
+  '/Game/PatchDLC/Customizations/PlayerCharacters/_Customizations/EchoDevice/ECHOTheme_37.ECHOTheme_37',
+  '/Game/PatchDLC/Event2/PlayerCharacters/_Customizations/Operative/Heads/CustomHead_Operative_34.CustomHead_Operative_34',
+  '/Game/PatchDLC/Event2/PlayerCharacters/_Customizations/Gunner/Heads/CustomHead_Gunner_34.CustomHead_Gunner_34',
+  '/Game/PatchDLC/Event2/PlayerCharacters/_Customizations/Beastmaster/Heads/CustomHead_Beastmaster_34.CustomHead_Beastmaster_34',
+  '/Game/PatchDLC/Event2/PlayerCharacters/_Customizations/SirenBrawler/Heads/CustomHead_Siren_34.CustomHead_Siren_34',
+  '/Game/PatchDLC/Event2/PlayerCharacters/_Customizations/Operative/Skins/CustomSkin_Operative_47.CustomSkin_Operative_47',
+  '/Game/PatchDLC/Event2/PlayerCharacters/_Customizations/Gunner/Skins/CustomSkin_Gunner_47.CustomSkin_Gunner_47',
+  '/Game/PatchDLC/Event2/PlayerCharacters/_Customizations/Beastmaster/Skins/CustomSkin_Beastmaster_47.CustomSkin_Beastmaster_47',
+  '/Game/PatchDLC/Event2/PlayerCharacters/_Customizations/SirenBrawler/Skins/CustomSkin_Siren_47.CustomSkin_Siren_47',
+  '/Game/PatchDLC/Event2/PlayerCharacters/_Customizations/EchoDevice/ECHOTheme_44.ECHOTheme_44',
+  '/Game/PatchDLC/Event2/Pickups/RoomDecoration/RoomDecoration_Event2_3.RoomDecoration_Event2_3',
+  '/Game/PatchDLC/Event2/Gear/_Design/WeaponTrinkets/WeaponTrinket_Cartels_1.WeaponTrinket_Cartels_1',
 ];
 
 export function getExpForLevel(level: number): number {
