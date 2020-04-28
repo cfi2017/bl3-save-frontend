@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "start": "yarn build-themes && ng serve",
+    "build": "yarn build-themes && ng build",
+    "test": "yarn build-themes && ng test",
+    "lint": "yarn build-themes && ng lint",
+    "e2e": "yarn build-themes && ng e2e",
+    "deploy": "yarn build-themes && ng build --prod && firebase deploy",
+    "build-themes": "bash ./tools/build-themes.sh"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +27,7 @@
     "ang-jsoneditor": "^1.9.1",
     "compare-versions": "^3.6.0",
     "jsoneditor": "^8.6.6",
+    "node-sass": "^4.14.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

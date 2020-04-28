@@ -11,20 +11,6 @@ table {
 tr.detail-row {
   height: 0;
 }
-tr.element-row {
-
-  &:not(.expanded-row)
-  {
-    &:hover {
-      background: whitesmoke;
-    }
-    &:active {
-      background: #efefef;
-    }
-  }
-
-  border-bottom-width: 0;
-}
 
 bls-item-form {
   width: 100%;

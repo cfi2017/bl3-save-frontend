@@ -4469,5 +4469,7 @@
   "/game/patchdlc/event2/gear/weapon/_unique/pewpew/balance/balance_ar_cov_pewpew.balance_ar_cov_pewpew": "BPInvPart_AR_COV_C",
   "/game/patchdlc/event2/gear/weapon/_unique/greasetrap/balance/balance_ps_mal_greasetrap.balance_ps_mal_greasetrap": "BPInvPart_PS_MAL_C",
   "/game/patchdlc/event2/gear/weapon/_unique/opq/balance/balance_atl_ar_opq.balance_atl_ar_opq": "BPInvPart_ATL_AR_C",
-  "/game/patchdlc/event2/gear/grenademods/fishslap/balance/invbald_gm_fishslap.invbald_gm_fishslap": "BPInvPart_GrenadeMod_C"
+  "/game/patchdlc/event2/gear/grenademods/fishslap/balance/invbald_gm_fishslap.invbald_gm_fishslap": "BPInvPart_GrenadeMod_C",
+  "/game/patchdlc/event2/gear/shield/_unique/meat/balance/invbald_shield_legendary_meat.invbald_shield_legendary_meat": "BPInvPart_Shield_C",
+  "/game/patchdlc/event2/gear/weapon/_unique/yellowcake/balance/balance_hw_cov_etech_yellowcake.balance_hw_cov_etech_yellowcake": "BPInvPart_HW_COV_C"
 }

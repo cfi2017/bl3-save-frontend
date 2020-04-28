@@ -1,23 +1,50 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CURRENCIES, getExpForLevel, getLevelForExp } from '../const';
+import { CLASSES, CURRENCIES, getExpForLevel, getLevelForExp } from '../const';
 import { CharacterWrapper } from '../model';
 
 @Component({
   selector: 'bls-character-form',
   template: `
     <form>
-      <mat-form-field>
-        <input matInput
-               name="level"
-               #lvl="ngModel"
-               [(ngModel)]="level"
-               type="number"
-               max="57"
-               min="1"/>
-        <mat-label>Level</mat-label>
-      </mat-form-field>
-      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="10px">
-        <mat-card fxFlex="1 0">
+      <div
+        gdColumns="33% 33% 33%!"
+        gdRows="300px!"
+        gdAreas="class_level . . | invslots sdus currencies"
+        gdGap="10px">
+        <mat-card gdArea="class_level">
+          <mat-card-title>General</mat-card-title>
+          <mat-card-content
+            gdColumns="32% 32% 32%!"
+            gdAreas="level class class | skillpoints . ."
+            gdGap="2%"
+          >
+            <mat-form-field gdArea="level">
+              <input matInput
+                     name="level"
+                     #lvl="ngModel"
+                     [(ngModel)]="level"
+                     type="number"
+                     max="57"
+                     min="1"/>
+              <mat-label>Level</mat-label>
+            </mat-form-field>
+            <mat-form-field gdArea="class">
+              <mat-select name="class"
+                          [(ngModel)]="class">
+                <mat-option [value]="opt.id" *ngFor="let opt of classes">{{opt.label}}</mat-option>
+              </mat-select>
+              <mat-label>Class</mat-label>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-form-field gdArea="skillpoints">
+            <input matInput
+                   name="skillpoints"
+                   [(ngModel)]="data.character.ability_data.ability_points"
+                   type="number"/>
+            <mat-label>Skill Points</mat-label>
+          </mat-form-field>
+        </mat-card>
+        <mat-card gdArea="invslots">
           <mat-card-title>Inventory Slots</mat-card-title>
           <mat-card-content fxLayout="column">
             <mat-slide-toggle
@@ -54,7 +81,7 @@ import { CharacterWrapper } from '../model';
             >Artifact</mat-slide-toggle>
           </mat-card-content>
         </mat-card>
-        <mat-card fxFlex="1 0">
+        <mat-card gdArea="sdus">
           <mat-card-title>SDUs</mat-card-title>
           <mat-card-content fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between">
             <div fxLayout="column">
@@ -119,7 +146,7 @@ import { CharacterWrapper } from '../model';
             </div>
           </mat-card-content>
         </mat-card>
-        <mat-card fxFlex="1 0">
+        <mat-card gdArea="currencies">
           <mat-card-title>Currencies</mat-card-title>
           <mat-card-content fxLayout="column">
             <mat-form-field>
@@ -145,6 +172,8 @@ import { CharacterWrapper } from '../model';
 })
 export class CharacterFormComponent implements OnInit {
 
+  classes = CLASSES;
+
   @Input()
   data: CharacterWrapper;
 
@@ -152,7 +181,21 @@ export class CharacterFormComponent implements OnInit {
     return getLevelForExp(this.data.character.experience_points);
   }
   set level(l: number) {
-    this.data.character.experience_points = getExpForLevel(l);
+    const newLevel = getExpForLevel(l);
+    this.data.character.ability_data.ability_points =
+      Math.max(newLevel - this.level, 0) + (this.data.character.ability_data.ability_points || 0);
+    this.data.character.experience_points = newLevel;
+  }
+
+  get class(): string {
+    return this.data.character.player_class_data.player_class_path;
+  }
+  set class(c: string) {
+    this.data.character.ability_data.ability_points = Math.max(this.level - 2, 0);
+    this.data.character.ability_data.ability_slot_list = [];
+    this.data.character.ability_data.tree_item_list = [];
+    this.data.character.ability_data.augment_slot_list = [];
+    this.data.character.player_class_data.player_class_path = c;
   }
 
   get eridium(): number {
@@ -183,6 +226,9 @@ export class CharacterFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if (this.data.character.ability_data.ability_points === undefined) {
+      this.data.character.ability_data.ability_points = 0;
+    }
   }
 
   isSlotEnabled(key: string) {
@@ -194,15 +240,17 @@ export class CharacterFormComponent implements OnInit {
   }
 
   getSDULevel(key: string): number {
-    const [sdu] = this.data.character.sdu_list.filter(s => s.sdu_data_path.includes(key));
+    const [sdu] = (this.data.character.sdu_list || []).filter(s => s.sdu_data_path.includes(key));
     return sdu ? sdu.sdu_level : 0;
   }
 
   setSDULevel(key: string, value: number) {
+    if (!this.data.character.sdu_list) this.data.character.sdu_list = [];
     const [sdu] = this.data.character.sdu_list.filter(s => s.sdu_data_path.includes(key));
     if (sdu) sdu.sdu_level = value;
     else {
       console.log('error: no sdu by that key found. report this to the developer.');
     }
   }
+
 }

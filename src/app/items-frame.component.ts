@@ -13,6 +13,9 @@ import { ItemExportComponent } from './form/item-export.component';
 import { JsonEditorOptions } from 'ang-jsoneditor';
 import { ConfigService } from './config.service';
 import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component';
+import { BalancePickerComponent } from './form/balance-picker.component';
+import { BALANCE_BLACKLIST, bestGuessManufacturer } from './const';
+import { AssetService } from './asset.service';
 
 @Component({
   selector: 'bls-items-frame',
@@ -21,6 +24,7 @@ import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component
       <div class="action-bar">
         <button mat-raised-button color="primary" (click)="save()">Save</button>
         <button mat-raised-button color="primary" (click)="openImportDialog()">Import Item</button>
+        <button mat-raised-button color="primary" (click)="openNewItemDialog()">Create Item</button>
         <button mat-raised-button color="primary" (click)="openLevelChangeDialog()">Change Level of all Items</button>
       </div>
       <table mat-table [dataSource]="itemRequest?.items" multiTemplateDataRows>
@@ -101,7 +105,8 @@ export class ItemsFrameComponent implements OnInit {
     private proxy: ProxyService,
     private snackbar: MatSnackBar,
     private cdr: ChangeDetectorRef,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private assets: AssetService
   ) {
   }
 
@@ -193,8 +198,7 @@ export class ItemsFrameComponent implements OnInit {
     this.dialog.open(MassItemLevelDialogComponent, {
       width: '80%'
     }).afterClosed().subscribe(l => {
-      const mayhemTemplate
-        = '/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Design/MayhemParts/Part_WeaponMayhemLevel_10.Part_WeaponMayhemLevel_';
+      const mayhemTemplate = 'Part_WeaponMayhemLevel_';
       if (!!l) {
         this.itemRequest.items.forEach(i => {
           i.level = l.level;
@@ -202,9 +206,11 @@ export class ItemsFrameComponent implements OnInit {
           if (l.mayhemLevel < 0) l.mayhemLevel = 0;
           const mlString = `${l.mayhemLevel}`.padStart(2, '0');
           if (l.mayhem) {
+            i.generics = i.generics || [];
             i.generics = i.generics.filter(p => !p.includes('Part_WeaponMayhemLevel'));
             if (i.generics.length < 15) {
-              i.generics.push(`${mayhemTemplate}${mlString}`);
+              i.generics.push(
+                `/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Design/MayhemParts/${mayhemTemplate}${mlString}.${mayhemTemplate}${mlString}`);
             }
           }
         });
@@ -212,6 +218,44 @@ export class ItemsFrameComponent implements OnInit {
       }
     });
   }
+
+  public openNewItemDialog() {
+    this.dialog.open(BalancePickerComponent, {
+      width: '80%',
+      data: {
+        options: this.assets.getAssetsForKey('InventoryBalanceData'),
+        blacklist: BALANCE_BLACKLIST
+      }
+    }).afterClosed()
+      .pipe(
+        filter(res => !!res),
+      )
+      .subscribe(res => this.createItem(res));
+  }
+
+  private createItem(balance: string) {
+    const item: Item = {
+      level: 57,
+      balance,
+      manufacturer: bestGuessManufacturer(balance, ''),
+      inv_data: '',
+      parts: [],
+      generics: [],
+      overflow: '',
+      version: 55,
+      wrapper: {
+        item_serial_number: '',
+        pickup_order_index: 255
+      }
+    };
+    this.itemRequest.items.push(item);
+    moveItemInArray(this.itemRequest.items, this.itemRequest.items.length - 1, 0);
+    this.itemRequest.equipped.forEach(e => {
+      e.inventory_list_index++;
+    });
+    this.table.renderRows();
+  }
+
 
   public export(element: Item) {
     this.dialog.open(ItemExportComponent, {

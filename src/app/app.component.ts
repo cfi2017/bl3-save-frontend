@@ -25,7 +25,8 @@ import { ConfigService } from './config.service';
           <button style="width: 80px;" (click)="cd()" mat-raised-button>Change</button>
         </div>
       </div>
-      <div fxLayout="column" fxLayoutAlign="center">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <bls-theme-picker></bls-theme-picker>
         <mat-slide-toggle [(ngModel)]="config.advanced">Advanced Mode</mat-slide-toggle>
       </div>
     </mat-toolbar>
@@ -79,7 +80,13 @@ import { ConfigService } from './config.service';
       </ng-template>
     </div>
   `,
-  styles: [],
+  styles: [
+    `
+    mat-sidenav-container {
+      height: calc(100vh - 64px);
+    }
+    `
+  ],
 })
 export class AppComponent implements OnInit, OnDestroy {
 

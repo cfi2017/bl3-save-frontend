@@ -69,66 +69,102 @@ export const MANUFACTURER_BLACKLIST = [
   'Health',
   'Currency',
   'AI_Custom',
-  'Mission'
+  'Mission',
 ];
+
+export const INV_DATA_BLACKLIST = [
+  'EchoLog',
+  'RoomDeco',
+  '/Enemies/',
+  '/PartSets/',
+  '/Pickups/',
+  '/Vehicles/',
+  '/CustomSkin',
+  '/CustomHead',
+  '/WeaponSkin',
+  '/WeaponTrinket',
+  '/CustomEmote',
+  '/ECHOTheme',
+  '/Booster/',
+  '/Mission',
+  '/NonPlayerCharacters/',
+  '/Abilities/',
+  '/Maps/',
+  'EchoTheme',
+  '/Streaming/',
+  '/EchoDevice/'
+];
+
+
+export function bestGuessManufacturer(balance: string, manufacturer: string) {
+  const manGuess = MANUFACTURER_MAPPINGS.filter(f => f.keys.some(k => balance.includes(k)));
+  if (manGuess.length > 0) {
+    return manGuess[0].manufacturer;
+  }
+  return manufacturer;
+}
+
+export function filterBlacklist(d: string[], b: string[]): string[] {
+  return d.filter(di => !b.some(bi => di.includes(bi)));
+}
 
 export const MANUFACTURER_MAPPINGS = [
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/Dahl.Dahl',
-    keys: ['DAHL', 'DAL']
+    keys: ['DAHL', 'DAL'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/Vladof.Vladof',
-    keys: ['Vladof', 'VLA']
+    keys: ['Vladof', 'VLA'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/Torgue.Torgue',
-    keys: ['Torgue', 'TOR']
+    keys: ['Torgue', 'TOR'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/Maliwan.Maliwan',
-    keys: ['MAL']
+    keys: ['MAL'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/Tediore.Tediore',
-    keys: ['Tediore', 'TED']
+    keys: ['Tediore', 'TED'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/CoV.CoV',
-    keys: ['COV']
+    keys: ['COV'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/Eridian.Eridian',
-    keys: ['Fabricator']
+    keys: ['Fabricator'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/Atlas.Atlas',
-    keys: ['Atlas', 'ATL']
+    keys: ['Atlas', 'ATL'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/Jakobs.Jakobs',
-    keys: ['JAK']
+    keys: ['JAK'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/Hyperion.Hyperion',
-    keys: ['Hyperion', 'HYP']
+    keys: ['Hyperion', 'HYP'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/Pangolin.Pangolin',
-    keys: ['Pangolin', 'PAN']
+    keys: ['Pangolin', 'PAN'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/Anshin.Anshin',
-    keys: ['Anshin']
+    keys: ['Anshin'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/ClassMod.ClassMod',
-    keys: ['ClassMod']
+    keys: ['ClassMod'],
   },
   {
     manufacturer: '/Game/Gear/Manufacturers/_Design/Artifact.Artifact',
-    keys: ['Artifact']
-  }
+    keys: ['Artifact'],
+  },
 ];
 
 export const PETS = [];

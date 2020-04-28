@@ -15,6 +15,7 @@ import { ConfigService } from './config.service';
       <div class="action-bar">
         <button mat-raised-button color="primary" (click)="save()">Save</button>
         <button mat-raised-button color="primary" (click)="unlockCustomizations()">Unlock all customizations</button>
+        <button mat-raised-button color="primary" (click)="unlockRoomDecorations()">Unlock Room Decorations</button>
       </div>
       <bls-profile-form [data]="data"></bls-profile-form>
       <json-editor *ngIf="config.advanced" style="height:100%;"
@@ -66,7 +67,19 @@ export class ProfileFrameComponent implements OnInit {
   unlockCustomizations() {
     const unlocked = this.data.profile.unlocked_customizations.map(c => c.customization_asset_path);
     this.data.profile.unlocked_customizations.push(
-      ...CUSTOMIZATIONS.filter(c => !unlocked.includes(c)).map(c => ({is_new: true, customization_asset_path: c}))
+      ...CUSTOMIZATIONS
+        .filter(c => !c.includes('RoomDecoration'))
+        .filter(c => !unlocked.includes(c)).map(c => ({is_new: true, customization_asset_path: c}))
+    );
+  }
+
+  unlockRoomDecorations() {
+    const unlocked = this.data.profile.unlocked_crew_quarters_decorations
+      .map(c => c.decoration_item_asset_path);
+    this.data.profile.unlocked_crew_quarters_decorations.push(
+      ...CUSTOMIZATIONS
+        .filter(c => c.includes('RoomDecoration'))
+        .filter(c => !unlocked.includes(c)).map(c => ({is_new: true, decoration_item_asset_path: c}))
     );
   }
 

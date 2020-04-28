@@ -1,0 +1,22 @@
+@mixin bl3-table-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  tr.element-row {
+
+    &:not(.expanded-row)
+    {
+      &:hover {
+        background: mat-color($background, hover);
+      }
+      &:active {
+        background: mat-color($background, hover);
+      }
+    }
+
+    border-bottom-width: 0;
+  }
+}

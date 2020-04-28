@@ -45,6 +45,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DeveloperMessageComponent } from './developer-message.component';
 import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { BalancePickerComponent } from './form/balance-picker.component';
+import { ThemePickerModule } from './theme-picker/theme-picker';
 
 export const ROUTES: Routes = [
   {
@@ -88,7 +90,8 @@ export const ROUTES: Routes = [
     ItemExportComponent,
     NamePipe,
     DeveloperMessageComponent,
-    MassItemLevelDialogComponent
+    MassItemLevelDialogComponent,
+    BalancePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -119,6 +122,7 @@ export const ROUTES: Routes = [
     MatTooltipModule,
     MatSlideToggleModule,
     MatCheckboxModule,
+    ThemePickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
