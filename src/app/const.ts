@@ -57,7 +57,6 @@ export const MANUFACTURER_BLACKLIST = [
   '/Enemies/',
   'Ammo',
   'NoManufacturer',
-  'Eridian_NoMinGamestage',
   'Emote',
   'CrewQuarters',
   'SDU',
@@ -162,7 +161,7 @@ export const MANUFACTURER_MAPPINGS = [
     keys: ['ClassMod'],
   },
   {
-    manufacturer: '/Game/Gear/Manufacturers/_Design/Artifact.Artifact',
+    manufacturer: '/Game/Gear/Manufacturers/_Design/Eridian_NoMinGamestage.Eridian_NoMinGamestage',
     keys: ['Artifact'],
   },
 ];
