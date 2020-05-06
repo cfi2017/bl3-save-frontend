@@ -94,6 +94,7 @@ export interface Profile {
     customization_asset_path: string;
   };
   guardian_rank: {
+    available_tokens: number;
     guardian_rank: number;
     rank_rewards: {
       num_tokens: number;

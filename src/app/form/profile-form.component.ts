@@ -14,12 +14,19 @@ import { ProfileWrapper } from '../model';
         <mat-card-content
           gdColumns="19% 20% 20% 20% 20%!"
           gdRows="20% 20% 20% 20%!"
-          gdAreas="level rank0 rank4 rank8 rank12 | . rank1 rank5 rank9 rank13 | . rank2 rank6 rank10 rank14 | . rank3 rank7 rank11 rank15"
+          gdAreas="level rank0 rank4 rank8 rank12 |
+          tokens rank1 rank5 rank9 rank13 |
+          . rank2 rank6 rank10 rank14 |
+          . rank3 rank7 rank11 rank15"
           gdGap="5px"
         >
           <mat-form-field gdArea="level">
-            <input matInput [(ngModel)]="data.profile.guardian_rank.guardian_rank" name="guardian_rank"/>
+            <input matInput type="number" [(ngModel)]="data.profile.guardian_rank.guardian_rank" name="guardian_rank"/>
             <mat-label>Guardian Rank</mat-label>
+          </mat-form-field>
+          <mat-form-field gdArea="tokens">
+            <input matInput type="number" [(ngModel)]="data.profile.guardian_rank.available_tokens" name="guardian_tokens"/>
+            <mat-label>Guardian Tokens</mat-label>
           </mat-form-field>
           <mat-form-field *ngFor="let rank of data.profile.guardian_rank.rank_rewards; let i = index" [gdArea]="'rank' + i">
             <input matInput type="number" [(ngModel)]="rank.num_tokens" [name]="rank.reward_data_path"/>
