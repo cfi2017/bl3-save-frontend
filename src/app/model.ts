@@ -93,6 +93,10 @@ export interface Profile {
     is_new: boolean;
     customization_asset_path: string;
   };
+  unlocked_inventory_customization_parts: {
+    is_new: boolean;
+    customization_asset_hash: number;
+  }[];
   guardian_rank: {
     available_tokens: number;
     guardian_rank: number;

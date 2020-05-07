@@ -12,13 +12,13 @@ import { ProfileWrapper } from '../model';
       <mat-card gdArea="guardian">
         <mat-card-title>Guardian Rank</mat-card-title>
         <mat-card-content
-          gdColumns="19% 20% 20% 20% 20%!"
+          gdColumns="16% 16% 16% 16% 16% 16%!"
           gdRows="20% 20% 20% 20%!"
-          gdAreas="level rank0 rank4 rank8 rank12 |
-          tokens rank1 rank5 rank9 rank13 |
-          . rank2 rank6 rank10 rank14 |
-          . rank3 rank7 rank11 rank15"
-          gdGap="5px"
+          gdAreas="level rank0 rank4 rank8 rank12 rank16 |
+          tokens rank1 rank5 rank9 rank13 rank17 |
+          . rank2 rank6 rank10 rank14 rank18 |
+          . rank3 rank7 rank11 rank15 rank19"
+          gdGap="0.8%"
         >
           <mat-form-field gdArea="level">
             <input matInput type="number" [(ngModel)]="data.profile.guardian_rank.guardian_rank" name="guardian_rank"/>
