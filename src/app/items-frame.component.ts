@@ -7,11 +7,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { MatTable } from '@angular/material/table';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ItemImportComponent } from './form/item-import.component';
 import { ItemExportComponent } from './form/item-export.component';
 import { JsonEditorOptions } from 'ang-jsoneditor';
-import { ConfigService } from './config.service';
 import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component';
 import { BalancePickerComponent } from './form/balance-picker.component';
 import { BALANCE_BLACKLIST, bestGuessManufacturer } from './const';
@@ -75,21 +74,21 @@ import { AssetService } from './asset.service';
     </div>
   `,
   styleUrls: [
-      'items-frame.component.scss',
+    'items-frame.component.scss',
   ],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
-    ])
-  ]
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ItemsFrameComponent implements OnInit {
 
   itemRequest: ItemRequest;
   displayedColumns = [
-    'level', 'balance', 'actions'
+    'level', 'balance', 'actions',
   ];
   expandedElement: Item;
 
@@ -106,7 +105,7 @@ export class ItemsFrameComponent implements OnInit {
     private snackbar: MatSnackBar,
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
-    private assets: AssetService
+    private assets: AssetService,
   ) {
   }
 
@@ -132,9 +131,9 @@ export class ItemsFrameComponent implements OnInit {
     this.proxy.updateItems(this.id, this.itemRequest)
       .pipe(
         tap(
-          () => this.snackbar.open('Saved successfully.', 'Dismiss', {duration: 3000}),
-          () => this.snackbar.open('Failed to save.', 'Dismiss', {duration: 3000})
-        )
+          () => this.snackbar.open('Saved successfully.', 'Dismiss', { duration: 3000 }),
+          () => this.snackbar.open('Failed to save.', 'Dismiss', { duration: 3000 }),
+        ),
       ).subscribe(() => this.loadData());
   }
 
@@ -149,8 +148,8 @@ export class ItemsFrameComponent implements OnInit {
       balance: element.balance,
       manufacturer: element.manufacturer,
       wrapper: {
-        ...element.wrapper
-      }
+        ...element.wrapper,
+      },
     };
     const index = this.itemRequest.items.indexOf(element);
     this.itemRequest.items.push(copyOfItem);
@@ -179,31 +178,37 @@ export class ItemsFrameComponent implements OnInit {
 
   public openImportDialog() {
     this.dialog.open(ItemImportComponent, {
-      width: '80%'
+      width: '80%',
     }).afterClosed()
       .pipe(
         filter(r => !!r),
-        switchMap(code => this.proxy.convert(code))
-      ).subscribe(result => {
+        switchMap(code => this.proxy.convert(code)),
+      ).subscribe(results => {
+      results.forEach(result => {
         this.itemRequest.items.push(result);
         moveItemInArray(this.itemRequest.items, this.itemRequest.items.length - 1, 0);
-        this.itemRequest.equipped.forEach(e => {
-          e.inventory_list_index++;
-        });
-        this.table.renderRows();
       });
+      this.itemRequest.equipped.forEach(e => {
+        e.inventory_list_index += results.length;
+      });
+      this.table.renderRows();
+    });
   }
 
   public openLevelChangeDialog() {
     this.dialog.open(MassItemLevelDialogComponent, {
-      width: '80%'
+      width: '80%',
     }).afterClosed().subscribe(l => {
       const mayhemTemplate = 'Part_WeaponMayhemLevel_';
       if (!!l) {
         this.itemRequest.items.forEach(i => {
           i.level = l.level;
-          if (l.mayhemLevel > 10) l.mayhemLevel = 10;
-          if (l.mayhemLevel < 0) l.mayhemLevel = 0;
+          if (l.mayhemLevel > 10) {
+            l.mayhemLevel = 10;
+          }
+          if (l.mayhemLevel < 0) {
+            l.mayhemLevel = 0;
+          }
           const mlString = `${l.mayhemLevel}`.padStart(2, '0');
           if (l.mayhem) {
             i.generics = i.generics || [];
@@ -224,8 +229,8 @@ export class ItemsFrameComponent implements OnInit {
       width: '80%',
       data: {
         options: this.assets.getAssetsForKey('InventoryBalanceData'),
-        blacklist: BALANCE_BLACKLIST
-      }
+        blacklist: BALANCE_BLACKLIST,
+      },
     }).afterClosed()
       .pipe(
         filter(res => !!res),
@@ -245,8 +250,8 @@ export class ItemsFrameComponent implements OnInit {
       version: 55,
       wrapper: {
         item_serial_number: '',
-        pickup_order_index: 255
-      }
+        pickup_order_index: 255,
+      },
     };
     this.itemRequest.items.push(item);
     moveItemInArray(this.itemRequest.items, this.itemRequest.items.length - 1, 0);

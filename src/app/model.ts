@@ -63,6 +63,11 @@ export interface Character {
   player_class_data: {
     player_class_path: string;
   };
+  vehicles_unlocked_data: {
+    asset_path: string;
+    just_unlocked: boolean;
+  }[];
+  vehicle_parts_unlocked: string[];
   ability_data: {
     ability_points: number;
     tree_item_list: {

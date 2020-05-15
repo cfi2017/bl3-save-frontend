@@ -6,13 +6,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 import { CharacterWrapper } from './model';
 import { ConfigService } from './config.service';
+import { VEHICLE_CHASSIS, VEHICLE_PARTS, VEHICLE_SKINS } from './const';
 
 @Component({
   selector: 'bls-character-frame',
   template: `
     <div class="frame" *ngIf="data" style="min-height: 300px;">
-      <div class="action-bar">
+      <div class="action-bar" fxLayout="row" fxLayoutGap="5px">
         <button mat-raised-button color="primary" (click)="save()">Save</button>
+        <button mat-raised-button color="primary" (click)="unlockVehicleCustomizations()">Unlock Vehicle Customizations</button>
       </div>
       <bls-character-form [data]="data"></bls-character-form>
       <json-editor *ngIf="config.advanced" style="height:100%;" [data]="data" [options]="editorOptions"></json-editor>
@@ -88,4 +90,20 @@ export class CharacterFrameComponent implements OnInit {
       );
   }
 
+  unlockVehicleCustomizations() {
+    if (!this.data.character.vehicle_parts_unlocked) {
+      this.data.character.vehicle_parts_unlocked = [];
+    }
+    if (!this.data.character.vehicles_unlocked_data) {
+      this.data.character.vehicle_parts_unlocked = [];
+    }
+    const hasChassis = this.data.character.vehicles_unlocked_data.map(c => c.asset_path);
+    this.data.character.vehicles_unlocked_data.push(
+      ...VEHICLE_CHASSIS.filter(c => hasChassis.indexOf(c) === -1).map(c => ({asset_path: c, just_unlocked: true})));
+
+    this.data.character.vehicle_parts_unlocked.push(
+      ...VEHICLE_PARTS.filter(c => this.data.character.vehicle_parts_unlocked.indexOf(c) === -1),
+      ...VEHICLE_SKINS.filter(c => this.data.character.vehicle_parts_unlocked.indexOf(c) === -1)
+    );
+  }
 }

@@ -109,7 +109,7 @@ export class BankFrameComponent implements OnInit {
     private snackbar: MatSnackBar,
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
-    private assets: AssetService
+    private assets: AssetService,
   ) {
   }
 
@@ -181,9 +181,11 @@ export class BankFrameComponent implements OnInit {
       .pipe(
         filter(r => !!r),
         switchMap(code => this.proxy.convert(code)),
-      ).subscribe(result => {
-      this.items.push(result);
-      moveItemInArray(this.items, this.items.length - 1, 0);
+      ).subscribe(results => {
+      results.forEach(result => {
+        this.items.push(result);
+        moveItemInArray(this.items, this.items.length - 1, 0);
+      });
       this.table.renderRows();
     });
   }
@@ -203,8 +205,12 @@ export class BankFrameComponent implements OnInit {
       if (!!l) {
         this.items.forEach(i => {
           i.level = l.level;
-          if (l.mayhemLevel > 10) l.mayhemLevel = 10;
-          if (l.mayhemLevel < 0) l.mayhemLevel = 0;
+          if (l.mayhemLevel > 10) {
+            l.mayhemLevel = 10;
+          }
+          if (l.mayhemLevel < 0) {
+            l.mayhemLevel = 0;
+          }
           const mlString = `${l.mayhemLevel}`.padStart(2, '0');
           if (l.mayhem) {
             i.generics = i.generics || [];
@@ -226,8 +232,8 @@ export class BankFrameComponent implements OnInit {
       width: '80%',
       data: {
         options: this.assets.getAssetsForKey('InventoryBalanceData'),
-        blacklist: BALANCE_BLACKLIST
-      }
+        blacklist: BALANCE_BLACKLIST,
+      },
     }).afterClosed()
       .pipe(
         filter(res => !!res),
@@ -247,8 +253,8 @@ export class BankFrameComponent implements OnInit {
       version: 55,
       wrapper: {
         item_serial_number: '',
-        pickup_order_index: 255
-      }
+        pickup_order_index: 255,
+      },
     };
     this.items.push(item);
     moveItemInArray(this.items, this.items.length - 1, 0);
