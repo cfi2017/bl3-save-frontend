@@ -67,6 +67,10 @@ export interface Character {
     asset_path: string;
     just_unlocked: boolean;
   }[];
+  game_state_save_data_for_playthrough: {
+    mayhem_level: number;
+    mayhem_random_seed: number;
+  }[];
   vehicle_parts_unlocked: string[];
   ability_data: {
     ability_points: number;

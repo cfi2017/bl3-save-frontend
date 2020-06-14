@@ -9,13 +9,13 @@ import { CharacterWrapper } from '../model';
       <div
         gdColumns="33% 33% 33%!"
         gdRows="300px!"
-        gdAreas="class_level . . | invslots sdus currencies"
+        gdAreas="class_level mayhem1 mayhem2 | invslots sdus currencies"
         gdGap="10px">
         <mat-card gdArea="class_level">
           <mat-card-title>General</mat-card-title>
           <mat-card-content
             gdColumns="32% 32% 32%!"
-            gdAreas="level class class | skillpoints . ."
+            gdAreas="level class class | skillpoints"
             gdGap="2%"
           >
             <mat-form-field gdArea="level">
@@ -162,6 +162,44 @@ import { CharacterWrapper } from '../model';
                      [(ngModel)]="eridium"
                      type="number"/>
               <mat-label>Eridium</mat-label>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="data.character.game_state_save_data_for_playthrough.length > 0"  gdArea="mayhem1">
+          <mat-card-title>Mayhem</mat-card-title>
+          <mat-card-content>
+            <mat-form-field>
+              <input matInput
+                     name="mayhem1_level"
+                     [(ngModel)]="data.character.game_state_save_data_for_playthrough[0].mayhem_level"
+                     type="number"/>
+              <mat-label>Level</mat-label>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput
+                     name="mayhem1_level"
+                     [(ngModel)]="data.character.game_state_save_data_for_playthrough[0].mayhem_random_seed"
+                     type="number"/>
+              <mat-label>Seed (Affects Modifiers)</mat-label>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="data.character.game_state_save_data_for_playthrough.length > 1" gdArea="mayhem2">
+          <mat-card-title>Mayhem (TVHM)</mat-card-title>
+          <mat-card-content>
+            <mat-form-field>
+              <input matInput
+                     name="mayhem2_level"
+                     [(ngModel)]="data.character.game_state_save_data_for_playthrough[1].mayhem_level"
+                     type="number"/>
+              <mat-label>Level</mat-label>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput
+                     name="mayhem2_level"
+                     [(ngModel)]="data.character.game_state_save_data_for_playthrough[1].mayhem_random_seed"
+                     type="number"/>
+              <mat-label>Seed (Affects Modifiers)</mat-label>
             </mat-form-field>
           </mat-card-content>
         </mat-card>
