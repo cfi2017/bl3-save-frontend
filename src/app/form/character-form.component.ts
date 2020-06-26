@@ -15,7 +15,7 @@ import { CharacterWrapper } from '../model';
           <mat-card-title>General</mat-card-title>
           <mat-card-content
             gdColumns="32% 32% 32%!"
-            gdAreas="level class class | skillpoints"
+            gdAreas="level class class | skillpoints . ."
             gdGap="2%"
           >
             <mat-form-field gdArea="level">
@@ -177,7 +177,7 @@ import { CharacterWrapper } from '../model';
             </mat-form-field>
             <mat-form-field>
               <input matInput
-                     name="mayhem1_level"
+                     name="mayhem1_seed"
                      [(ngModel)]="data.character.game_state_save_data_for_playthrough[0].mayhem_random_seed"
                      type="number"/>
               <mat-label>Seed (Affects Modifiers)</mat-label>
@@ -196,7 +196,7 @@ import { CharacterWrapper } from '../model';
             </mat-form-field>
             <mat-form-field>
               <input matInput
-                     name="mayhem2_level"
+                     name="mayhem2_seed"
                      [(ngModel)]="data.character.game_state_save_data_for_playthrough[1].mayhem_random_seed"
                      type="number"/>
               <mat-label>Seed (Affects Modifiers)</mat-label>
