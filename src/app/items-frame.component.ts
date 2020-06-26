@@ -240,7 +240,7 @@ export class ItemsFrameComponent implements OnInit {
 
   private createItem(balance: string) {
     const item: Item = {
-      level: 57,
+      level: 60,
       balance,
       manufacturer: bestGuessManufacturer(balance, ''),
       inv_data: '',

@@ -39,10 +39,10 @@ import {
                      #level="ngModel"
                      [(ngModel)]="data.level"
                      type="number"
-                     max="57"
+                     max="60"
                      min="1"/>
               <mat-label>Level</mat-label>
-              <mat-error *ngIf="level.hasError('max')">Level can't be over 57.</mat-error>
+              <mat-error *ngIf="level.hasError('max')">Level can't be over 60.</mat-error>
               <mat-error *ngIf="level.hasError('min')">Level must be at least 1.</mat-error>
             </mat-form-field>
             <div gdArea="actions">
