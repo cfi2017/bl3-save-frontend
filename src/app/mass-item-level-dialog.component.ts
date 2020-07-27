@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
     <mat-dialog-content fxLayout="column">
       <span>Please note that you still need to save after pressing "Set".</span>
       <mat-form-field>
-        <input matInput [(ngModel)]="data.level" name="level" />
+        <input matInput [(ngModel)]="data.level" type="number" name="level" />
         <mat-label>Level</mat-label>
       </mat-form-field>
       <mat-checkbox [(ngModel)]="data.mayhem" labelPosition="after">Change mayhem level (where possible)</mat-checkbox>
