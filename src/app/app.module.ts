@@ -47,6 +47,8 @@ import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BalancePickerComponent } from './form/balance-picker.component';
 import { ThemePickerModule } from './theme-picker/theme-picker';
+import { FilterItemsPipe } from './filter-items.pipe';
+import { MatSortModule } from '@angular/material/sort';
 
 export const ROUTES: Routes = [
   {
@@ -91,7 +93,8 @@ export const ROUTES: Routes = [
     NamePipe,
     DeveloperMessageComponent,
     MassItemLevelDialogComponent,
-    BalancePickerComponent
+    BalancePickerComponent,
+    FilterItemsPipe
   ],
   imports: [
     BrowserModule,
@@ -122,7 +125,8 @@ export const ROUTES: Routes = [
     MatTooltipModule,
     MatSlideToggleModule,
     MatCheckboxModule,
-    ThemePickerModule
+    ThemePickerModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

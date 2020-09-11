@@ -4,7 +4,7 @@ import { ProxyService } from './proxy.service';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { Item, ItemRequest } from './model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,6 +15,7 @@ import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component
 import { BalancePickerComponent } from './form/balance-picker.component';
 import { BALANCE_BLACKLIST, bestGuessManufacturer } from './const';
 import { AssetService } from './asset.service';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'bls-items-frame',
@@ -26,14 +27,19 @@ import { AssetService } from './asset.service';
         <button mat-raised-button color="primary" (click)="openNewItemDialog()">Create Item</button>
         <button mat-raised-button color="primary" (click)="openLevelChangeDialog()">Change Level of all Items</button>
       </div>
-      <table mat-table [dataSource]="itemRequest?.items" multiTemplateDataRows>
+      <div class="filter">
+        <mat-form-field>
+          <input matInput [(ngModel)]="dataSource.filter" value="" />
+        </mat-form-field>
+      </div>
+      <table mat-table matSort [dataSource]="dataSource" multiTemplateDataRows>
         <ng-container matColumnDef="level">
-          <th mat-header-cell *matHeaderCellDef>Level</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Level</th>
           <td mat-cell *matCellDef="let element">{{element.level}}</td>
         </ng-container>
 
         <ng-container matColumnDef="balance">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
           <td mat-cell *matCellDef="let element">{{element.balance | asset:'.' | name}}</td>
         </ng-container>
 
@@ -91,9 +97,12 @@ export class ItemsFrameComponent implements OnInit {
     'level', 'balance', 'actions',
   ];
   expandedElement: Item;
+  deepFilter = false;
 
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatTable)
   table: MatTable<any>;
+  dataSource = new MatTableDataSource([]);
   // tslint:disable-next-line:variable-name
   private _id: any;
   private id: any;
@@ -110,7 +119,26 @@ export class ItemsFrameComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.filterPredicate = (item, f) => {
+      const filters = f.split(' ');
+      let value = this.checkValue(item.balance, filters)
+        || this.checkValue(item.inv_data, filters)
+        || this.checkValue(item.manufacturer, filters)
+        || this.checkValue(item.level, filters);
+      if (this.deepFilter) {
+        value = value || this.checkValue(item.generics, filters)
+          || this.checkValue(item.parts, filters);
+      }
+      return value;
+    };
     this.loadData();
+  }
+
+  checkValue(val: string|string[]|number, filters: string[]): boolean {
+    if (typeof val === 'string') return filters.some(f => val.toLowerCase().includes(f));
+    if (typeof val === 'number') return filters.some(f => ('' + val).toLowerCase().includes(f));
+    return val.some(value => filters.some(f => value.toLowerCase().includes(f)));
   }
 
   private loadData() {
@@ -123,6 +151,7 @@ export class ItemsFrameComponent implements OnInit {
       .subscribe(items => {
         this.id = this._id; // only change id on full load
         this.itemRequest = items;
+        this.dataSource.data = items.items;
         this.cdr.detectChanges();
       });
   }
