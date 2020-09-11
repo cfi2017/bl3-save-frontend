@@ -24,7 +24,7 @@ import { CharacterWrapper } from '../model';
                      #lvl="ngModel"
                      [(ngModel)]="level"
                      type="number"
-                     max="60"
+                     max="65"
                      min="1"/>
               <mat-label>Level</mat-label>
             </mat-form-field>

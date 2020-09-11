@@ -178,7 +178,7 @@ export const SDUS = [];
 export const AMMO = [];
 export const CHALLENGES = [];
 
-export const maxLevel = 60;
+export const maxLevel = 65;
 export const expValues = [
   0,          // lvl 1
   358,        // lvl 2
