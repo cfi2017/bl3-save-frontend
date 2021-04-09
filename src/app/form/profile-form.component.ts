@@ -48,11 +48,11 @@ import { ProfileWrapper } from '../model';
           </div>
         </mat-card-content>
       </mat-card>
-      <mat-card gdArea="vault_card">
+      <mat-card gdArea="vault_card" *ngIf="data.profile?.vault_card?.vault_card_claimed_rewards[0]">
         <mat-card-title>Vault Cards</mat-card-title>
         <mat-card-content>
             <mat-form-field>
-              <input matInput type="number" [(ngModel)]="data.profile.vault_card.vault_card_claimed_rewards[0].vault_card_chests" 
+              <input matInput type="number" [(ngModel)]="data.profile.vault_card.vault_card_claimed_rewards[0].vault_card_chests"
                      name="vault_card_chests"/>
               <mat-label>Vault Card Chests</mat-label>
             </mat-form-field>
