@@ -7,7 +7,7 @@ import { ProfileWrapper } from '../model';
     <form
       gdColumns="33% 33% 33%!"
       gdRows="300px!"
-      gdAreas="guardian guardian guardian | citizen_science . ." gdGap="10px">
+      gdAreas="guardian guardian guardian | citizen_science vault_card vault_card" gdGap="10px">
       <!-- Guardian Ranks -->
       <mat-card gdArea="guardian">
         <mat-card-title>Guardian Rank</mat-card-title>
@@ -48,12 +48,16 @@ import { ProfileWrapper } from '../model';
           </div>
         </mat-card-content>
       </mat-card>
-      <mat-card gdArea="sdu">
-        <mat-card-title>SDUs</mat-card-title>
+      <mat-card gdArea="vault_card">
+        <mat-card-title>Vault Cards</mat-card-title>
         <mat-card-content>
-
+            <mat-form-field>
+                Coming Soon...<br/>
+                Please let me know on Discord what you would like here: @Raptor#0001
+            </mat-form-field>
         </mat-card-content>
       </mat-card>
+
     </form>
   `,
   styles: [],

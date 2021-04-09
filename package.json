@@ -8,7 +8,8 @@
     "test": "yarn build-themes && ng test",
     "lint": "yarn build-themes && ng lint",
     "e2e": "yarn build-themes && ng e2e",
-    "deploy": "yarn build-themes && ng build --prod && firebase deploy",
+    "deploy": "yarn sync-db && yarn build-themes && ng build --prod && firebase deploy",
+    "sync-db": "sh sync.sh",
     "build-themes": "bash ./tools/build-themes.sh"
   },
   "private": true,

@@ -120,6 +120,35 @@ export interface Profile {
     sdu_level: number;
     sdu_data_path: string;
   }[];
+  vault_card: {
+    last_active_vault_card_id: number;
+    current_day_seed: number;
+    current_week_seed: number;
+    vault_card_previous_challenges: {
+      previous_challenge_seed: number;
+      previous_challenge_id: number;
+    }[];
+    vault_card_claimed_rewards: {
+      vault_card_id: number;
+      vault_card_experience: number;
+      unlocked_reward_list: VaultCardReward[];
+      redeemed_reward_list: VaultCardReward[];
+      vault_card_chests: number;
+      vault_card_chests_opened: number;
+      vault_card_keys_spent: number;
+      gear_rewards: VaultCardGearReward[];
+    }[];
+  };
+}
+
+export interface VaultCardReward {
+  column_index: number;
+  row_index: number;
+}
+
+export interface VaultCardGearReward {
+  gear_index: number;
+  repurchase_count: number;
 }
 
 export interface EquippedInventoryItem {
