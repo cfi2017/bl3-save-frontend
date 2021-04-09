@@ -7,7 +7,7 @@ import { ProfileWrapper } from '../model';
     <form
       gdColumns="33% 33% 33%!"
       gdRows="300px!"
-      gdAreas="guardian guardian guardian | citizen_science vault_card vault_card" gdGap="10px">
+      gdAreas="guardian guardian guardian | citizen_science vault_card ." gdGap="10px">
       <!-- Guardian Ranks -->
       <mat-card gdArea="guardian">
         <mat-card-title>Guardian Rank</mat-card-title>
@@ -52,8 +52,9 @@ import { ProfileWrapper } from '../model';
         <mat-card-title>Vault Cards</mat-card-title>
         <mat-card-content>
             <mat-form-field>
-                Coming Soon...<br/>
-                Please let me know on Discord what you would like here: @Raptor#0001
+              <input matInput type="number" [(ngModel)]="data.profile.vault_card.vault_card_claimed_rewards[0].vault_card_chests" 
+                     name="vault_card_chests"/>
+              <mat-label>Vault Card Chests</mat-label>
             </mat-form-field>
         </mat-card-content>
       </mat-card>
