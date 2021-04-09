@@ -188,6 +188,7 @@ export class ItemsFrameComponent implements OnInit {
         e.inventory_list_index++;
       }
     });
+    this.dataSource.data = this.itemRequest.items;
     this.table.renderRows();
   }
 
@@ -202,6 +203,7 @@ export class ItemsFrameComponent implements OnInit {
       }
     });
     this.itemRequest.items.splice(index, 1);
+    this.dataSource.data = this.itemRequest.items;
     this.table.renderRows();
   }
 
@@ -220,6 +222,7 @@ export class ItemsFrameComponent implements OnInit {
       this.itemRequest.equipped.forEach(e => {
         e.inventory_list_index += results.length;
       });
+      this.dataSource.data = this.itemRequest.items;
       this.table.renderRows();
     });
   }
@@ -248,6 +251,7 @@ export class ItemsFrameComponent implements OnInit {
             }
           }
         });
+        this.dataSource.data = this.itemRequest.items;
         this.table.renderRows();
       }
     });
@@ -269,14 +273,14 @@ export class ItemsFrameComponent implements OnInit {
 
   private createItem(balance: string) {
     const item: Item = {
-      level: 60,
+      level: 65,
       balance,
       manufacturer: bestGuessManufacturer(balance, ''),
       inv_data: '',
       parts: [],
       generics: [],
       overflow: '',
-      version: 55,
+      version: 62,
       wrapper: {
         item_serial_number: '',
         pickup_order_index: 255,
@@ -287,6 +291,7 @@ export class ItemsFrameComponent implements OnInit {
     this.itemRequest.equipped.forEach(e => {
       e.inventory_list_index++;
     });
+    this.dataSource.data = this.itemRequest.items;
     this.table.renderRows();
   }
 

@@ -243,14 +243,14 @@ export class BankFrameComponent implements OnInit {
 
   private createItem(balance: string) {
     const item: Item = {
-      level: 60,
+      level: 65,
       balance,
       manufacturer: bestGuessManufacturer(balance, ''),
       inv_data: '',
       parts: [],
       generics: [],
       overflow: '',
-      version: 55,
+      version: 62,
       wrapper: {
         item_serial_number: '',
         pickup_order_index: 255,
