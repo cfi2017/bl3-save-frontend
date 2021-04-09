@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   proxy: 'http://localhost:5050',
-  minimumVersion: 'v1.0.26'
+  minimumVersion: 'v1.0.27'
 };
 
 /*
