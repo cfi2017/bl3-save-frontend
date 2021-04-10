@@ -157,6 +157,7 @@ export class BankFrameComponent implements OnInit {
       overflow: element.overflow,
       inv_data: element.inv_data,
       balance: element.balance,
+      serialVersion: element.serialVersion,
       manufacturer: element.manufacturer,
       wrapper: {
         ...element.wrapper,
@@ -251,6 +252,7 @@ export class BankFrameComponent implements OnInit {
       generics: [],
       overflow: '',
       version: 62,
+      serialVersion: 4,
       wrapper: {
         item_serial_number: '',
         pickup_order_index: 255,

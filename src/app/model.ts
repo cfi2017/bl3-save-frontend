@@ -29,6 +29,7 @@ export interface Item {
   generics: string[];
   overflow: string;
   version: number;
+  serialVersion: number;
   readonly wrapper: ItemWrapper;
 }
 
@@ -139,6 +140,10 @@ export interface Profile {
       gear_rewards: VaultCardGearReward[];
     }[];
   };
+  bank_inventory_category_list: {
+    base_category_definition_hash: number;
+    quantity: number;
+  }[];
 }
 
 export interface VaultCardReward {

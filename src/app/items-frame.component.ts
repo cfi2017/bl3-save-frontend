@@ -179,6 +179,7 @@ export class ItemsFrameComponent implements OnInit {
       wrapper: {
         ...element.wrapper,
       },
+      serialVersion: element.serialVersion
     };
     const index = this.itemRequest.items.indexOf(element);
     this.itemRequest.items.push(copyOfItem);
@@ -285,6 +286,7 @@ export class ItemsFrameComponent implements OnInit {
         item_serial_number: '',
         pickup_order_index: 255,
       },
+      serialVersion: 4
     };
     this.itemRequest.items.push(item);
     moveItemInArray(this.itemRequest.items, this.itemRequest.items.length - 1, 0);
