@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 
 import db from '../assets/inventory_raw.json';
 import btik from '../assets/balance_to_inv_key.json';
-import names from '../assets/short_name_balance_mapping.json';
+import names from '../assets/balance_name_mapping.json';
 
 
 @Injectable({

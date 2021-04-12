@@ -42,7 +42,7 @@ import {untilComponentDestroyed} from './destroy-pipe';
 
         <ng-container matColumnDef="balance">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-          <td mat-cell *matCellDef="let element">{{element.balance | asset:'.' | name}}</td>
+          <td mat-cell *matCellDef="let element">{{element.balance | name}}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">

@@ -12,8 +12,7 @@ export class NamePipe implements PipeTransform {
 
 
   transform(value: string): unknown {
-    const v = value.split('.');
-    return this.assets.getName(v[v.length - 1]);
+    return this.assets.getName(value.split('.')[0]);
   }
 
 }

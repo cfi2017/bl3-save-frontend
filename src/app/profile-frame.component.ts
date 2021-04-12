@@ -62,7 +62,7 @@ export class ProfileFrameComponent implements OnInit, OnDestroy {
     this.proxy.getProfile().subscribe(profile => this.data = profile);
     this.saveService.onSave().pipe(
       untilComponentDestroyed(this)
-    ).subscribe(event => {
+    ).subscribe(() => {
       this.save();
     });
   }
