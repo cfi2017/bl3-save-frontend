@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProxyService } from './proxy.service';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
@@ -16,6 +16,8 @@ import { BalancePickerComponent } from './form/balance-picker.component';
 import { BALANCE_BLACKLIST, bestGuessManufacturer } from './const';
 import { AssetService } from './asset.service';
 import { MatSort } from '@angular/material/sort';
+import {SaveService} from './save.service';
+import {untilComponentDestroyed} from './destroy-pipe';
 
 @Component({
   selector: 'bls-items-frame',
@@ -90,7 +92,7 @@ import { MatSort } from '@angular/material/sort';
     ]),
   ],
 })
-export class ItemsFrameComponent implements OnInit {
+export class ItemsFrameComponent implements OnInit, OnDestroy {
 
   itemRequest: ItemRequest;
   displayedColumns = [
@@ -115,6 +117,7 @@ export class ItemsFrameComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
     private assets: AssetService,
+    private saveService: SaveService
   ) {
   }
 
@@ -133,6 +136,11 @@ export class ItemsFrameComponent implements OnInit {
       return value;
     };
     this.loadData();
+    this.saveService.onSave().pipe(
+      untilComponentDestroyed(this)
+    ).subscribe(event => {
+      this.save();
+    });
   }
 
   checkValue(val: string|string[]|number, filters: string[]): boolean {
@@ -303,5 +311,8 @@ export class ItemsFrameComponent implements OnInit {
       width: '80%',
       data: element
     });
+  }
+
+  ngOnDestroy(): void {
   }
 }

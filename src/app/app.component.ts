@@ -1,11 +1,12 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ProxyService } from './proxy.service';
-import { untilComponentDestroyed } from './destroy-pipe';
-import { MatSidenav } from '@angular/material/sidenav';
-import { environment } from '../environments/environment';
+import {Component, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ProxyService} from './proxy.service';
+import {untilComponentDestroyed} from './destroy-pipe';
+import {MatSidenav} from '@angular/material/sidenav';
+import {environment} from '../environments/environment';
 import compareVersions from 'compare-versions';
-import { ConfigService } from './config.service';
+import {ConfigService} from './config.service';
+import {SaveService} from './save.service';
 
 @Component({
   selector: 'bls-root',
@@ -17,7 +18,7 @@ import { ConfigService } from './config.service';
       <div *ngIf="online" fxFlex="1 1 auto" fxLayout="row" fxLayoutGap="10px">
         <div fxFlex="5 1">
           <mat-form-field style="width: 100%;">
-            <input name="dir" matInput [(ngModel)]="dir" />
+            <input name="dir" matInput [(ngModel)]="dir"/>
             <mat-label>Save Directory</mat-label>
           </mat-form-field>
         </div>
@@ -82,9 +83,9 @@ import { ConfigService } from './config.service';
   `,
   styles: [
     `
-    mat-sidenav-container {
-      height: calc(100vh - 64px);
-    }
+      mat-sidenav-container {
+        height: calc(100vh - 64px);
+      }
     `
   ],
 })
@@ -106,13 +107,26 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private snackbar: MatSnackBar,
     private proxy: ProxyService,
-    public config: ConfigService
-  ) { }
+    public config: ConfigService,
+    private save: SaveService
+  ) {
+  }
 
   ngOnDestroy(): void {
   }
 
   ngOnInit(): void {
+    document.addEventListener('keyup', e => {
+      if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        this.save.next(e);
+      }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+      }
+    });
     this.listChars();
     this.proxy.keepAlive().pipe(
       untilComponentDestroyed(this)

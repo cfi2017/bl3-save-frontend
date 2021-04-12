@@ -1,12 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProxyService } from './proxy.service';
-import { map, switchMap } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { CUSTOMIZATIONS, ROOM_DECORATIONS, WEAPON_SKINS, WEAPON_TRINKETS } from './const';
-import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
-import { ConfigService } from './config.service';
-import { crc32 } from 'crc';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ProxyService} from './proxy.service';
+import {map, switchMap} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {CUSTOMIZATIONS, ROOM_DECORATIONS, WEAPON_SKINS, WEAPON_TRINKETS} from './const';
+import {JsonEditorComponent, JsonEditorOptions} from 'ang-jsoneditor';
+import {ConfigService} from './config.service';
+import {crc32} from 'crc';
+import {untilComponentDestroyed} from './destroy-pipe';
+import {SaveService} from './save.service';
 
 @Component({
   selector: 'bls-profile-frame',
@@ -26,20 +28,20 @@ import { crc32 } from 'crc';
   `,
   styles: [
     `
-    .frame {
-      padding: 20px;
-    }
+      .frame {
+        padding: 20px;
+      }
 
-    .action-bar {
-      padding: 20px;
-    }
+      .action-bar {
+        padding: 20px;
+      }
 
-    .action-bar button {
-      margin-right: 10px;
-    }
+      .action-bar button {
+        margin-right: 10px;
+      }
     `]
 })
-export class ProfileFrameComponent implements OnInit {
+export class ProfileFrameComponent implements OnInit, OnDestroy {
 
   data: any;
   editorOptions: JsonEditorOptions;
@@ -48,7 +50,8 @@ export class ProfileFrameComponent implements OnInit {
     private proxy: ProxyService,
     private route: ActivatedRoute,
     private snackbar: MatSnackBar,
-    public config: ConfigService
+    public config: ConfigService,
+    private saveService: SaveService
   ) {
     this.editorOptions = new JsonEditorOptions();
     this.editorOptions.mode = 'view';
@@ -57,6 +60,11 @@ export class ProfileFrameComponent implements OnInit {
 
   ngOnInit(): void {
     this.proxy.getProfile().subscribe(profile => this.data = profile);
+    this.saveService.onSave().pipe(
+      untilComponentDestroyed(this)
+    ).subscribe(event => {
+      this.save();
+    });
   }
 
   save() {
@@ -91,6 +99,9 @@ export class ProfileFrameComponent implements OnInit {
         .filter(c => !unlocked.includes(c))
         .map(c => ({is_new: true, customization_asset_hash: c}))
     );
+  }
+
+  ngOnDestroy(): void {
   }
 
 }

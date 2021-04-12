@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProxyService } from './proxy.service';
 import { filter, switchMap, tap } from 'rxjs/operators';
@@ -15,6 +15,8 @@ import { MassItemLevelDialogComponent } from './mass-item-level-dialog.component
 import { BalancePickerComponent } from './form/balance-picker.component';
 import { BALANCE_BLACKLIST, bestGuessManufacturer } from './const';
 import { AssetService } from './asset.service';
+import {untilComponentDestroyed} from './destroy-pipe';
+import {SaveService} from './save.service';
 
 @Component({
   selector: 'bls-bank-frame',
@@ -89,7 +91,7 @@ import { AssetService } from './asset.service';
     ]),
   ],
 })
-export class BankFrameComponent implements OnInit {
+export class BankFrameComponent implements OnInit, OnDestroy {
 
   items: Item[] = [];
   displayedColumns = [
@@ -110,6 +112,7 @@ export class BankFrameComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
     private assets: AssetService,
+    private saveService: SaveService
   ) {
   }
 
@@ -119,6 +122,11 @@ export class BankFrameComponent implements OnInit {
       this.checkVersion();
     });
     this.loadData();
+    this.saveService.onSave().pipe(
+      untilComponentDestroyed(this)
+    ).subscribe(event => {
+      this.save();
+    });
   }
 
   private loadData() {
@@ -261,6 +269,9 @@ export class BankFrameComponent implements OnInit {
     this.items.push(item);
     moveItemInArray(this.items, this.items.length - 1, 0);
     this.table.renderRows();
+  }
+
+  ngOnDestroy(): void {
   }
 
 }

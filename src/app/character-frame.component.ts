@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { ProxyService } from './proxy.service';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
@@ -7,6 +7,8 @@ import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 import { CharacterWrapper } from './model';
 import { ConfigService } from './config.service';
 import { VEHICLE_CHASSIS, VEHICLE_PARTS, VEHICLE_SKINS } from './const';
+import {untilComponentDestroyed} from './destroy-pipe';
+import {SaveService} from './save.service';
 
 @Component({
   selector: 'bls-character-frame',
@@ -41,7 +43,7 @@ import { VEHICLE_CHASSIS, VEHICLE_PARTS, VEHICLE_SKINS } from './const';
     `,
   ],
 })
-export class CharacterFrameComponent implements OnInit {
+export class CharacterFrameComponent implements OnInit, OnDestroy {
 
   @Input()
   data: CharacterWrapper;
@@ -60,7 +62,8 @@ export class CharacterFrameComponent implements OnInit {
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private snackbar: MatSnackBar,
-    public config: ConfigService
+    public config: ConfigService,
+    private saveService: SaveService
   ) {
     this.editorOptions = new JsonEditorOptions();
     this.editorOptions.mode = 'view';
@@ -79,7 +82,11 @@ export class CharacterFrameComponent implements OnInit {
         this.id = this._id;
         this.cdr.detectChanges();
       });
-
+    this.saveService.onSave().pipe(
+      untilComponentDestroyed(this)
+    ).subscribe(event => {
+      this.save();
+    });
   }
 
   save() {
@@ -105,5 +112,8 @@ export class CharacterFrameComponent implements OnInit {
       ...VEHICLE_PARTS.filter(c => this.data.character.vehicle_parts_unlocked.indexOf(c) === -1),
       ...VEHICLE_SKINS.filter(c => this.data.character.vehicle_parts_unlocked.indexOf(c) === -1)
     );
+  }
+
+  ngOnDestroy(): void {
   }
 }
