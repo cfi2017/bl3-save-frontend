@@ -221,7 +221,7 @@ export class CharacterFormComponent implements OnInit {
   set level(l: number) {
     const newLevel = getExpForLevel(l);
     this.data.character.ability_data.ability_points =
-      Math.max(newLevel - this.level, 0) + (this.data.character.ability_data.ability_points || 0);
+      Math.max(l - this.level, 0) + (this.data.character.ability_data.ability_points || 0);
     this.data.character.experience_points = newLevel;
   }
 
