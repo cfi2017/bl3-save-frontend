@@ -49,27 +49,46 @@ import { BalancePickerComponent } from './form/balance-picker.component';
 import { ThemePickerModule } from './theme-picker/theme-picker';
 import { FilterItemsPipe } from './filter-items.pipe';
 import { MatSortModule } from '@angular/material/sort';
+import { NodownloadComponent } from './nodownload.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { ProxyLoadComponent } from './proxy-load.component';
+import { TabbedEditorComponent } from './tabbed-editor.component';
+import { OfflineFrameComponent } from './offline-frame.component';
 
 export const ROUTES: Routes = [
   {
-    path: 'profile/bank',
-    component: BankFrameComponent
+    path: 'proxy',
+    component: OfflineFrameComponent,
+    children: [
+      {
+        path: 'profile/bank',
+        component: ProxyLoadComponent
+      },
+      {
+        path: 'profile',
+        component: ProxyLoadComponent
+      },
+      {
+        path: 'character/:id/items',
+        component: ProxyLoadComponent
+      },
+      {
+        path: 'character/:id',
+        component: ProxyLoadComponent
+      },
+      {
+        path: '**',
+        component: DefaultComponent
+      }
+    ]
   },
   {
-    path: 'profile',
-    component: ProfileFrameComponent
-  },
-  {
-    path: 'character/:id/items',
-    component: ItemsFrameComponent
-  },
-  {
-    path: 'character/:id',
-    component: CharacterFrameComponent
+    path: 'nodownload',
+    component: NodownloadComponent
   },
   {
     path: '**',
-    component: DefaultComponent
+    redirectTo: '/proxy'
   }
 ];
 
@@ -94,7 +113,11 @@ export const ROUTES: Routes = [
     DeveloperMessageComponent,
     MassItemLevelDialogComponent,
     BalancePickerComponent,
-    FilterItemsPipe
+    FilterItemsPipe,
+    NodownloadComponent,
+    ProxyLoadComponent,
+    TabbedEditorComponent,
+    OfflineFrameComponent
   ],
   imports: [
     BrowserModule,
@@ -127,6 +150,7 @@ export const ROUTES: Routes = [
     MatCheckboxModule,
     ThemePickerModule,
     MatSortModule,
+    MaterialFileInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

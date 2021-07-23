@@ -7,3 +7,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @include mat-core();
 @include angular-material-theme($theme);
 @include bl3-save-editor-app-theme($theme);
+
+
+
+.memorial {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: #472d23;
+  font-weight: 600;
+  font-size: 3vh;
+}

@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProxyService } from './proxy.service';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
@@ -16,22 +16,23 @@ import { BalancePickerComponent } from './form/balance-picker.component';
 import { BALANCE_BLACKLIST, bestGuessManufacturer } from './const';
 import { AssetService } from './asset.service';
 import { MatSort } from '@angular/material/sort';
-import {SaveService} from './save.service';
-import {untilComponentDestroyed} from './destroy-pipe';
+import { SaveService } from './save.service';
+import { untilComponentDestroyed } from './destroy-pipe';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bls-items-frame',
   template: `
     <div style="min-height: 300px;">
       <div class="action-bar">
-        <button mat-raised-button color="primary" (click)="save()">Save</button>
+        <button mat-raised-button color="primary" (click)="saveData()">Save</button>
         <button mat-raised-button color="primary" (click)="openImportDialog()">Import Item</button>
         <button mat-raised-button color="primary" (click)="openNewItemDialog()">Create Item</button>
         <button mat-raised-button color="primary" (click)="openLevelChangeDialog()">Change Level of all Items</button>
       </div>
       <div class="filter">
         <mat-form-field>
-          <input matInput [(ngModel)]="dataSource.filter" value="" />
+          <input matInput [(ngModel)]="dataSource.filter" value=""/>
         </mat-form-field>
       </div>
       <table mat-table matSort [dataSource]="dataSource" multiTemplateDataRows>
@@ -101,10 +102,16 @@ export class ItemsFrameComponent implements OnInit, OnDestroy {
   expandedElement: Item;
   deepFilter = false;
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatTable)
   table: MatTable<any>;
   dataSource = new MatTableDataSource([]);
+
+  @Input()
+  save: (data) => Observable<any>;
+  @Input()
+  load: () => Observable<{ id: string, items: ItemRequest }>;
+
   // tslint:disable-next-line:variable-name
   private _id: any;
   private id: any;
@@ -117,7 +124,7 @@ export class ItemsFrameComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
     private assets: AssetService,
-    private saveService: SaveService
+    private saveService: SaveService,
   ) {
   }
 
@@ -137,41 +144,34 @@ export class ItemsFrameComponent implements OnInit, OnDestroy {
     };
     this.loadData();
     this.saveService.onSave().pipe(
-      untilComponentDestroyed(this)
+      untilComponentDestroyed(this),
     ).subscribe(event => {
-      this.save();
+      this.saveData();
     });
   }
 
-  checkValue(val: string|string[]|number, filters: string[]): boolean {
-    if (typeof val === 'string') return filters.some(f => val.toLowerCase().includes(f));
-    if (typeof val === 'number') return filters.some(f => ('' + val).toLowerCase().includes(f));
+  checkValue(val: string | string[] | number, filters: string[]): boolean {
+    if (typeof val === 'string') {
+      return filters.some(f => val.toLowerCase().includes(f));
+    }
+    if (typeof val === 'number') {
+      return filters.some(f => ('' + val).toLowerCase().includes(f));
+    }
     return val.some(value => filters.some(f => value.toLowerCase().includes(f)));
   }
 
   private loadData() {
-    this.route.paramMap
+    this.load()
       .pipe(
-        map(params => params.get('id')),
-        tap(id => this._id = id),
-        switchMap(id => this.proxy.getItems(id)),
+        tap(data => this._id = data.id),
       )
-      .subscribe(items => {
-        this.id = this._id; // only change id on full load
-        this.itemRequest = items;
-        this.dataSource.data = items.items;
-        this.cdr.detectChanges();
-      });
-  }
-
-  public save() {
-    this.proxy.updateItems(this.id, this.itemRequest)
-      .pipe(
-        tap(
-          () => this.snackbar.open('Saved successfully.', 'Dismiss', { duration: 3000 }),
-          () => this.snackbar.open('Failed to save.', 'Dismiss', { duration: 3000 }),
-        ),
-      ).subscribe(() => this.loadData());
+      .subscribe(data => {
+          this.id = this._id; // only change id on full load
+          this.itemRequest = data.items;
+          this.dataSource.data = data.items.items;
+          this.cdr.detectChanges();
+        },
+      );
   }
 
   public duplicate(element: Item) {
@@ -187,7 +187,7 @@ export class ItemsFrameComponent implements OnInit, OnDestroy {
       wrapper: {
         ...element.wrapper,
       },
-      serialVersion: element.serialVersion
+      serialVersion: element.serialVersion,
     };
     const index = this.itemRequest.items.indexOf(element);
     this.itemRequest.items.push(copyOfItem);
@@ -294,7 +294,7 @@ export class ItemsFrameComponent implements OnInit, OnDestroy {
         item_serial_number: '',
         pickup_order_index: 255,
       },
-      serialVersion: 4
+      serialVersion: 4,
     };
     this.itemRequest.items.push(item);
     moveItemInArray(this.itemRequest.items, this.itemRequest.items.length - 1, 0);
@@ -309,10 +309,20 @@ export class ItemsFrameComponent implements OnInit, OnDestroy {
   public export(element: Item) {
     this.dialog.open(ItemExportComponent, {
       width: '80%',
-      data: element
+      data: element,
     });
   }
 
   ngOnDestroy(): void {
+  }
+
+  public saveData() {
+    this.save({ id: this.id, items: this.itemRequest }).subscribe(
+      () => {
+        this.snackbar.open('Saved successfully.', 'Dismiss', { duration: 3000 });
+        this.loadData();
+      },
+      () => this.snackbar.open('Failed to save.', 'Dismiss', { duration: 3000 }),
+    );
   }
 }

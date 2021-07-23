@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {ProxyService} from './proxy.service';
 import {map, switchMap} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
@@ -9,6 +9,8 @@ import {ConfigService} from './config.service';
 import {crc32} from 'crc';
 import {untilComponentDestroyed} from './destroy-pipe';
 import {SaveService} from './save.service';
+import { Observable } from 'rxjs';
+import { ProfileWrapper } from './model';
 
 @Component({
   selector: 'bls-profile-frame',
@@ -16,7 +18,7 @@ import {SaveService} from './save.service';
 
     <div class="frame" *ngIf="data" style="min-height: 300px;">
       <div class="action-bar">
-        <button mat-raised-button color="primary" (click)="save()">Save</button>
+        <button mat-raised-button color="primary" (click)="saveData()">Save</button>
         <button mat-raised-button color="primary" (click)="unlockCustomizations()">Unlock all customizations</button>
         <button mat-raised-button color="primary" (click)="unlockRoomDecorations()">Unlock Room Decorations</button>
         <button mat-raised-button color="primary" (click)="unlockInventoryCustomizations()">Unlock Weapon Skins and Trinkets</button>
@@ -46,6 +48,11 @@ export class ProfileFrameComponent implements OnInit, OnDestroy {
   data: any;
   editorOptions: JsonEditorOptions;
 
+  @Input()
+  save: (profile) => Observable<any>;
+  @Input()
+  load: () => Observable<ProfileWrapper>;
+
   constructor(
     private proxy: ProxyService,
     private route: ActivatedRoute,
@@ -59,16 +66,16 @@ export class ProfileFrameComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.proxy.getProfile().subscribe(profile => this.data = profile);
+    this.load().subscribe(profile => this.data = profile);
     this.saveService.onSave().pipe(
       untilComponentDestroyed(this)
     ).subscribe(() => {
-      this.save();
+      this.saveData();
     });
   }
 
-  save() {
-    this.proxy.updateProfile(this.data)
+  saveData() {
+    this.save(this.data)
       .subscribe(
         () => this.snackbar.open('Saved successfully.', 'Dismiss', {duration: 3000}),
         () => this.snackbar.open('Failed to save.', 'Dismiss', {duration: 3000}));

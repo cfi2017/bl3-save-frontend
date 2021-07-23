@@ -1,12 +1,10 @@
-import {Component, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {ProxyService} from './proxy.service';
-import {untilComponentDestroyed} from './destroy-pipe';
-import {MatSidenav} from '@angular/material/sidenav';
-import {environment} from '../environments/environment';
-import compareVersions from 'compare-versions';
-import {ConfigService} from './config.service';
-import {SaveService} from './save.service';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { ConfigService } from './config.service';
+import { SaveService } from './save.service';
+import { WasmService } from './wasm.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DeveloperMessageComponent } from './developer-message.component';
 
 @Component({
   selector: 'bls-root',
@@ -15,100 +13,35 @@ import {SaveService} from './save.service';
       <div fxLayout="column" fxLayoutAlign="center">
         <h1>bl3-save editor</h1>
       </div>
-      <div *ngIf="online" fxFlex="1 1 auto" fxLayout="row" fxLayoutGap="10px">
-        <div fxFlex="5 1">
-          <mat-form-field style="width: 100%;">
-            <input name="dir" matInput [(ngModel)]="dir"/>
-            <mat-label>Save Directory</mat-label>
-          </mat-form-field>
-        </div>
-        <div fxFlex="1 0" fxLayout="column" fxLayoutAlign="center">
-          <button style="width: 80px;" (click)="cd()" mat-raised-button>Change</button>
-        </div>
-      </div>
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <a mat-raised-button routerLink="/proxy">Proxy Editor (Recommended)</a>
+        <a mat-raised-button routerLink="/nodownload">Browser Only</a>
         <bls-theme-picker></bls-theme-picker>
         <mat-slide-toggle [(ngModel)]="config.advanced">Advanced Mode</mat-slide-toggle>
       </div>
     </mat-toolbar>
-    <mat-toolbar *ngIf="outOfDate" color="warn">
-      Your proxy version ({{version}}) is out of date. You need at least version {{minimumVersion}}.
-    </mat-toolbar>
-    <div style="width: 100%;">
-      <mat-sidenav-container *ngIf="online && !outOfDate; else offline">
-        <mat-sidenav style="min-width: 200px;" #nav mode="side" opened>
-          <mat-nav-list>
-            <mat-expansion-panel *ngIf="hasProfile">
-              <mat-expansion-panel-header>
-                <mat-panel-title>Profile</mat-panel-title>
-              </mat-expansion-panel-header>
-              <mat-nav-list>
-                <a routerLink="profile" mat-list-item>Profile</a>
-                <a routerLink="profile/bank" mat-list-item>Bank</a>
-              </mat-nav-list>
-            </mat-expansion-panel>
-            <mat-expansion-panel
-              *ngFor="let c of chars">
-              <mat-expansion-panel-header>
-                <mat-panel-title>{{c.name}} | Level {{c.experience | level}}</mat-panel-title>
-              </mat-expansion-panel-header>
-              <mat-nav-list>
-                <a [routerLink]="'character/' + c.id" mat-list-item>Character</a>
-                <a [routerLink]="'character/' + c.id + '/items'" mat-list-item>Items</a>
-              </mat-nav-list>
-            </mat-expansion-panel>
-          </mat-nav-list>
-        </mat-sidenav>
-        <mat-sidenav-content>
-          <router-outlet></router-outlet>
-        </mat-sidenav-content>
-      </mat-sidenav-container>
-      <ng-template #offline>
-        <div>
-          <mat-card>
-            <mat-card-title>Installing the Proxy</mat-card-title>
-            <mat-card-content>
-              <mat-list>
-                <mat-list-item>
-                  Download the latest&nbsp;<a target="_blank" href="https://github.com/cfi2017/bl3-save/releases">Release</a>.
-                </mat-list-item>
-              </mat-list>
-            </mat-card-content>
-          </mat-card>
-          <mat-divider vertical inset></mat-divider>
-          <mat-card></mat-card>
-        </div>
-      </ng-template>
-    </div>
+    <router-outlet></router-outlet>
   `,
   styles: [
-    `
+      `
       mat-sidenav-container {
         height: calc(100vh - 64px);
       }
-    `
+    `,
   ],
 })
 export class AppComponent implements OnInit, OnDestroy {
 
   online = false;
-  hasProfile = false;
-  dir;
-  chars: { name: string; experience: number; id: number }[];
-  data: any;
-  isCharacter = false;
-  version: string;
-  outOfDate = false;
-  minimumVersion: string;
 
   @ViewChild(MatSidenav)
   nav: MatSidenav;
 
   constructor(
-    private snackbar: MatSnackBar,
-    private proxy: ProxyService,
     public config: ConfigService,
-    private save: SaveService
+    private save: SaveService,
+    private wasm: WasmService,
+    private dialog: MatDialog,
   ) {
   }
 
@@ -116,6 +49,29 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (!JSON.parse(localStorage.getItem('suppressMessage'))?.welcome1) {
+      this.dialog.open(DeveloperMessageComponent, {
+        data: {
+          id: 'welcome1', content: [
+            {
+              title: 'Baysix', text: `As you may have heard, Shawn,
+        the author of the popular save editor bl3editor.com has recently passed away.
+        This save editor will from this point on be dedicated to him.`,
+            },
+            {
+              title: 'Open Source Commitment',
+              text: `In lieu with the above news, I'm reiterating my intention that this save editor will remain 100% free and open source.
+              <a href="https://github.com/cfi2017/bl3-save" target="_blank">The source code can be found here.</a>.`
+            },
+            {
+              title: 'Browser Mode and PS4 Save Editing',
+              text: `I've added support for editing PS4 save files and also a method of editing save files without downloading the client.
+              Please click "Browser Only" in the top right for more information.`
+            }
+          ],
+        },
+      });
+    }
     document.addEventListener('keyup', e => {
       if (e.ctrlKey && e.key === 's') {
         e.preventDefault();
@@ -127,59 +83,8 @@ export class AppComponent implements OnInit, OnDestroy {
         e.preventDefault();
       }
     });
-    this.listChars();
-    this.proxy.keepAlive().pipe(
-      untilComponentDestroyed(this)
-    ).subscribe(
-      res => {
-        if (this.dir === undefined) this.dir = res.pwd;
-        this.snackbar.dismiss();
-        this.hasProfile = res.hasProfile;
-        if (this.online === false && !this.chars) this.listChars();
-        this.online = true;
-        this.version = res.buildVersion;
-        this.checkVersion();
-      },
-      () => {
-        this.online = false;
-        this.snackbar.open(`Could not connect to local proxy.`);
-        this.hasProfile = false;
-      });
+    this.wasm.initialise()
+      .then(() => console.log('wasm module ready'));
   }
 
-  cd() {
-    this.proxy.cd(this.dir).subscribe(() => {
-      this.listChars();
-    });
-  }
-
-  listChars() {
-    this.proxy.getCharacters().subscribe(characters => this.chars = characters);
-  }
-
-  open(value: string) {
-    if (value === 'profile') {
-      this.proxy.getProfile().subscribe(profile => {
-        this.data = profile;
-        console.log(profile);
-        this.isCharacter = false;
-      });
-    } else {
-      this.proxy.getCharacter(value).subscribe(character => {
-        this.data = character;
-        console.log(character);
-        this.isCharacter = true;
-      });
-    }
-  }
-
-  private checkVersion() {
-    this.minimumVersion = environment.minimumVersion;
-    if (!this.version) {
-      this.outOfDate = true;
-      this.version = '<= 1.0.3';
-      return;
-    }
-    this.outOfDate = compareVersions(this.version, this.minimumVersion) === -1;
-  }
 }

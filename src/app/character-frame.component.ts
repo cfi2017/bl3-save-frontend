@@ -1,21 +1,20 @@
-import {ChangeDetectorRef, Component, HostListener, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import { ProxyService } from './proxy.service';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 import { CharacterWrapper } from './model';
 import { ConfigService } from './config.service';
 import { VEHICLE_CHASSIS, VEHICLE_PARTS, VEHICLE_SKINS } from './const';
-import {untilComponentDestroyed} from './destroy-pipe';
-import {SaveService} from './save.service';
+import { untilComponentDestroyed } from './destroy-pipe';
+import { SaveService } from './save.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bls-character-frame',
   template: `
     <div class="frame" *ngIf="data" style="min-height: 300px;">
       <div class="action-bar" fxLayout="row" fxLayoutGap="5px">
-        <button mat-raised-button color="primary" (click)="save()">Save</button>
+        <button mat-raised-button color="primary" (click)="saveData()">Save</button>
         <button mat-raised-button color="primary" (click)="unlockVehicleCustomizations()">Unlock Vehicle Customizations</button>
       </div>
       <bls-character-form [data]="data"></bls-character-form>
@@ -45,7 +44,6 @@ import {SaveService} from './save.service';
 })
 export class CharacterFrameComponent implements OnInit, OnDestroy {
 
-  @Input()
   data: CharacterWrapper;
 
   // tslint:disable-next-line:variable-name
@@ -53,17 +51,21 @@ export class CharacterFrameComponent implements OnInit, OnDestroy {
   private id: any;
 
   editorOptions: JsonEditorOptions;
-  @ViewChild(JsonEditorComponent, {static: true})
+  @ViewChild(JsonEditorComponent, { static: true })
   editor: JsonEditorComponent;
 
+  @Input()
+  save: (data) => Observable<any>;
+
+  @Input()
+  load: () => Observable<{ char: CharacterWrapper, id: string }>;
 
   constructor(
-    private proxy: ProxyService,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private snackbar: MatSnackBar,
     public config: ConfigService,
-    private saveService: SaveService
+    private saveService: SaveService,
   ) {
     this.editorOptions = new JsonEditorOptions();
     this.editorOptions.mode = 'view';
@@ -71,30 +73,17 @@ export class CharacterFrameComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.route.paramMap
-      .pipe(
-        map(params => params.get('id')),
-        tap(id => this._id = id),
-        switchMap(id => this.proxy.getCharacter(id)),
-      )
-      .subscribe(char => {
-        this.data = char;
-        this.id = this._id;
-        this.cdr.detectChanges();
-      });
-    this.saveService.onSave().pipe(
-      untilComponentDestroyed(this)
-    ).subscribe(event => {
-      this.save();
+    this.load().subscribe(({ char, id }) => {
+      this._id = id;
+      this.data = char;
+      this.id = this._id;
+      this.cdr.detectChanges();
     });
-  }
-
-  save() {
-    this.proxy.updateCharacter(this.id, this.data)
-      .subscribe(
-        () => this.snackbar.open('Saved successfully.', 'Dismiss', { duration: 3000 }),
-        () => this.snackbar.open('Failed to save.', 'Dismiss', { duration: 3000 }),
-      );
+    this.saveService.onSave().pipe(
+      untilComponentDestroyed(this),
+    ).subscribe(event => {
+      this.saveData();
+    });
   }
 
   unlockVehicleCustomizations() {
@@ -106,11 +95,18 @@ export class CharacterFrameComponent implements OnInit, OnDestroy {
     }
     const hasChassis = this.data.character.vehicles_unlocked_data.map(c => c.asset_path);
     this.data.character.vehicles_unlocked_data.push(
-      ...VEHICLE_CHASSIS.filter(c => hasChassis.indexOf(c) === -1).map(c => ({asset_path: c, just_unlocked: true})));
+      ...VEHICLE_CHASSIS.filter(c => hasChassis.indexOf(c) === -1).map(c => ({ asset_path: c, just_unlocked: true })));
 
     this.data.character.vehicle_parts_unlocked.push(
       ...VEHICLE_PARTS.filter(c => this.data.character.vehicle_parts_unlocked.indexOf(c) === -1),
-      ...VEHICLE_SKINS.filter(c => this.data.character.vehicle_parts_unlocked.indexOf(c) === -1)
+      ...VEHICLE_SKINS.filter(c => this.data.character.vehicle_parts_unlocked.indexOf(c) === -1),
+    );
+  }
+
+  public saveData() {
+    this.save({ id: this.id, data: this.data }).subscribe(
+      () => this.snackbar.open('Saved successfully.', 'Dismiss', { duration: 3000 }),
+      () => this.snackbar.open('Failed to save.', 'Dismiss', { duration: 3000 }),
     );
   }
 

@@ -13,10 +13,13 @@ export class ConfigService {
 
   set advanced(v: boolean) {
     if (!!v) {
+      if (!JSON.parse(localStorage.getItem('suppressMessage'))?.advanced)
       this.dialog.open(DeveloperMessageComponent, {
-        data: `You've enabled the advanced editor.
+        data: {id: 'advanced', content: [
+            {text: `You've enabled the advanced editor.
         Things here are untested and are not guaranteed to work as expected. Use with caution.
         At the moment, only viewing is supported with the json editor.`
+        }]}
       });
     }
     localStorage.setItem('advanced', '' + v);

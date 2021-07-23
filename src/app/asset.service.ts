@@ -14,6 +14,14 @@ export class AssetService {
 
   }
 
+  getBtik(): any {
+    return btik;
+  }
+
+  getDB(): any {
+    return db;
+  }
+
   getAssetsForKey(key: string): string[] {
     return db[key] ? db[key].assets : [];
   }

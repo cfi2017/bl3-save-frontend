@@ -1,8 +1,8 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProxyService } from './proxy.service';
 import { filter, switchMap, tap } from 'rxjs/operators';
-import { Item } from './model';
+import { Item, ProfileWrapper } from './model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTable } from '@angular/material/table';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
@@ -17,6 +17,7 @@ import { BALANCE_BLACKLIST, bestGuessManufacturer } from './const';
 import { AssetService } from './asset.service';
 import {untilComponentDestroyed} from './destroy-pipe';
 import {SaveService} from './save.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bls-bank-frame',
@@ -27,7 +28,7 @@ import {SaveService} from './save.service';
       </mat-toolbar>
       <ng-container *ngIf="!outOfDate">
         <div class="action-bar">
-          <button mat-raised-button color="primary" (click)="save()">Save</button>
+          <button mat-raised-button color="primary" (click)="saveData()">Save</button>
           <button mat-raised-button color="primary" (click)="openImportDialog()">Import Item</button>
           <button mat-raised-button color="primary" (click)="openNewItemDialog()">Create Item</button>
           <button mat-raised-button color="primary" (click)="openLevelChangeDialog()">Change Level of all Items</button>
@@ -105,6 +106,11 @@ export class BankFrameComponent implements OnInit, OnDestroy {
   @ViewChild(MatTable)
   table: MatTable<any>;
 
+  @Input()
+  save: (items) => Observable<any>;
+  @Input()
+  load: () => Observable<Item[]>;
+
   constructor(
     private route: ActivatedRoute,
     private proxy: ProxyService,
@@ -125,12 +131,12 @@ export class BankFrameComponent implements OnInit, OnDestroy {
     this.saveService.onSave().pipe(
       untilComponentDestroyed(this)
     ).subscribe(event => {
-      this.save();
+      this.saveData();
     });
   }
 
   private loadData() {
-    this.proxy.getBankItems()
+    this.load()
       .subscribe(items => {
         this.items = items;
         this.cdr.detectChanges();
@@ -147,8 +153,8 @@ export class BankFrameComponent implements OnInit, OnDestroy {
     this.outOfDate = compareVersions(this.version, this.minimumVersion) === -1;
   }
 
-  public save() {
-    this.proxy.updateBankItems(this.items).pipe(
+  public saveData() {
+    this.save(this.items).pipe(
       tap(
         () => this.snackbar.open('Saved successfully.', 'Dismiss', { duration: 3000 }),
         () => this.snackbar.open('Failed to save.', 'Dismiss', { duration: 3000 }),

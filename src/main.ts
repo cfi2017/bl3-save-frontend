@@ -3,6 +3,9 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
+import { CharacterWrapper } from './app/model';
+
+declare var Go: any;
 
 if (environment.production) {
   enableProdMode();
