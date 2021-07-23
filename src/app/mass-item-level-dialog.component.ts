@@ -26,7 +26,7 @@ import { Component, OnInit } from '@angular/core';
 export class MassItemLevelDialogComponent implements OnInit {
 
   data = {
-    level: 65,
+    level: 72,
     mayhemLevel: 10,
     mayhem: false
   };

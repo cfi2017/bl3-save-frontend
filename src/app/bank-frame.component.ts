@@ -258,7 +258,7 @@ export class BankFrameComponent implements OnInit, OnDestroy {
 
   private createItem(balance: string) {
     const item: Item = {
-      level: 65,
+      level: 72,
       balance,
       manufacturer: bestGuessManufacturer(balance, ''),
       inv_data: '',
