@@ -90,6 +90,14 @@ export interface Character {
       augment_asset_path: string;
     }[];
   };
+  hero_points_save_data: {
+    strength: number;
+    luck: number;
+    dexterity: number;
+    intelligence: number;
+    wisdom: number;
+    constitution: number;
+  };
 }
 
 // tslint:disable-next-line:no-empty-interface

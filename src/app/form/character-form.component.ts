@@ -9,7 +9,7 @@ import { CharacterWrapper } from '../model';
       <div
         gdColumns="33% 33% 33%!"
         gdRows="300px!"
-        gdAreas="class_level mayhem1 mayhem2 | invslots sdus currencies"
+        gdAreas="class_level mayhem1 hero_points | invslots sdus currencies"
         gdGap="10px">
         <mat-card gdArea="class_level">
           <mat-card-title>General</mat-card-title>
@@ -156,13 +156,6 @@ import { CharacterWrapper } from '../model';
                      type="number"/>
               <mat-label>Money</mat-label>
             </mat-form-field>
-            <mat-form-field>
-              <input matInput
-                     name="eridium"
-                     [(ngModel)]="eridium"
-                     type="number"/>
-              <mat-label>Eridium</mat-label>
-            </mat-form-field>
           </mat-card-content>
         </mat-card>
         <mat-card *ngIf="data.character.game_state_save_data_for_playthrough.length > 0"  gdArea="mayhem1">
@@ -202,6 +195,51 @@ import { CharacterWrapper } from '../model';
               <mat-label>Seed (Affects Modifiers)</mat-label>
             </mat-form-field>
           </mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="data.character.hero_points_save_data" gdArea="hero_points">
+          <mat-card-title>Hero Points</mat-card-title>
+            <mat-card-content fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between">
+              <div fxLayout="column">
+                <mat-form-field>
+                  <input matInput name="hero_points_str"
+                         [(ngModel)]="data.character.hero_points_save_data.strength"
+                         type="number" />
+                  <mat-label>Strength</mat-label>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput name="hero_points_dex"
+                         [(ngModel)]="data.character.hero_points_save_data.dexterity"
+                         type="number" />
+                  <mat-label>Dexterity</mat-label>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput name="hero_points_int"
+                         [(ngModel)]="data.character.hero_points_save_data.intelligence"
+                         type="number" />
+                  <mat-label>Intelligence</mat-label>
+                </mat-form-field>
+              </div>
+              <div fxLayout="column">
+                <mat-form-field>
+                  <input matInput name="hero_points_wis"
+                         [(ngModel)]="data.character.hero_points_save_data.wisdom"
+                         type="number" />
+                  <mat-label>Wisdom</mat-label>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput name="hero_points_con"
+                         [(ngModel)]="data.character.hero_points_save_data.constitution"
+                         type="number" />
+                  <mat-label>Constitution</mat-label>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput name="hero_points_luck"
+                         [(ngModel)]="data.character.hero_points_save_data.luck"
+                         type="number" />
+                  <mat-label>Luck</mat-label>
+                </mat-form-field>
+              </div>
+            </mat-card-content>
         </mat-card>
       </div>
     </form>

@@ -9,7 +9,7 @@ import { ProfileWrapper } from '../model';
       gdRows="330px!"
       gdAreas="guardian guardian guardian | citizen_science currencies ." gdGap="10px">
       <!-- Guardian Ranks -->
-      <mat-card gdArea="guardian">
+      <!--<mat-card gdArea="guardian">
         <mat-card-title>Guardian Rank</mat-card-title>
         <mat-card-content
           gdColumns="16% 16% 16% 16% 16% 16%!"
@@ -26,7 +26,7 @@ import { ProfileWrapper } from '../model';
             <mat-label>Guardian Rank</mat-label>
           </mat-form-field>
           <mat-form-field gdArea="experience">
-            <input matInput [max]="maxInt" 
+            <input matInput [max]="maxInt"
                    type="number" [(ngModel)]="data.profile.guardian_rank.new_guardian_experience" name="new_guardian_experience"/>
             <mat-label>Guardian Experience</mat-label>
           </mat-form-field>
@@ -39,7 +39,7 @@ import { ProfileWrapper } from '../model';
             <mat-label>{{rank.reward_data_path | asset:'_'}}</mat-label>
           </mat-form-field>
         </mat-card-content>
-      </mat-card>
+      </mat-card>-->
       <!-- Misc -->
       <!-- Citizen Science -->
       <mat-card gdArea="citizen_science">

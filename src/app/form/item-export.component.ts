@@ -8,7 +8,7 @@ import { Item } from '../model';
     <mat-dialog-content>
       <mat-form-field style="width: 100%;">
         <textarea rows="5" readonly matInput name="code"
-                  (click)="box.select()" #box class="code">bl3({{data.wrapper.item_serial_number}})</textarea>
+                  (click)="box.select()" #box class="code">ttwl({{data.wrapper.item_serial_number}})</textarea>
       </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>
